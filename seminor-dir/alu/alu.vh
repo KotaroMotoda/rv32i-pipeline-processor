@@ -1,0 +1,11 @@
+`define IADD  5'b00000
+`define IAND  5'b00001
+`define IOR   5'b00010
+`define IXOR  5'b00011
+`define ISUB  5'b00100
+`define lessThan             5'b01000
+`define lessThanUnsigned     5'b01001
+`define greaterEqual         5'b01010
+`define greaterEqualUnsigned 5'b01011
+`define equal                5'b01100
+`define notEqual             5'b01101
