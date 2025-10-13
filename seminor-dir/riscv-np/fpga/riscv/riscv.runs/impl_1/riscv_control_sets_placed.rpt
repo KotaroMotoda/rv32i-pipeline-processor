@@ -1,0 +1,593 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
+| Date         : Thu May 29 13:17:47 2025
+| Host         : st151 running 64-bit Ubuntu 22.04.1 LTS
+| Command      : report_control_sets -verbose -file riscv_control_sets_placed.rpt
+| Design       : riscv
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   515 |
+|    Minimum number of control sets                        |   515 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |     0 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   515 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |   515 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              32 |           16 |
+| No           | No                    | Yes                    |              32 |           18 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+-----------------------------------+------------------+------------------+----------------+--------------+
+|  Clock Signal  |           Enable Signal           | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+-----------------------------------+------------------+------------------+----------------+--------------+
+|  CLK_IBUF_BUFG | rf/mem_reg_2304_2559_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_4  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_5  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_6  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_7  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_8  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_9  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21760_22015_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_22784_23039_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_3  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_1  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_10 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_11 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_2  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_3  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_4  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_5  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_2  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_15 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_14 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_13 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_12 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_11 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_10 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_1  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_21248_21503_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_20992_21247_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_20736_20991_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_2048_2303_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_18944_19199_0_0_i_3_1  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_18944_19199_0_0_i_3_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_18688_18943_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_11   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_9    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_8    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_7    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_6    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_5    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_4    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_3    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_2    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_18   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_17   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_16   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_15   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_14   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_13   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_12   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_18432_18687_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_10   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4096_4351_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_3840_4095_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_3328_3583_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_31488_31743_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_30720_30975_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_29696_29951_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_2816_3071_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_2560_2815_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25600_25855_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_9  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_8  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_7  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_25088_25343_0_0_i_2_6  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_53   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_67   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_66   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_65   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_64   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_63   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_62   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_61   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_60   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_6    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_59   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_58   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_57   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_56   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_55   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_54   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_68   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_52   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_51   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_50   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_5    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_49   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_48   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_47   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_46   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_45   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_44   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_43   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_42   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_41   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_40   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_4    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_82   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_18176_18431_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_3_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_94   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_93   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_92   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_91   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_90   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_9    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_89   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_88   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_87   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_86   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_85   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_84   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_83   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4608_4863_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_81   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_80   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_8    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_79   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_78   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_77   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_76   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_75   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_74   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_73   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_72   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_71   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_70   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_7    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_69   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_22   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_21   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_20   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_2    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_19   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_18   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_17   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_16   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_15   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_14   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_13   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_12   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_11   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_10   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_23   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_8    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_7    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_6    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_5    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_4    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_3    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_2    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_3_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_9     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_8     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_7     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_6     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_5     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_4     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_38   |                  |                8 |             32 |         4.00 |
+|  iDATAO        |                                   |                  |               16 |             32 |         2.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_9728_9983_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_9472_9727_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_9216_9471_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8960_9215_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_9    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_8    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_7    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_6    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_5    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_42   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_41   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_40   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_4    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_39   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_3     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_37   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_36   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_35   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_34   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_33   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_32   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_31   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_30   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_3    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_29   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_28   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_27   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_26   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_25   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_8192_8447_0_0_i_4_24   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_17     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_30     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_3      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_29     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_28     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_27     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_26     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_25     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_24     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_23     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_22     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_21     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_20     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_2      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_19     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_18     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_31     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_16     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_15     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_14     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_13     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_12     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_11     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_10     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_1      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_0      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_3_1      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_3_0      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_2_1      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_2_0      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_5120_5375_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_4864_5119_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_6400_6655_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_2     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_14    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_13    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_12    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_11    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_10    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_1     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_3_0     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_768_1023_0_0_i_2_0     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_7680_7935_0_0_i_2_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_7680_7935_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_7424_7679_0_0_i_2_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_7424_7679_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_7168_7423_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_6656_6911_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_39   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_6144_6399_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_5632_5887_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_5376_5631_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_9      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_8      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_7      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_6      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_5      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_4      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_37     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_36     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_35     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_34     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_33     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_512_767_0_0_i_4_32     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_10     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_4      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_5      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_6      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_7      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_8      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_9      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_0      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_1      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_36     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_11     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_12     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_13     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_14     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_15     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_16     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_17     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_18     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_35     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_34     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_33     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_32     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_31     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_30     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_3      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_29     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_28     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_27     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_26     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_25     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_24     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_23     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_22     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_32     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG |                                   | RST              |               18 |             32 |         1.78 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_12       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_11       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_10       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_1        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_0        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_9      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_8      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_7      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_6      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_5      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_4      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_35     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_34     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_33     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_21     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_31     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_30     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_3      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_29     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_28     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_27     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_26     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_25     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_24     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_23     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_22     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_21     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_20     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_2      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_24_24_i_7_19     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_4       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_6       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_5       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_4       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_3       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_2       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_12      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_11      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_10      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_1       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_0       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_9       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_8       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_7       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_6       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_5       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_7       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_3       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_20      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_2       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_19      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_18      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_17      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_16      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_15      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_14      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_13      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_12      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_11      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_10      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_1       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_18_0       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_8       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_20     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_2      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_19     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_18     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_17     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_16     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_15     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_14     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_13     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_12     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_11     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_10     |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_1      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_16_16_i_5_0      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_9       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_13       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_7       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_6       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_5       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_4       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_3       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_2       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_12      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_11      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_10      |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_1       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_21_0       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_20_1       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_20_0       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_9       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_0_0_i_19_8       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_5  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17920_18175_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17664_17919_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_3_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_2_5  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_2_4  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_2_3  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_2_2  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_2_1  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_17408_17663_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16896_17151_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_9  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_8  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_7  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_6  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_4  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_3  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_2  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_19 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_18 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_17 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_16 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_15 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_14 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_13 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_12 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_11 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_10 |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_1  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_16384_16639_0_0_i_3_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_24   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_38   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_37   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_36   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_35   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_34   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_33   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_32   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_31   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_30   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_3    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_29   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_28   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_27   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_26   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_25   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_15616_15871_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_23   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_22   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_21   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_20   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_2    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_19   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_18   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_17   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_16   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_15   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_14   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_13   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_12   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_11   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1792_2047_0_0_i_2_10   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_29       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_15   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_14   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_13   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_12   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_11   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_10   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_9        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_8        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_7        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_6        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_5        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_4        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_3        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_16   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_28       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_27       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_26       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_25       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_24       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_23       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_22       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_21       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_20       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_2        |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_19       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_18       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_17       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_16       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_15       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_1    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1536_1791_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_15360_15615_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_15104_15359_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_14848_15103_0_0_i_2_1  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_14848_15103_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1280_1535_0_0_i_2_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_12800_13055_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_12544_12799_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_10752_11007_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_10496_10751_0_0_i_2_0  |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_6    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_5    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_4    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_3    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_2    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_3    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_17   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_18   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_19   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_2    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_20   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_21   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_22   |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_0_255_8_8_i_5_14       |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_4    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_5    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_6    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_7    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_8    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_3_9    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/mem_reg_1024_1279_0_0_i_4_0    |                  |                8 |             32 |         4.00 |
+|  CLK_IBUF_BUFG | rf/p_0_in__0                      |                  |               11 |             88 |         8.00 |
++----------------+-----------------------------------+------------------+------------------+----------------+--------------+
+
+

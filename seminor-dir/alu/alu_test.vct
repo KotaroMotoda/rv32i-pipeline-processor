@@ -1,0 +1,198 @@
+initial
+begin
+    A[31:0] = # 10 32'h0000_0001;	//  add 
+    A[31:0] = # 10 32'h0000_0001;
+    A[31:0] = # 10 32'hFFFF_FFFF;
+    A[31:0] = # 10 32'h8000_0000;
+    A[31:0] = # 10 32'h7FFF_FFFF;
+    A[31:0] = # 10 32'h0000_0001;
+    A[31:0] = # 10 32'hFFFF_FFFE;
+    A[31:0] = # 10 32'hFFFF_FFFF;
+    A[31:0] = # 10 32'h0000_0002;	//  basic subtract 
+    A[31:0] = # 10 32'h0000_0001;	//  result zero 
+    A[31:0] = # 10 32'h0000_0000;	//  underflow 
+    A[31:0] = # 10 32'h8000_0000;	//  negative result 
+    A[31:0] = # 10 32'h7FFF_FFFF;	//  positive - negative 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  negative - positive 
+    A[31:0] = # 10 32'h0000_0001;	//  subtract -1 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  -1 - -1 
+    A[31:0] = # 10 32'hFFFF_0000;	//  bitwise and no overlap 
+    A[31:0] = # 10 32'hFFFF_0000;	//  full overlap 
+    A[31:0] = # 10 32'h1234_5678;	//  and with all ones 
+    A[31:0] = # 10 32'h0000_0000;	//  and with all zeros 
+    A[31:0] = # 10 32'h0F0F_0F0F;	//  alternating pattern 
+    A[31:0] = # 10 32'hFFFF_0000;	//  bitwise or no overlap 
+    A[31:0] = # 10 32'h0000_0000;	//  or with zero 
+    A[31:0] = # 10 32'h0000_0000;	//  or with all ones 
+    A[31:0] = # 10 32'h1234_5678;	//  random values 
+    A[31:0] = # 10 32'h0F0F_0F0F;	//  alternating pattern 
+    A[31:0] = # 10 32'hFFFF_0000;	//  xor no overlap 
+    A[31:0] = # 10 32'h0000_0000;	//  xor with self 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  xor all ones 
+    A[31:0] = # 10 32'h0F0F_0F0F;	//  alternating pattern 
+    A[31:0] = # 10 32'hAAAA_AAAA;	//  opposite bits 
+    A[31:0] = # 10 32'h0000_0001;	//  signed: 1 < 2 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  signed: -1 < 1 
+    A[31:0] = # 10 32'h0000_0001;	//  signed: 1 > -1 
+    A[31:0] = # 10 32'h8000_0000;	//  signed: most negative < 0 
+    A[31:0] = # 10 32'h7FFF_FFFF;	//  signed: positive > negative 
+    A[31:0] = # 10 32'h0000_0001;	//  unsigned: 1 < 2 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  unsigned: max > 1 
+    A[31:0] = # 10 32'h0000_0000;	//  equal 
+    A[31:0] = # 10 32'h8000_0000;	//  MSB set > MSB not set 
+    A[31:0] = # 10 32'h0000_0002;	//  2 > 1 
+    A[31:0] = # 10 32'h0000_0001;	//  signed: 1 >= 2 
+    A[31:0] = # 10 32'h0000_0002;	//  signed: 2 >= 1 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  signed: equal negatives 
+    A[31:0] = # 10 32'h7FFF_FFFF;	//  signed: max > min 
+    A[31:0] = # 10 32'h8000_0000;	//  signed: equal negatives 
+    A[31:0] = # 10 32'h0000_0001;	//  unsigned: 1 >= 2 
+    A[31:0] = # 10 32'h0000_0002;	//  unsigned: 2 >= 1 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  unsigned: max > 1 
+    A[31:0] = # 10 32'h0000_0000;	//  unsigned: equal 
+    A[31:0] = # 10 32'h7FFF_FFFF;	//  unsigned: lower < higher 
+    A[31:0] = # 10 32'h0000_0001;	//  equal 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  equal negative 
+    A[31:0] = # 10 32'h0000_0000;	//  equal zero 
+    A[31:0] = # 10 32'h0000_0001;	//  not equal 
+    A[31:0] = # 10 32'h1234_5678;	//  equal random 
+    A[31:0] = # 10 32'h0000_0001;	//  not equal 
+    A[31:0] = # 10 32'h0000_0000;	//  not equal zero vs one 
+    A[31:0] = # 10 32'h1234_5678;	//  not equal random 
+    A[31:0] = # 10 32'hFFFF_FFFF;	//  not equal extreme 
+    A[31:0] = # 10 32'hDEAD_BEEF;	//  equal should return 0 
+    A[31:0] = # 10 32'hDEAD_BEEF;	//  equal should return 0 
+end
+
+initial
+begin
+    B[31:0] = # 10 32'h0000_0001;	//  add 
+    B[31:0] = # 10 32'hFFFF_FFFF;
+    B[31:0] = # 10 32'h0000_0001;
+    B[31:0] = # 10 32'h8000_0000;
+    B[31:0] = # 10 32'h0000_0001;
+    B[31:0] = # 10 32'hFFFF_FFFE;
+    B[31:0] = # 10 32'h0000_0001;
+    B[31:0] = # 10 32'hFFFF_FFFF;
+    B[31:0] = # 10 32'h0000_0001;	//  basic subtract 
+    B[31:0] = # 10 32'h0000_0001;	//  result zero 
+    B[31:0] = # 10 32'h0000_0001;	//  underflow 
+    B[31:0] = # 10 32'h0000_0001;	//  negative result 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  positive - negative 
+    B[31:0] = # 10 32'h7FFF_FFFF;	//  negative - positive 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  subtract -1 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  -1 - -1 
+    B[31:0] = # 10 32'h0000_FFFF;	//  bitwise and no overlap 
+    B[31:0] = # 10 32'hFFFF_0000;	//  full overlap 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  and with all ones 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  and with all zeros 
+    B[31:0] = # 10 32'hF0F0_F0F0;	//  alternating pattern 
+    B[31:0] = # 10 32'h0000_FFFF;	//  bitwise or no overlap 
+    B[31:0] = # 10 32'h0000_0000;	//  or with zero 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  or with all ones 
+    B[31:0] = # 10 32'h8765_4321;	//  random values 
+    B[31:0] = # 10 32'hF0F0_F0F0;	//  alternating pattern 
+    B[31:0] = # 10 32'h0000_FFFF;	//  xor no overlap 
+    B[31:0] = # 10 32'h0000_0000;	//  xor with self 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  xor all ones 
+    B[31:0] = # 10 32'hF0F0_F0F0;	//  alternating pattern 
+    B[31:0] = # 10 32'h5555_5555;	//  opposite bits 
+    B[31:0] = # 10 32'h0000_0002;	//  signed: 1 < 2 
+    B[31:0] = # 10 32'h0000_0001;	//  signed: -1 < 1 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  signed: 1 > -1 
+    B[31:0] = # 10 32'h0000_0000;	//  signed: most negative < 0 
+    B[31:0] = # 10 32'h8000_0000;	//  signed: positive > negative 
+    B[31:0] = # 10 32'h0000_0002;	//  unsigned: 1 < 2 
+    B[31:0] = # 10 32'h0000_0001;	//  unsigned: max > 1 
+    B[31:0] = # 10 32'h0000_0000;	//  equal 
+    B[31:0] = # 10 32'h7FFF_FFFF;	//  MSB set > MSB not set 
+    B[31:0] = # 10 32'h0000_0001;	//  2 > 1 
+    B[31:0] = # 10 32'h0000_0002;	//  signed: 1 >= 2 
+    B[31:0] = # 10 32'h0000_0001;	//  signed: 2 >= 1 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  signed: equal negatives 
+    B[31:0] = # 10 32'h8000_0000;	//  signed: max > min 
+    B[31:0] = # 10 32'h8000_0000;	//  signed: equal negatives 
+    B[31:0] = # 10 32'h0000_0002;	//  unsigned: 1 >= 2 
+    B[31:0] = # 10 32'h0000_0001;	//  unsigned: 2 >= 1 
+    B[31:0] = # 10 32'h0000_0001;	//  unsigned: max > 1 
+    B[31:0] = # 10 32'h0000_0000;	//  unsigned: equal 
+    B[31:0] = # 10 32'h8000_0000;	//  unsigned: lower < higher 
+    B[31:0] = # 10 32'h0000_0001;	//  equal 
+    B[31:0] = # 10 32'hFFFF_FFFF;	//  equal negative 
+    B[31:0] = # 10 32'h0000_0000;	//  equal zero 
+    B[31:0] = # 10 32'h0000_0002;	//  not equal 
+    B[31:0] = # 10 32'h1234_5678;	//  equal random 
+    B[31:0] = # 10 32'h0000_0002;	//  not equal 
+    B[31:0] = # 10 32'h0000_0001;	//  not equal zero vs one 
+    B[31:0] = # 10 32'h8765_4321;	//  not equal random 
+    B[31:0] = # 10 32'h0000_0000;	//  not equal extreme 
+    B[31:0] = # 10 32'hDEAD_BEEF;	//  equal should return 0 
+    B[31:0] = # 10 32'hDEAD_BEEF;	//  equal should return 0 
+end
+
+initial
+begin
+    C[4:0] = # 10 `IADD;	//  add 
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `IADD;
+    C[4:0] = # 10 `ISUB;	//  basic subtract 
+    C[4:0] = # 10 `ISUB;	//  result zero 
+    C[4:0] = # 10 `ISUB;	//  underflow 
+    C[4:0] = # 10 `ISUB;	//  negative result 
+    C[4:0] = # 10 `ISUB;	//  positive - negative 
+    C[4:0] = # 10 `ISUB;	//  negative - positive 
+    C[4:0] = # 10 `ISUB;	//  subtract -1 
+    C[4:0] = # 10 `ISUB;	//  -1 - -1 
+    C[4:0] = # 10 `IAND;	//  bitwise and no overlap 
+    C[4:0] = # 10 `IAND;	//  full overlap 
+    C[4:0] = # 10 `IAND;	//  and with all ones 
+    C[4:0] = # 10 `IAND;	//  and with all zeros 
+    C[4:0] = # 10 `IAND;	//  alternating pattern 
+    C[4:0] = # 10 `IOR;	//  bitwise or no overlap 
+    C[4:0] = # 10 `IOR;	//  or with zero 
+    C[4:0] = # 10 `IOR;	//  or with all ones 
+    C[4:0] = # 10 `IOR;	//  random values 
+    C[4:0] = # 10 `IOR;	//  alternating pattern 
+    C[4:0] = # 10 `IXOR;	//  xor no overlap 
+    C[4:0] = # 10 `IXOR;	//  xor with self 
+    C[4:0] = # 10 `IXOR;	//  xor all ones 
+    C[4:0] = # 10 `IXOR;	//  alternating pattern 
+    C[4:0] = # 10 `IXOR;	//  opposite bits 
+    C[4:0] = # 10 `lessThan;	//  signed: 1 < 2 
+    C[4:0] = # 10 `lessThan;	//  signed: -1 < 1 
+    C[4:0] = # 10 `lessThan;	//  signed: 1 > -1 
+    C[4:0] = # 10 `lessThan;	//  signed: most negative < 0 
+    C[4:0] = # 10 `lessThan;	//  signed: positive > negative 
+    C[4:0] = # 10 `lessThanUnsigned;	//  unsigned: 1 < 2 
+    C[4:0] = # 10 `lessThanUnsigned;	//  unsigned: max > 1 
+    C[4:0] = # 10 `lessThanUnsigned;	//  equal 
+    C[4:0] = # 10 `lessThanUnsigned;	//  MSB set > MSB not set 
+    C[4:0] = # 10 `lessThanUnsigned;	//  2 > 1 
+    C[4:0] = # 10 `greaterEqual;	//  signed: 1 >= 2 
+    C[4:0] = # 10 `greaterEqual;	//  signed: 2 >= 1 
+    C[4:0] = # 10 `greaterEqual;	//  signed: equal negatives 
+    C[4:0] = # 10 `greaterEqual;	//  signed: max > min 
+    C[4:0] = # 10 `greaterEqual;	//  signed: equal negatives 
+    C[4:0] = # 10 `greaterEqualUnsigned;	//  unsigned: 1 >= 2 
+    C[4:0] = # 10 `greaterEqualUnsigned;	//  unsigned: 2 >= 1 
+    C[4:0] = # 10 `greaterEqualUnsigned;	//  unsigned: max > 1 
+    C[4:0] = # 10 `greaterEqualUnsigned;	//  unsigned: equal 
+    C[4:0] = # 10 `greaterEqualUnsigned;	//  unsigned: lower < higher 
+    C[4:0] = # 10 `equal;	//  equal 
+    C[4:0] = # 10 `equal;	//  equal negative 
+    C[4:0] = # 10 `equal;	//  equal zero 
+    C[4:0] = # 10 `equal;	//  not equal 
+    C[4:0] = # 10 `equal;	//  equal random 
+    C[4:0] = # 10 `notEqual;	//  not equal 
+    C[4:0] = # 10 `notEqual;	//  not equal zero vs one 
+    C[4:0] = # 10 `notEqual;	//  not equal random 
+    C[4:0] = # 10 `notEqual;	//  not equal extreme 
+    C[4:0] = # 10 `notEqual;	//  equal should return 0 
+    C[4:0] = # 10 `notEqual;	//  equal should return 0 
+end
+

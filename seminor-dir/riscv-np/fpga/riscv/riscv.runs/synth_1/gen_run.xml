@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1748492015">
+  <File Type="VDS-TIMINGSUMMARY" Name="riscv_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="riscv.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="riscv_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="riscv_utilization_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="riscv_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="riscv.tcl"/>
+  <File Type="REPORTS-TCL" Name="riscv_reports.tcl"/>
+  <File Type="RDS-RDS" Name="riscv.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="riscv_drc_synth.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/np/alu.vh">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/alu.vh"/>
+        <Attr Name="ImportTime" Val="1748483135"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/alu.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/alu.v"/>
+        <Attr Name="ImportTime" Val="1748483110"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/riscv.vh">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/riscv.vh"/>
+        <Attr Name="ImportTime" Val="1748483013"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/daligner.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/daligner.v"/>
+        <Attr Name="ImportTime" Val="1748483012"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/dmem.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/dmem.v"/>
+        <Attr Name="ImportTime" Val="1748483012"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/rf.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/rf.v"/>
+        <Attr Name="ImportTime" Val="1748483012"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/shift.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/shift.v"/>
+        <Attr Name="ImportTime" Val="1748483012"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/inst.vh">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/inst.vh"/>
+        <Attr Name="ImportTime" Val="1748483012"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/riscv.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/riscv.v"/>
+        <Attr Name="ImportTime" Val="1748485727"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/prog.mif">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/prog.mif"/>
+        <Attr Name="ImportTime" Val="1748491964"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/np/data.mif">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../np/data.mif"/>
+        <Attr Name="ImportTime" Val="1748491964"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="riscv"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/fpga/riscv.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../riscv.xdc"/>
+        <Attr Name="ImportTime" Val="1748483012"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

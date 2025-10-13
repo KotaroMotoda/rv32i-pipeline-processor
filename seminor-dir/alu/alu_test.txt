@@ -1,0 +1,77 @@
+# input
+A[31:0]
+B[31:0]
+C[4:0]
+# testvector
+# A[31:0] B[31:0] C[4:0]
+10 32'h0000_0001 32'h0000_0001 `IADD # add
+10 32'h0000_0001 32'hFFFF_FFFF `IADD
+10 32'hFFFF_FFFF 32'h0000_0001 `IADD
+10 32'h8000_0000 32'h8000_0000 `IADD
+10 32'h7FFF_FFFF 32'h0000_0001 `IADD
+10 32'h0000_0001 32'hFFFF_FFFE `IADD
+10 32'hFFFF_FFFE 32'h0000_0001 `IADD
+10 32'hFFFF_FFFF 32'hFFFF_FFFF `IADD
+
+10 32'h0000_0002 32'h0000_0001 `ISUB # basic subtract
+10 32'h0000_0001 32'h0000_0001 `ISUB # result zero
+10 32'h0000_0000 32'h0000_0001 `ISUB # underflow
+10 32'h8000_0000 32'h0000_0001 `ISUB # negative result
+10 32'h7FFF_FFFF 32'hFFFF_FFFF `ISUB # positive - negative
+10 32'hFFFF_FFFF 32'h7FFF_FFFF `ISUB # negative - positive
+10 32'h0000_0001 32'hFFFF_FFFF `ISUB # subtract -1
+10 32'hFFFF_FFFF 32'hFFFF_FFFF `ISUB # -1 - -1
+
+10 32'hFFFF_0000 32'h0000_FFFF `IAND # bitwise and no overlap
+10 32'hFFFF_0000 32'hFFFF_0000 `IAND # full overlap
+10 32'h1234_5678 32'hFFFF_FFFF `IAND # and with all ones
+10 32'h0000_0000 32'hFFFF_FFFF `IAND # and with all zeros
+10 32'h0F0F_0F0F 32'hF0F0_F0F0 `IAND # alternating pattern
+
+10 32'hFFFF_0000 32'h0000_FFFF `IOR # bitwise or no overlap
+10 32'h0000_0000 32'h0000_0000 `IOR # or with zero
+10 32'h0000_0000 32'hFFFF_FFFF `IOR # or with all ones
+10 32'h1234_5678 32'h8765_4321 `IOR # random values
+10 32'h0F0F_0F0F 32'hF0F0_F0F0 `IOR # alternating pattern
+
+10 32'hFFFF_0000 32'h0000_FFFF `IXOR # xor no overlap
+10 32'h0000_0000 32'h0000_0000 `IXOR # xor with self
+10 32'hFFFF_FFFF 32'hFFFF_FFFF `IXOR # xor all ones
+10 32'h0F0F_0F0F 32'hF0F0_F0F0 `IXOR # alternating pattern
+10 32'hAAAA_AAAA 32'h5555_5555 `IXOR # opposite bits
+
+10 32'h0000_0001 32'h0000_0002 `lessThan # signed: 1 < 2
+10 32'hFFFF_FFFF 32'h0000_0001 `lessThan # signed: -1 < 1
+10 32'h0000_0001 32'hFFFF_FFFF `lessThan # signed: 1 > -1
+10 32'h8000_0000 32'h0000_0000 `lessThan # signed: most negative < 0
+10 32'h7FFF_FFFF 32'h8000_0000 `lessThan # signed: positive > negative
+
+10 32'h0000_0001 32'h0000_0002 `lessThanUnsigned # unsigned: 1 < 2
+10 32'hFFFF_FFFF 32'h0000_0001 `lessThanUnsigned # unsigned: max > 1
+10 32'h0000_0000 32'h0000_0000 `lessThanUnsigned # equal
+10 32'h8000_0000 32'h7FFF_FFFF `lessThanUnsigned # MSB set > MSB not set
+10 32'h0000_0002 32'h0000_0001 `lessThanUnsigned # 2 > 1
+
+10 32'h0000_0001 32'h0000_0002 `greaterEqual # signed: 1 >= 2
+10 32'h0000_0002 32'h0000_0001 `greaterEqual # signed: 2 >= 1
+10 32'hFFFF_FFFF 32'hFFFF_FFFF `greaterEqual # signed: equal negatives
+10 32'h7FFF_FFFF 32'h8000_0000 `greaterEqual # signed: max > min
+10 32'h8000_0000 32'h8000_0000 `greaterEqual # signed: equal negatives
+
+10 32'h0000_0001 32'h0000_0002 `greaterEqualUnsigned # unsigned: 1 >= 2
+10 32'h0000_0002 32'h0000_0001 `greaterEqualUnsigned # unsigned: 2 >= 1
+10 32'hFFFF_FFFF 32'h0000_0001 `greaterEqualUnsigned # unsigned: max > 1
+10 32'h0000_0000 32'h0000_0000 `greaterEqualUnsigned # unsigned: equal
+10 32'h7FFF_FFFF 32'h8000_0000 `greaterEqualUnsigned # unsigned: lower < higher
+
+10 32'h0000_0001 32'h0000_0001 `equal # equal
+10 32'hFFFF_FFFF 32'hFFFF_FFFF `equal # equal negative
+10 32'h0000_0000 32'h0000_0000 `equal # equal zero
+10 32'h0000_0001 32'h0000_0002 `equal # not equal
+10 32'h1234_5678 32'h1234_5678 `equal # equal random
+
+10 32'h0000_0001 32'h0000_0002 `notEqual # not equal
+10 32'h0000_0000 32'h0000_0001 `notEqual # not equal zero vs one
+10 32'h1234_5678 32'h8765_4321 `notEqual # not equal random
+10 32'hFFFF_FFFF 32'h0000_0000 `notEqual # not equal extreme
+10 32'hDEAD_BEEF 32'hDEAD_BEEF `notEqual # equal should return 0
