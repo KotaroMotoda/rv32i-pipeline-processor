@@ -13,9 +13,12 @@ module alu ( A, B, C, Y );
     wire lessThanUnsignedFlag; // less than unsigned flag
     wire lessThanFlag; // less than flag
 
+
     always @( A or B or C )
         begin
             case( C )
+                `ADD : X <= { 1'b0, A } + { 1'b0, B };
+                `SUB : X <= { 1'b0, A } - { 1'b0, B };
                 `IADD : X <= { 1'b0, A } + { 1'b0, B };
                 `IAND : X <= { 1'b0, A } & { 1'b0, B };
                 `IOR  : X <= { 1'b0, A } | { 1'b0, B };
