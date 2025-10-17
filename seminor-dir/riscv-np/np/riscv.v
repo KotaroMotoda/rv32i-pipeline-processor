@@ -1,6 +1,8 @@
 `include "riscv.vh"
 `include "inst.vh"
 `include "alu.vh"
+`define LITTLE_ENDIAN
+
 
 module riscv
     #(
