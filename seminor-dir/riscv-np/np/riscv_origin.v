@@ -36,7 +36,7 @@ module riscv
    reg  [ 2:0]  FT;		// Instruction Format Type
    reg  [ 4:0] 	D_RD;		// Destination Register Number
    wire [31:0] 	RF_DATA1;	// Register Value for RS1
-   wire [31:0] 	RF_DATA2;	// Register Value for RS2
+   wire [31:0] 	RF_DATA2;	// Register Vlaue for RS2
    wire [31:0] 	BR_ADDR;	// Branch Target Address
 // reg  [31:0] 	WB_RD_VAL;	// Destination Register Value
 
@@ -259,8 +259,8 @@ module riscv
 	endcase // case ( FT )
      end
    
-   // Reg .CLK(CLK), .RNUM1(`IR_RS1), .RDAster File
-   rf rf(TA1(RF_DATA1), 
+   // Regster File
+   rf rf( .CLK(CLK), .RNUM1(`IR_RS1), .RDATA1(RF_DATA1), 
                      .RNUM2(`IR_RS2), .RDATA2(RF_DATA2),
                      .WNUM (D_RD),    .WDATA (WB_RD_VAL) );
 

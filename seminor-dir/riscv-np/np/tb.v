@@ -51,7 +51,7 @@ module riscv_tb ();
      end
    
    always @( posedge CLK )
-     if( riscv.PC == 32'h00000064 ) // Last instruction address (ebreak) on "startup.s"
+     if( riscv.PC_IF== 32'h00000064 ) // Last instruction address (ebreak) on "startup.s"
        begin
 	  $display("Time", $time );
 	  dump(0);
