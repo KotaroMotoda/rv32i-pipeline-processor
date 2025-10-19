@@ -150,7 +150,7 @@ module riscv
 	       endcase // case ( `IR_F3 )
 	    end
         endcase
-        RD_ID = `IR_RD;
+        RD_ID <= `IR_RD;
     end
 
     // rf
