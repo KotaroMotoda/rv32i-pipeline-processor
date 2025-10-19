@@ -106,11 +106,49 @@ module riscv
     `endif
 
     // ID stage
-    always @(*)
+    always @(IR)
     begin
-        case (`IR_F7)
-            7'b0100000: IALU_ID = `SUB;
-            default:    IALU_ID = `ADD;
+        case 
+            (`IR_OP)
+            `OP_FUNC2 : // R type
+	    begin
+	       case( `IR_F3 )
+		 3'b000 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `IADD; else // add
+		      if( `IR_F7 == 7'b0100000 ) IALU_ID <= `ISUB;      // sub
+                   end 
+		 3'b001 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `ISLL;      // sll
+                   end 
+		 3'b010 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `lessThan;       // slt
+                   end 
+		 3'b011 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `lessThanUnsigned;      // sltu
+                   end
+		 3'b100 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `IXOR;      // xori
+                   end
+		 3'b101 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `ISRL; else // srl
+		      if( `IR_F7 == 7'b0100000 ) IALU_ID <= `ISRA;      // sra
+                   end 
+		 3'b110 : 
+		   begin 
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `IOR;       // ori
+                   end 
+		 3'b111 : 
+		   begin
+		      if( `IR_F7 == 7'b0000000 ) IALU_ID <= `IAND;      // andi
+                   end
+	       endcase // case ( `IR_F3 )
+	    end
         endcase
         RD_ID = `IR_RD;
     end

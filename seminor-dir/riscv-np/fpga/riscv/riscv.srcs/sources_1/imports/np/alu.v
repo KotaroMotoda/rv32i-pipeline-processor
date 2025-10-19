@@ -16,7 +16,7 @@ module alu ( A, B, C, Y );
     always @( A or B or C )
         begin
             case( C )
-                `IADD : X <= { 1'b0, A } + { 1'b0, B };
+                `IADD : X <= { 1'b0, A } + { 1'b0, B }; // レジスタ演算も,即値演算も同じ
                 `IAND : X <= { 1'b0, A } & { 1'b0, B };
                 `IOR  : X <= { 1'b0, A } | { 1'b0, B };
                 `IXOR : X <= { 1'b0, A } ^ { 1'b0, B };

@@ -248,9 +248,10 @@ module riscv
      end
 
    // Immediate Value
+	 // デフォルトで,通常のI形式の即値を設定
    always @( * )
      begin
-	IMM <= { {20{IR[31]}}, IR[31:20] };                                              // I format     
+	IMM <= { {20{IR[31]}}, IR[31:20] };                                              // I format(デフォルト)
 	case( FT )
 	  `FT_S :   IMM <= { {20{IR[31]}}, `IR_F7, `IR_RD                   };           // S format
 	  `FT_B :   IMM <= { {20{IR[31]}}, IR[7], IR[30:25], IR[11:8], 1'b0 };           // B format
@@ -272,6 +273,7 @@ module riscv
 		                 RF_DATA1;       // the others
  
    // MUX for source 2 of ALU (RF_DATA2 or Imm)
+	 // ここからわかるが,ここでレジスタ演算か,即値演算かを選択している
    assign RS2_IMM_VAL = ( FT == `FT_R || FT == `FT_B ) ? RF_DATA2 : IMM;
    
    alu   e_alu ( .C(IALU), .Y(ALU_RD_VAL), .A(RS1_VAL), .B(RS2_IMM_VAL)      );
