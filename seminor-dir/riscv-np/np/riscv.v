@@ -22,9 +22,7 @@ module riscv
     wire RST;
     assign RST = ~RSTN;
 
-    //========================================
-    // 命令メモリ(IM)定義 32bit
-    //========================================
+    // IM 
     reg [31:0] imem[0:IMEM_SIZE-1];
 
     initial
@@ -32,60 +30,44 @@ module riscv
         $readmemh( IMEM_FILE, imem );
     end
 
-    //========================================
-    // IF段の信号
-    //========================================
+    // IF reg
     reg [31:0] PC_IF;
     wire [31:0] PC4_IF;
     wire [31:0] IDATA_IF;
 
-    //========================================
-    // IF/IDパイプラインレジスタ
-    //========================================
+    // IF/ID pipeline reg
     reg [31:0] PC_FD;
     reg [31:0] IDATA_FD;
     reg [31:0] PC4_FD;
 
-    //========================================
-    // ID段の信号
-    //========================================
+    // ID reg
     wire [31:0] IR;
     reg [4:0] IALU_ID;
     wire [31:0] RF_DATA1;
     wire [31:0] RF_DATA2;
     reg [4:0] RD_ID;
 
-    //========================================
-    // ID/EXパイプラインレジスタ
-    //========================================
+    // ID/EX pipeline reg
     reg [31:0] PC_DE;
     reg [31:0] RF_DATA1_DE;
     reg [31:0] RF_DATA2_DE;
     reg [4:0] IALU_DE;
     reg [4:0] RD_DE;
 
-    //========================================
-    // EX段の信号
-    //========================================
+    // EX reg
     wire [31:0] RD_VAL_E;
 
-    //========================================
-    // EX/MEMパイプラインレジスタ
-    //========================================
+    // EX/MEM pipeline reg
     reg [31:0] PC_EM;
     reg [31:0] RD_VAL_EM;
     reg [4:0] RD_EM;
 
-    //========================================
-    // MEM/WBパイプラインレジスタ
-    //========================================
+    // MEM/WB pipeline reg
     reg [31:0] PC_MW;
     reg [31:0] RD_VAL_MW;
     reg [4:0] RD_MW;
 
-    //========================================
-    // IF段の処理
-    //========================================
+    // IF stage
     assign PC4_IF = PC_IF + 4;
     
     always @(posedge CLK or posedge RST)
@@ -98,9 +80,7 @@ module riscv
 
     assign IDATA_IF = imem[PC_IF[31:2]];
 
-    //========================================
-    // IF/IDパイプラインレジスタ更新
-    //========================================
+    // IF/ID pipeline reg update
     always @(posedge CLK or posedge RST)
     begin
         if (RST)
@@ -117,9 +97,7 @@ module riscv
         end
     end
 
-    //========================================
-    // エンディアン変換（組み合わせ論理）
-    //========================================
+    // define IR
     `ifdef BIG_ENDIAN
     assign IR = IDATA_FD;
     `endif
@@ -127,9 +105,7 @@ module riscv
     assign IR = {IDATA_FD[7:0], IDATA_FD[15:8], IDATA_FD[23:16], IDATA_FD[31:24]};
     `endif
 
-    //========================================
-    // ID段の処理（組み合わせ論理）
-    //========================================
+    // ID stage
     always @(*)
     begin
         case (`IR_F7)
@@ -139,9 +115,7 @@ module riscv
         RD_ID = `IR_RD;
     end
 
-    //========================================
-    // レジスタファイル
-    //========================================
+    // rf
     rf rf_inst(
         .CLK(CLK),
         .RNUM1(`IR_RS1), .RDATA1(RF_DATA1),
@@ -149,9 +123,7 @@ module riscv
         .WNUM(RD_MW),    .WDATA(RD_VAL_MW)
     );
 
-    //========================================
-    // ID/EXパイプラインレジスタ更新
-    //========================================
+    // ID/EX pipeline reg update
     always @(posedge CLK or posedge RST)
     begin
         if (RST)
@@ -172,9 +144,7 @@ module riscv
         end
     end
 
-    //========================================
-    // EX段の処理（ALU）
-    //========================================
+    // EX stage
     alu alu_inst(
         .A(RF_DATA1_DE), 
         .B(RF_DATA2_DE), 
@@ -182,9 +152,7 @@ module riscv
         .Y(RD_VAL_E)
     );
 
-    //========================================
-    // EX/MEMパイプラインレジスタ更新
-    //========================================
+    // EX/MEM pipeline reg update
     always @(posedge CLK or posedge RST)
     begin
         if (RST)
@@ -201,9 +169,7 @@ module riscv
         end
     end
 
-    //========================================
-    // MEM/WBパイプラインレジスタ更新
-    //========================================
+    // MEM/WB pipeline reg update
     always @(posedge CLK or posedge RST)
     begin
         if (RST)
@@ -220,9 +186,7 @@ module riscv
         end
     end
 
-    //========================================
-    // デバッグ用出力
-    //========================================
+    // define output
     always @(posedge CLK)
     begin
         WE_RD_VAL <= RD_VAL_MW;
