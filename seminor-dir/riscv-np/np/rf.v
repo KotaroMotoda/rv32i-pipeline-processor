@@ -12,12 +12,10 @@ module rf( CLK, RNUM1, RNUM2, RDATA1, RDATA2, WNUM, WDATA );
 	  REGISTER_FILE[WNUM] <= WDATA;
      end
 
-
-
    always @( negedge CLK )
      begin
-           RDATA1 = (RNUM1 != 0) ? REGISTER_FILE[RNUM1] : 32'h0000_0000;
-           RDATA2 = (RNUM2 != 0) ? REGISTER_FILE[RNUM2] : 32'h0000_0000;
+           RDATA1 <= (RNUM1 != 0) ? REGISTER_FILE[RNUM1] : 32'h0000_0000;
+           RDATA2 <= (RNUM2 != 0) ? REGISTER_FILE[RNUM2] : 32'h0000_0000;
      end
       
 endmodule // rf
