@@ -46,9 +46,11 @@ module riscv
     wire [31:0] RF_DATA1;
     wire [31:0] RF_DATA2;
     reg [4:0] RD_ID;
+    reg [2:0] FT_ID;
 
     // ID/EX pipeline reg
     reg [31:0] PC_DE;
+    wire [31:0] PC4_DE;
     reg [31:0] RF_DATA1_DE;
     reg [31:0] RF_DATA2_DE;
     reg [4:0] IALU_DE;
@@ -56,16 +58,21 @@ module riscv
 
     // EX reg
     wire [31:0] RD_VAL_E;
+    reg [31:0] DATA1_MUX_E;
+    reg [31:0] DATA2_MUX_E;
 
     // EX/MEM pipeline reg
-    reg [31:0] PC_EM;
+    wire [31:0] PC4_EM;
     reg [31:0] RD_VAL_EM;
     reg [4:0] RD_EM;
 
     // MEM/WB pipeline reg
-    reg [31:0] PC_MW;
+    wire [31:0] PC4_MW; 
     reg [31:0] RD_VAL_MW;
     reg [4:0] RD_MW;
+
+    // WB reg
+    reg [31:0] MUX_W;
 
     // IF stage
     assign PC4_IF = PC_IF + 4;
