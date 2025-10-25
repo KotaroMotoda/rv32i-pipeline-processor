@@ -100,12 +100,12 @@ module riscv
      begin
 	FT     <= 3'b000; // default : undefined instruction
 	IALU   <= `IADD;  // default operation
-	WB_MUX <= 2'b00;  // for R-type(00 for alu), I-type(01 for dmem), U-type(10 for PC+4). つまり,MemtoRegを,jal,jalr用に拡張したイメージ.
-	DMWE   <= 2'b00;  // no store. つまりMemWrite = 2'b00
-	DMRE   <= 2'b00;  // no load. つまりMemRead = 2'b00
+	WB_MUX <= 2'b00;  // for R-type(00 for alu), I-type(01 for dmem), U-type(10 for PC+4)
+	DMWE   <= 2'b00;  // no store
+	DMRE   <= 2'b00;  // no load
 	DMSE   <= 1'b0;   // unsigned
         RS1_PC <= 1'b0;   // no use PC for RS1
-        RS1_Z  <= 1'b0;   // no use Zero for RS1 
+        RS1_Z  <= 1'b0;   // no use Zero for RS1
 	PC_E   <= 1'b0;   // no branch
 	case( `IR_OP )
 	  `OP_LUI   :
@@ -273,8 +273,8 @@ module riscv
 		                 RF_DATA1;       // the others
  
    // MUX for source 2 of ALU (RF_DATA2 or Imm)
-	 // ここでわかるが,ここでレジスタ演算か,即値演算かを選択している
-   assign RS2_IMM_VAL = ( FT == `FT_R || FT == `FT_B ) ? RF_DATA2 : IMM; // EXステージにある,VAL_MUX_Eと同じ役割.
+	 // ここからわかるが,ここでレジスタ演算か,即値演算かを選択している
+   assign RS2_IMM_VAL = ( FT == `FT_R || FT == `FT_B ) ? RF_DATA2 : IMM;
    
    alu   e_alu ( .C(IALU), .Y(ALU_RD_VAL), .A(RS1_VAL), .B(RS2_IMM_VAL)      );
    shift e_sft ( .C(IALU), .Y(SFT_RD_VAL), .A(RS1_VAL), .B(RS2_IMM_VAL[4:0]) );
