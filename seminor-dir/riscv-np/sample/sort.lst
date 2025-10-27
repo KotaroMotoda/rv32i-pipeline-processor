@@ -7,7 +7,7 @@ sort.elf:     ファイル形式 elf32-littleriscv
 00000000 <_start>:
    0:	00000093          	li	ra,0
    4:	00000113          	li	sp,0
-   8:	00000193          	li	gp,0
+   8:	00100193          	li	gp,1
    c:	00000213          	li	tp,0
   10:	00000293          	li	t0,0
   14:	00000313          	li	t1,0
@@ -35,34 +35,8 @@ sort.elf:     ファイル形式 elf32-littleriscv
 セクション .text の逆アセンブル:
 
 00000068 <main>:
-  68:	00100637          	lui	a2,0x100
-  6c:	00460613          	addi	a2,a2,4 # 100004 <data+0x4>
-  70:	00000513          	li	a0,0
-  74:	3ff00313          	li	t1,1023
-  78:	001007b7          	lui	a5,0x100
-  7c:	00078793          	mv	a5,a5
-  80:	000015b7          	lui	a1,0x1
-  84:	00f585b3          	add	a1,a1,a5
-  88:	02c0006f          	j	b4 <main+0x4c>
-  8c:	00478793          	addi	a5,a5,4 # 100004 <data+0x4>
-  90:	00b78e63          	beq	a5,a1,ac <main+0x44>
-  94:	ffc62703          	lw	a4,-4(a2)
-  98:	0007a683          	lw	a3,0(a5)
-  9c:	fee6d8e3          	ble	a4,a3,8c <main+0x24>
-  a0:	fed62e23          	sw	a3,-4(a2)
-  a4:	00e7a023          	sw	a4,0(a5)
-  a8:	fe5ff06f          	j	8c <main+0x24>
-  ac:	00460613          	addi	a2,a2,4
-  b0:	00650e63          	beq	a0,t1,cc <main+0x64>
-  b4:	00150513          	addi	a0,a0,1
-  b8:	00a34663          	blt	t1,a0,c4 <main+0x5c>
-  bc:	00060793          	mv	a5,a2
-  c0:	fd5ff06f          	j	94 <main+0x2c>
-  c4:	00460613          	addi	a2,a2,4
-  c8:	fedff06f          	j	b4 <main+0x4c>
-  cc:	00000513          	li	a0,0
-  d0:	00008067          	ret
-  d4:	0000                	unimp
+  68:	00008067          	ret
+  6c:	0000                	unimp
 	...
 
 セクション .data の逆アセンブル:

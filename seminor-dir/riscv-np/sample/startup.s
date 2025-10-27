@@ -31,7 +31,7 @@ _start:
 	#clear registers
 	li  x1, 0
 	li  x2, 0
-	li  x3, 0
+	li  x3, 1
 	li  x4, 0
 	li  x5, 0
 	li  x6, 0

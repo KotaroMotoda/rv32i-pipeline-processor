@@ -1030,16 +1030,16 @@ int data[] = {
 int
 main()
 {
-  int i,j;
+  // int i,j;
 
-  for( i = 0 ; i < SIZE -1 ; i++ ) {
-    for( j = i+1 ; j < SIZE ; j++ ) {
-      if( data[i] > data[j] ) {
-	int tmp = data[i];
-	data[i] = data[j];
-	data[j] = tmp;
-      }
-    }
-  }
-  return 0;
+  // for( i = 0 ; i < SIZE -1 ; i++ ) {
+  //   for( j = i+1 ; j < SIZE ; j++ ) {
+  //     if( data[i] > data[j] ) {
+	// int tmp = data[i];
+	// data[i] = data[j];
+	// data[j] = tmp;
+  //     }
+  //   }
+  // }
+  return;
 }

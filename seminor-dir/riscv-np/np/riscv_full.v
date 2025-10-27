@@ -99,6 +99,8 @@ module riscv
     reg [31:0] IMM_VAL_E; // IDから渡されたimm値
 
     // EX/MEM pipeline reg
+    
+    reg [31:0] PC_EM;
     reg [31:0] PC4_EM;
     reg [31:0] WA_EM;
     reg [31:0] WD_EM;
@@ -120,6 +122,7 @@ module riscv
     reg [31:0] WD_M;
 
     // MEM/WB pipeline reg
+    reg [31:0] PC_MW;
     reg [31:0] PC4_MW;
     reg [31:0] MEM_DATA_MW;
     reg [31:0] WA_MW;
@@ -304,6 +307,7 @@ module riscv
         if (RST)
         begin
             PC_DE <= 32'h00000000;
+            PC4_DE <= 32'h00000000;
             RF_DATA1_DE <= 32'h00000000;
             RF_DATA2_DE <= 32'h00000000;
             IALU_DE <= 5'b00000;
@@ -312,6 +316,7 @@ module riscv
         else
         begin
             PC_DE <= PC_FD;
+            PC4_DE <= PC4_FD;
             RF_DATA1_DE <= RF_DATA1;
             RF_DATA2_DE <= RF_DATA2;
             IALU_DE <= IALU_ID;
@@ -333,12 +338,14 @@ module riscv
         if (RST)
         begin
             PC_EM <= 32'h00000000;
+            PC4_EM <= 32'h00000000;
             RD_VAL_EM <= 32'h00000000;
             RD_EM <= 5'b00000;
         end
         else
         begin
             PC_EM <= PC_DE;
+            PC4_EM <= PC4_DE;
             RD_VAL_EM <= RD_VAL_E;
             RD_EM <= RD_DE;
         end
@@ -350,12 +357,14 @@ module riscv
         if (RST)
         begin
             PC_MW <= 32'h00000000;
+            PC4_MW <= 32'h00000000;
             RD_VAL_MW <= 32'h00000000;
             RD_MW <= 5'b00000;
         end
         else
         begin
             PC_MW <= PC_EM;
+            PC4_MW <= PC4_EM;
             RD_VAL_MW <= RD_VAL_EM;
             RD_MW <= RD_EM;
         end
