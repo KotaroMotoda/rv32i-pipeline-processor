@@ -32,10 +32,10 @@ _start:
 	li  x1, 0
 	li  x2, 0
 	li  x3, 1
-	li  x4, 0
+	li  x4, 1
 	li  x5, 0
 	li  x6, 0
-	li  x7, 0
+   add x7, x3, x4
 	li  x8, 0
 	li  x9, 0
 	li  x10,0
@@ -44,28 +44,6 @@ _start:
 	li  x13,0
 	li  x14,0
 	li  x15,0
-
-	# --- R/I 命令の最小確認シーケンス（分岐なし）---
-	# I-type: addi/ori/xori/andi/slli/srli/srai
-	addi x5, x0, 5        # x5 = 5
-	addi x6, x0, 7        # x6 = 7
-	ori  x7, x5, 0x3      # x7 = 5 | 3 = 7
-	xori x8, x7, 0x1      # x8 = 7 ^ 1 = 6
-	andi x9, x8, 0xF      # x9 = 6 & 15 = 6
-	slli x10, x9, 2       # x10 = 6 << 2 = 24
-	srli x11, x10, 1      # x11 = 24 >> 1 = 12 (logical)
-	srai x12, x11, 1      # x12 = 12 >> 1 = 6 (arithmetic)
-
-	# R-type: add/sub/sll/srl/sra/and/or/xor
-	add  x13, x5, x6      # x13 = 5 + 7 = 12
-	sub  x14, x13, x5     # x14 = 12 - 5 = 7
-	sll  x15, x5, x0      # shift by 0 (no-op, uses R-type)
-	srl  x15, x13, x0     # logical right shift by 0
-	sra  x15, x13, x0     # arithmetic right shift by 0
-	and  x13, x13, x8     # AND
-	or   x14, x14, x9     # OR
-	xor  x12, x12, x5     # XOR
-	# --- ここまで ---
 #	li  x16,0
 #	li  x17,0
 #	li  x18,0

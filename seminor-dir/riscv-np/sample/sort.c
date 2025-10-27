@@ -1,4 +1,3 @@
-#if 0  // Disabled original sort program to focus on R/I instruction verification
 #define SIZE 1024
 
 int data[] = {
@@ -1031,61 +1030,5 @@ int data[] = {
 int
 main()
 {
-  // int i,j;
-
-  // for( i = 0 ; i < SIZE -1 ; i++ ) {
-  //   for( j = i+1 ; j < SIZE ; j++ ) {
-  //     if( data[i] > data[j] ) {
-	// int tmp = data[i];
-	// data[i] = data[j];
-	// data[j] = tmp;
-  //     }
-  //   }
-  // }
   return;
-}
-#endif // end of original sort program
-
-// Minimal R/I instruction exercise without branches/loops
-#include <stdint.h>
-
-volatile uint32_t out[12];
-
-int main(void)
-{
-  // Choose base values
-  uint32_t a = 5;   // expect addi
-  uint32_t b = 7;   // expect addi
-
-  // I-type
-  uint32_t r0 = a + 3;          // addi
-  uint32_t r1 = r0 | 0x3;       // ori
-  uint32_t r2 = r1 ^ 0x1;       // xori
-  uint32_t r3 = r2 & 0xF;       // andi
-  uint32_t r4 = r3 << 2;        // slli
-  uint32_t r5 = r4 >> 1;        // srli
-  int32_t  r6 = (int32_t)r5 >> 1; // srai
-
-  // R-type
-  uint32_t r7  = a + b;         // add
-  uint32_t r8  = r7 - a;        // sub
-  uint32_t r9  = r7 & r2;       // and
-  uint32_t r10 = r8 | r3;       // or
-  uint32_t r11 = r6 ^ r0;       // xor
-
-  // Store results to volatile to prevent optimization and to observe in memory
-  out[0]  = r0;
-  out[1]  = r1;
-  out[2]  = r2;
-  out[3]  = r3;
-  out[4]  = r4;
-  out[5]  = r5;
-  out[6]  = (uint32_t)r6;
-  out[7]  = r7;
-  out[8]  = r8;
-  out[9]  = r9;
-  out[10] = r10;
-  out[11] = r11;
-
-  return (int)(r7 + r11); // return something dependent on results
 }
