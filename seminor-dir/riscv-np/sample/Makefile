@@ -6,9 +6,9 @@ LD     = $(CROSS_COMPILE)ld
 OBJCOPY= $(CROSS_COMPILE)objcopy
 OBJDUMP= $(CROSS_COMPILE)objdump
 
-CFLAGS  = -O -march=rv32e -mabi=ilp32e -ffreestanding 
-ASFLAGS = --gstabs+ -march=rv32e -mabi=ilp32e
-LDFLAGS = -nostartfiles --no-relax -Bstatic -T link.ld -nostdlib
+CFLAGS  = -g -march=rv32i -ffreestanding 
+ASFLAGS = -g --gstabs+ -march=rv32i
+LDFLAGS = -m elf32lriscv_ilp32 --no-relax -Bstatic -T link.ld -nostdlib
 OBJS	= startup.o sort.o
 
 all: sort.mif sort.verilog sort.lst
