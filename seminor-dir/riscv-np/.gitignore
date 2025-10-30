@@ -1,0 +1,6 @@
+# Ignore local simulation files in np/
+np/Makefile
+
+np/tb.v
+
+sample/Makefile
