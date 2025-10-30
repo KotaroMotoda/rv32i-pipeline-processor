@@ -1,4 +1,4 @@
-CROSS_COMPILE=/staff/kuga/Share/riscv/bin/riscv32-unknown-elf-
+CROSS_COMPILE=riscv64-linux-gnu-
 #CROSS_COMPILE=/opt/riscv/bin/riscv32-unknown-elf-
 CC     = $(CROSS_COMPILE)gcc
 AS     = $(CROSS_COMPILE)as

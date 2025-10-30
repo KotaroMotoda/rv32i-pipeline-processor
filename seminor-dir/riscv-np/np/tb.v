@@ -33,7 +33,13 @@ module riscv_tb ();
       
       for( i = addr ; i<1024 ; i=i+1 )
 	begin
-	   data = riscv.dmem.mem[i];
+     // Data memory hierarchical access is available only on the origin core
+`ifdef ORIGIN
+     data = riscv.dmem.mem[i];
+`else
+     // Pipeline core doesn't expose DMEM array; skip or set to X
+     data = 32'hXXXXXXXX;
+`endif
 	   $display( "%08x %02x%02x%02x%02x", addr+i*4,
 		     data[7:0], data[15:8], data[23:16], data[31:24] );
 	end
@@ -51,7 +57,11 @@ module riscv_tb ();
      end
    
    always @( posedge CLK )
-     if( riscv.PC_IF== 32'h00000064 ) // Last instruction address (ebreak) on "startup.s"
+`ifdef ORIGIN
+  if( riscv.PC== 32'h00000064 ) // Last instruction address (ebreak) on "startup.s"
+`else
+  if( riscv.PC_IF== 32'h00000064 ) // Last instruction address (ebreak) on "startup.s"
+`endif
        begin
 	  $display("Time", $time );
 	  dump(0);
@@ -70,13 +80,21 @@ module riscv_tb ();
    //
 `ifdef ST_DEBUG
    always @( negedge CLK )
-     if(  ( riscv.DMWE ) && ( riscv.MADDR[31:20] == 12'h001 ) )
+`ifdef ORIGIN
+  if(  ( riscv.DMWE ) && ( riscv.MADDR[31:20] == 12'h001 ) )
+`else
+  if( 1'b0 ) // not available on pipeline core
+`endif
 	 $display( "ST  :%08h %08h %01h ", {riscv.MADDR,2'b00}, riscv.RF_DATA2, riscv.DMWE );
 `endif
 `ifdef LD_DEBUG
    always @( negedge CLK )
-     if(  ( riscv.DMRE  ) && ( riscv.MADDR[31:20] == 12'h001 ) )
-       $display( "LD  :%08h %08h %01h ", {riscv.MADDR,2'b00}, riscv.daligner.DATAO, riscv.DMRE );
+`ifdef ORIGIN
+  if(  ( riscv.DMRE  ) && ( riscv.MADDR[31:20] == 12'h001 ) )
+    $display( "LD  :%08h %08h %01h ", {riscv.MADDR,2'b00}, riscv.daligner.DATAO, riscv.DMRE );
+`else
+  if( 1'b0 ) ; // not available on pipeline core
+`endif
 `endif
 
 endmodule
