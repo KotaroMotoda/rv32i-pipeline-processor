@@ -187,10 +187,11 @@ module riscv
     begin
         FT_ID <= 3'b000; // default : undefined instruction
         IALU_ID <= `IADD;  // default operation
-    MemtoReg_ID <= 2'b00;  // for R-type(00 for alu), I-type(01 for dmem), U-type(10 for PC+4)
-    MemWrite_ID <= 2'b00;  // no store
-    MemRead_ID <= 2'b00;  // no load
-    RegWrite_ID <= 1'b0;   // default: no register write
+        MemtoReg_ID <= 2'b00;  // for R-type(00 for alu), I-type(01 for dmem), U-type(10 for PC+4)
+        MemWrite_ID <= 2'b00;  // no store
+        MemRead_ID <= 2'b00;  // no load
+        RegWrite_ID <= 1'b0;   // default: no register write
+        ALUSrc_ID <= 1'b0;     // default: use RS2 (R/BR type)
         DMSE_ID <= 1'b0;   // unsigned
         RS1_PC_ID <= 1'b0;   // no use PC for RS1
         RS1_Z_ID <= 1'b0;   // no use Zero for RS1 
@@ -202,12 +203,14 @@ module riscv
                 FT_ID <= `FT_U;
                 RS1_Z_ID <= 1'b1;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b1; // use immediate
             end
             `OP_AUIPC: 
             begin
                 FT_ID <= `FT_U;
                 RS1_PC_ID <= 1'b1;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b1; // use immediate
             end
             `OP_JAL:
             begin
@@ -216,6 +219,7 @@ module riscv
                 PC_E_ID <= 1'b1; 
                 MemtoReg_ID <= 2'b10;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b1; // use immediate for target
             end
             `OP_JALR: 
             begin
@@ -223,11 +227,13 @@ module riscv
                 PC_E_ID <= 1'b1; 
                 MemtoReg_ID <= 2'b10;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b1; // use immediate for target
             end
             `OP_BR: 
             begin
                 FT_ID <= `FT_B;
                 PC_E_ID <= 1'b1;
+                ALUSrc_ID <= 1'b0; // use RS2 for compare
                 case(`IR_F3)
                     3'b000: IALU_ID <= `IADD; // beq (仮にIADD、実際は比較演算)
                     3'b001: IALU_ID <= `ISUB; // bne
@@ -242,6 +248,7 @@ module riscv
                 FT_ID <= `FT_I;
                 MemtoReg_ID <= 2'b01;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b1; // base + imm
                 case(`IR_F3)
                     3'b000: begin MemRead_ID <= 2'b01; DMSE_ID <= 1'b1; end // lb
                     3'b001: begin MemRead_ID <= 2'b10; DMSE_ID <= 1'b1; end // lh
@@ -255,6 +262,7 @@ module riscv
             begin
                 FT_ID <= `FT_S;
                 RegWrite_ID <= 1'b0;
+                ALUSrc_ID <= 1'b1; // base + imm for store address
                 case(`IR_F3)
                     3'b000: MemWrite_ID <= 2'b01; // sb
                     3'b001: MemWrite_ID <= 2'b10; // sh
@@ -265,6 +273,7 @@ module riscv
             begin
                 FT_ID <= `FT_I;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b1; // use immediate operand
                 case(`IR_F3)
                     3'b000: IALU_ID <= `IADD; // addi
                     3'b001: if(`IR_F7 == 7'b0000000) IALU_ID <= `ISLL; // slli
@@ -283,6 +292,7 @@ module riscv
             begin
                 FT_ID <= `FT_R;
                 RegWrite_ID <= 1'b1;
+                ALUSrc_ID <= 1'b0; // use RS2
                 case(`IR_F3)
                     3'b000: begin
                         if(`IR_F7 == 7'b0000000) IALU_ID <= `IADD; // add
@@ -303,8 +313,6 @@ module riscv
         endcase
         
         RD_ID <= `IR_RD;
-        // ALUSrc: use immediate for non R and non B formats (similar to origin)
-        ALUSrc_ID <= (FT_ID != `FT_R && FT_ID != `FT_B) ? 1'b1 : 1'b0;
     end
 
     // Immediate extraction (sign-extend) into IMM_VAL_EXT_ID
