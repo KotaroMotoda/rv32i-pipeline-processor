@@ -1,54 +1,146 @@
-module id_stage
-    (
-        input CLK,
-        input RSTN,
-        input [31:0] IR,
-        input [31:0] PC_FD,
-        output reg [4:0] RD_ID,
-        output reg [31:0] RF_DATA1,
-        output reg [31:0] RF_DATA2,
-        output reg [31:0] IMM_VAL_EXT_ID,
-        output reg [1:0] MemtoReg_ID,
-        output reg RegWrite_ID,
-        output reg ALUSrc_ID,
-        output reg [1:0] ALUOp_ID,
-        output reg [2:0] FT_ID
-    );
+`include "riscv.vh"
+`include "inst.vh"
+`include "alu.vh"
 
-    // Instruction decoding logic
-    always @(IR) begin
-        FT_ID <= 3'b000; // default: undefined instruction
-        RegWrite_ID <= 1'b0; // default: no register write
-        ALUSrc_ID <= 1'b0; // default: use RS2 (R/BR type)
-        
-        // Decode instruction and set control signals
-        case(IR[6:0]) // opcode
-            7'b0110011: begin // R-type
-                FT_ID <= 3'b001; // R-type format
-                RegWrite_ID <= 1'b1; // enable register write
-                ALUSrc_ID <= 1'b0; // use RS2
+module id_stage (
+    input  [31:0] IR,
+    output reg [2:0]  FT_ID,
+    output reg [4:0]  IALU_ID,
+    output reg [1:0]  MemtoReg_ID,
+    output reg        RegWrite_ID,
+    output reg        ALUSrc_ID,
+    output reg        DMSE_ID,
+    output reg        RS1_PC_ID,
+    output reg        RS1_Z_ID,
+    output reg        PC_E_ID,
+    output reg [4:0]  RD_ID,
+    output reg [31:0] IMM_VAL_EXT_ID
+);
+    // デコード
+    always @(*) begin
+        FT_ID       = 3'b000;
+        IALU_ID     = `IADD;
+        MemtoReg_ID = 2'b00;
+        RegWrite_ID = 1'b0;
+        ALUSrc_ID   = 1'b0;
+        DMSE_ID     = 1'b0;
+        RS1_PC_ID   = 1'b0;
+        RS1_Z_ID    = 1'b0;
+        PC_E_ID     = 1'b0;
+
+        case (`IR_OP)
+            `OP_LUI: begin 
+                FT_ID       = `FT_U;
+                RS1_Z_ID    = 1'b1;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b1;
             end
-            7'b0000011: begin // I-type Load
-                FT_ID <= 3'b010; // I-type format
-                RegWrite_ID <= 1'b1; // enable register write
-                ALUSrc_ID <= 1'b1; // use immediate
+            `OP_AUIPC: begin
+                FT_ID       = `FT_U;
+                RS1_PC_ID   = 1'b1;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b1;
             end
-            // Add more cases for other instruction types
+            `OP_JAL: begin
+                FT_ID       = `FT_J;
+                RS1_PC_ID   = 1'b1;
+                PC_E_ID     = 1'b1;
+                MemtoReg_ID = 2'b10;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b1;
+            end
+            `OP_JALR: begin
+                FT_ID       = `FT_I;
+                PC_E_ID     = 1'b1;
+                MemtoReg_ID = 2'b10;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b1;
+            end
+            `OP_BR: begin
+                FT_ID       = `FT_B;
+                PC_E_ID     = 1'b1;
+                ALUSrc_ID   = 1'b0;
+                case(`IR_F3)
+                    3'b000: IALU_ID = `IADD; // beq(仮)
+                    3'b001: IALU_ID = `ISUB; // bne
+                    3'b100: IALU_ID = `ISUB; // blt
+                    3'b101: IALU_ID = `IADD; // bge
+                    3'b110: IALU_ID = `ISUB; // bltu
+                    3'b111: IALU_ID = `IADD; // bgeu
+                endcase
+            end
+            `OP_LOAD: begin
+                FT_ID       = `FT_I;
+                MemtoReg_ID = 2'b01;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b1;
+                case(`IR_F3)
+                    3'b000: begin DMSE_ID = 1'b1; end // lb
+                    3'b001: begin DMSE_ID = 1'b1; end // lh
+                    3'b010: begin DMSE_ID = 1'b1; end // lw
+                    3'b100: DMSE_ID = 1'b0; // lbu
+                    3'b101: DMSE_ID = 1'b0; // lhu
+                    3'b110: DMSE_ID = 1'b0; // lwu
+                endcase
+            end
+            `OP_STORE: begin
+                FT_ID       = `FT_S;
+                RegWrite_ID = 1'b0;
+                ALUSrc_ID   = 1'b1;
+            end
+            `OP_FUNC1: begin // I-type ALU
+                FT_ID       = `FT_I;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b1;
+                case(`IR_F3)
+                    3'b000: IALU_ID = `IADD; // addi
+                    3'b001: if(`IR_F7 == 7'b0000000) IALU_ID = `ISLL; // slli
+                    3'b010: IALU_ID = `IADD; // slti(仮)
+                    3'b011: IALU_ID = `IADD; // sltiu(仮)
+                    3'b100: IALU_ID = `IXOR; // xori
+                    3'b101: begin
+                        if(`IR_F7 == 7'b0000000) IALU_ID = `ISRL; // srli
+                        else if(`IR_F7 == 7'b0100000) IALU_ID = `ISRA; // srai
+                    end
+                    3'b110: IALU_ID = `IOR; // ori
+                    3'b111: IALU_ID = `IAND; // andi
+                endcase
+            end
+            `OP_FUNC2: begin // R-type
+                FT_ID       = `FT_R;
+                RegWrite_ID = 1'b1;
+                ALUSrc_ID   = 1'b0;
+                case(`IR_F3)
+                    3'b000: begin
+                        if(`IR_F7 == 7'b0000000) IALU_ID = `IADD; // add
+                        else if(`IR_F7 == 7'b0100000) IALU_ID = `ISUB; // sub
+                    end
+                    3'b001: if(`IR_F7 == 7'b0000000) IALU_ID = `ISLL; // sll
+                    3'b010: if(`IR_F7 == 7'b0000000) IALU_ID = `IADD; // slt(仮)
+                    3'b011: if(`IR_F7 == 7'b0000000) IALU_ID = `IADD; // sltu(仮)
+                    3'b100: if(`IR_F7 == 7'b0000000) IALU_ID = `IXOR; // xor
+                    3'b101: begin
+                        if(`IR_F7 == 7'b0000000) IALU_ID = `ISRL; // srl
+                        else if(`IR_F7 == 7'b0100000) IALU_ID = `ISRA; // sra
+                    end
+                    3'b110: if(`IR_F7 == 7'b0000000) IALU_ID = `IOR; // or
+                    3'b111: if(`IR_F7 == 7'b0000000) IALU_ID = `IAND; // and
+                endcase
+            end
         endcase
-        
-        RD_ID <= IR[11:7]; // destination register
-        // Immediate extraction (sign-extend)
-        IMM_VAL_EXT_ID <= {{20{IR[31]}}, IR[31:20]}; // default I-type immediate
+
+        RD_ID = `IR_RD;
     end
 
-    // Register file access logic (to be implemented)
-    always @(posedge CLK or negedge RSTN) begin
-        if (!RSTN) begin
-            RF_DATA1 <= 32'b0;
-            RF_DATA2 <= 32'b0;
-        end else begin
-            // Logic to read from register file
-        end
+    // 即値抽出（符号拡張）
+    always @(*) begin
+        IMM_VAL_EXT_ID = { {20{IR[31]}}, IR[31:20] }; // I-type default
+        case (FT_ID)
+            `FT_S: IMM_VAL_EXT_ID = { {20{IR[31]}}, `IR_F7, `IR_RD };
+            `FT_B: IMM_VAL_EXT_ID = { {20{IR[31]}}, IR[7], IR[30:25], IR[11:8], 1'b0 };
+            `FT_U: IMM_VAL_EXT_ID = { IR[31:12], 12'h000 };
+            `FT_J: IMM_VAL_EXT_ID = { {11{IR[31]}}, IR[31], IR[19:12], IR[20], IR[30:21], 1'b0 };
+        endcase
     end
 
 endmodule

@@ -1,43 +1,58 @@
-// filepath: /Users/motodakoutaroukari/Documents/workspace/github.com/KotaroMotoda/rv32i-pipeline-processor/seminor-dir/riscv-np/np/alu.vh
+//        R-type  I-type  F3  F7
+// ADD    0110011 0010011 000 0000000 
+// SUB    0110011 0010011 000 0100000 
+// SLT    0110011 0010011 010 0000000 
+// SLTU   0110011 0010011 011 0000000 
+// XOR    0110011 0010011 100 0000000 
+// OR     0110011 0010011 110 0000000 
+// AND    0110011 0010011 111 0000000 
+//
+// MUL    0110011         000 0000001
+// MULH   0110011         001 0000001
+// MULHSU 0110011         010 0100001
+// MULHU  0110011         011 0000001
+//
+// DIV    0110011         000 0000001
+// DIVU   0110011         001 0000001
+// REM    0110011         010 0100001
+// REMU   0110011         011 0000001
+//
+//        B-type
+// BEQ    1100011         000
+// BNE    1100011         001
+// BLT    1100011         100
+// BGE    1100011         101
+// BLTU   1100011         110
+// BGEU   1100011         111
+
+`define ADD  5'b00101
+`define SUB  5'b00110
+
 `define IADD  5'b00000
-`define ISUB  5'b00001
-`define IAND  5'b00010
-`define IOR   5'b00011
-`define IXOR  5'b00100
-`define ISLL  5'b00101
-`define ISRL  5'b00110
-`define ISRA  5'b00111
-`define SLT   5'b01000
-`define SLTU  5'b01001
-`define IADD  5'b00000
-`define IBEQ  5'b00010
-`define IBNE  5'b00011
-`define IBLT  5'b00100
-`define IBLTU 5'b00101
-`define IBGE  5'b00110
-`define IBGEU 5'b00111
-`define ILOAD 5'b01000
-`define ISTORE 5'b01001
-`define IAUIPC 5'b01010
-`define IJAL  5'b01011
-`define IJALR 5'b01100
-`define OP_LOAD  7'b0000011
-`define OP_STORE 7'b0100011
-`define OP_LUI   7'b0110111
-`define OP_AUIPC 7'b0010111
-`define OP_JAL   7'b1101111
-`define OP_JALR  7'b1100111
-`define OP_BR    7'b1100011
-`define OP_FUNC1 7'b0010011
-`define OP_FUNC2 7'b0110011
-`define FT_U     3'b00
-`define FT_I     3'b01
-`define FT_S     3'b10
-`define FT_B     3'b11
-`define FT_J     3'b100
-`define IR_OP    IR[6:0]
-`define IR_F3    IR[14:12]
-`define IR_F7    IR[31:25]
-`define IR_RS1   IR[19:15]
-`define IR_RS2   IR[24:20]
-`define IR_RD    IR[11:7]
+`define IAND  5'b00001
+`define IOR   5'b00010
+`define IXOR  5'b00011
+`define ISUB  5'b00100
+`define lessThan             5'b01000
+`define lessThanUnsigned     5'b01001
+`define greaterEqual         5'b01010
+`define greaterEqualUnsigned 5'b01011
+`define equal                5'b01100
+`define notEqual             5'b01101
+
+// Shifter
+`define ISLL	5'b10001 
+`define ISRL	5'b10011 
+`define ISRA	5'b10010 
+
+// Multiplyer
+`define IMUL	5'b11000
+`define IMULH	5'b11001
+`define IMULHSU	5'b11010
+`define IMULHU	5'b11011
+
+// Divider
+`define IDIV	5'b11100
+`define IDIVU	5'b11101
+`define IREM	5'b11110
+`define IREMU	5'b11111
