@@ -3,16 +3,22 @@
 `include "alu.vh"
 
 module ex_stage (
+    // PC
+    input  [31:0] PC_DE,
+    // control signals
+    input         ALUSrc_DE,
+    input  [4:0]  ALUOp_DE,
+    input         Branch_DE,
+    input         ALUorSHIFT_DE,
+    input  [2:0]  FT_DE,
+    // data path
     input  [31:0] RF_DATA1_DE,
     input  [31:0] RF_DATA2_DE,
-    input  [31:0] IMM_VAL_DE,
-    input         ALUSrc_DE,
+    input  [31:0] IMM_VAL_EXT_DE,
     input         RS1_PC_DE,
     input         RS1_Z_DE,
-    input  [2:0]  FT_DE,
-    input  [31:0] PC_DE,
-    input  [4:0]  IALU_DE,
-    output [31:0] RD_VAL_E,
+
+    output [31:0] ALU_VAL_E,
     output        isBranch_E,
     output [31:0] PC_IMM_E
 );
@@ -31,8 +37,8 @@ module ex_stage (
     alu alu_inst (
         .A(data1),
         .B(data2),
-        .C(IALU_DE),
-        .Y(RD_VAL_E)
+        .C(ALUOp_DE),
+        .Y(ALU_VAL_E)
     );
 
     // 元コード準拠（分岐未実装）

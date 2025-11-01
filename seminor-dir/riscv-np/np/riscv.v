@@ -41,15 +41,16 @@ module riscv
 
     // ID stage outputs
     wire [2:0]  FT_ID;
-    wire [4:0]  IALU_ID;
+    wire [4:0]  ALUOp_ID;
     wire [1:0]  MemtoReg_ID;
     wire        RegWrite_ID;
     wire        ALUSrc_ID;
     wire        DMSE_ID;
     wire        RS1_PC_ID;
     wire        RS1_Z_ID;
-    wire        PC_E_ID;
+    wire        Branch_ID;
     wire [4:0]  RD_ID;
+    wire [4:0]  RT_ID;           // ← 追加
     wire [31:0] IMM_VAL_EXT_ID;
 
     // RF output
@@ -61,9 +62,10 @@ module riscv
     wire [31:0] PC4_DE;
     wire [31:0] RF_DATA1_DE;
     wire [31:0] RF_DATA2_DE;
-    wire [4:0]  IALU_DE;
+    wire [4:0]  ALUOp_DE;
     wire [31:0] IMM_VAL_DE;
     wire [4:0]  RD_DE;
+    wire [4:0]  RT_DE;           // ← 追加
     wire        RS1_PC_DE;
     wire        RS1_Z_DE;
     wire [1:0]  MemtoReg_DE;
@@ -80,15 +82,19 @@ module riscv
     wire [31:0] PC4_EM;
     wire [31:0] RD_VAL_EM;
     wire [4:0]  RD_EM;
+    wire [4:0]  RT_EM;           // ← 追加
     wire [1:0]  MemtoReg_EM;
     wire        RegWrite_EM;
+    wire        RegDst_EM;       // ← 追加
 
     // MEM/WB pipeline
     wire [31:0] PC4_MW;
     wire [31:0] RD_VAL_MW;
     wire [4:0]  RD_MW;
+    wire [4:0]  RT_MW;           // ← 追加
     wire [1:0]  MemtoReg_MW;
     wire        RegWrite_MW;
+    wire        RegDst_MW;       // ← 追加
 
     // MEM data path (未実装のまま)
     reg [31:0] MEM_DATA_MW;
@@ -115,24 +121,25 @@ module riscv
     id_stage id_stage_inst (
         .IR(IR),
         .FT_ID(FT_ID),
-        .IALU_ID(IALU_ID),
+        .ALUOp_ID(ALUOp_ID),
         .MemtoReg_ID(MemtoReg_ID),
         .RegWrite_ID(RegWrite_ID),
         .ALUSrc_ID(ALUSrc_ID),
         .DMSE_ID(DMSE_ID),
         .RS1_PC_ID(RS1_PC_ID),
         .RS1_Z_ID(RS1_Z_ID),
-        .PC_E_ID(PC_E_ID),
+        .Branch_ID(Branch_ID),
+        .RegDst_ID(RegDst_ID),   // ← 追加
         .RD_ID(RD_ID),
+        .RT_ID(RT_ID),           // ← 追加
         .IMM_VAL_EXT_ID(IMM_VAL_EXT_ID)
     );
 
-    // rf は元コード同様トップでインスタンス
-    rf rf_inst(
+    rf rf_inst (
         .CLK(CLK),
         .RNUM1(`IR_RS1), .RDATA1(RF_DATA1),
         .RNUM2(`IR_RS2), .RDATA2(RF_DATA2),
-        .WNUM(RegWrite_MW ? RD_MW : 5'b00000), .WDATA(RD_VAL_WB)
+        .WNUM(RegWrite_MW ? (RegDst_MW ? RD_MW : RT_MW) : 5'b00000), .WDATA(RD_VAL_WB)
     );
 
     // パイプラインレジスタ集約
@@ -151,8 +158,9 @@ module riscv
         // ID -> EX 入力
         .RF_DATA1(RF_DATA1),
         .RF_DATA2(RF_DATA2),
-        .IALU_ID(IALU_ID),
+        .ALUOp_ID(ALUOp_ID),
         .RD_ID(RD_ID),
+        .RT_ID(RT_ID),               // ← 追加
         .IMM_VAL_EXT_ID(IMM_VAL_EXT_ID),
         .ALUSrc_ID(ALUSrc_ID),
         .FT_ID(FT_ID),
@@ -160,15 +168,17 @@ module riscv
         .RS1_Z_ID(RS1_Z_ID),
         .MemtoReg_ID(MemtoReg_ID),
         .RegWrite_ID(RegWrite_ID),
+        .RegDst_ID(RegDst_ID),       // ← 追加
 
         // ID/EX 出力
         .PC_DE(PC_DE),
         .PC4_DE(PC4_DE),
         .RF_DATA1_DE(RF_DATA1_DE),
         .RF_DATA2_DE(RF_DATA2_DE),
-        .IALU_DE(IALU_DE),
+        .ALUOp_DE(ALUOp_DE),
         .IMM_VAL_DE(IMM_VAL_DE),
         .RD_DE(RD_DE),
+        .RT_DE(RT_DE),               // ← 追加
         .RS1_PC_DE(RS1_PC_DE),
         .RS1_Z_DE(RS1_Z_DE),
         .MemtoReg_DE(MemtoReg_DE),
@@ -183,15 +193,19 @@ module riscv
         .PC4_EM(PC4_EM),
         .RD_VAL_EM(RD_VAL_EM),
         .RD_EM(RD_EM),
+        .RT_EM(RT_EM),               // ← 追加
         .MemtoReg_EM(MemtoReg_EM),
         .RegWrite_EM(RegWrite_EM),
+        .RegDst_EM(RegDst_EM),       // ← 追加
 
         // MEM/WB 出力
         .PC4_MW(PC4_MW),
         .RD_VAL_MW(RD_VAL_MW),
         .RD_MW(RD_MW),
+        .RT_MW(RT_MW),               // ← 追加
         .MemtoReg_MW(MemtoReg_MW),
-        .RegWrite_MW(RegWrite_MW)
+        .RegWrite_MW(RegWrite_MW),
+        .RegDst_MW(RegDst_MW)        // ← 追加
     );
 
     // EX stage
@@ -204,7 +218,7 @@ module riscv
         .RS1_Z_DE(RS1_Z_DE),
         .FT_DE(FT_DE),
         .PC_DE(PC_DE),
-        .IALU_DE(IALU_DE),
+        .ALUOp_DE(ALUOp_DE),
         .RD_VAL_E(RD_VAL_E),
         .isBranch_E(isBranch_E),
         .PC_IMM_E(PC_IMM_E)
