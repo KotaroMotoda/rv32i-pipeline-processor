@@ -5,153 +5,157 @@
 module id_stage (
     // 11 control signals
     output reg [2:0]  FT_ID,
-    // output reg [4:0]  IALU_ID, ALUOpで代替
     output reg [1:0]  MemtoReg_ID,
     output reg        RegWrite_ID,
     output reg        Branch_ID,
-    output reg        MemWrite_ID, // TODO一応1'b0で定義
-    output reg [1:0]  MemRead_ID, 
-    output reg        ALUSrc_ID, // 即値(1) or レジスタ(0)
-    output reg [4:0]  ALUOp_ID, // IALUはこれで代替.
-    output reg        DMSE_ID,  // load命令の符号拡張制御(0で符号なしで0を頭に追加.,1で符号ありで最上位bitを頭に追加)
-    output reg        RegDst_ID, // TODO一応1'b0で定義. 書き込み先レジスタがrd(1) or rt(0)
-    output reg        ALUorSHIFT_ID, // TODO一応1'b0で定義. ALU(1) or シフト命令(0)
-
+    output reg        MemWrite_ID,     // TODO）1=store命令（幅は未サポート: 
+    output reg [1:0]  MemRead_ID,      // 01=byte, 10=half, 11=word
+    output reg        ALUSrc_ID,       // 即値(1) or レジスタ(0)
+    output reg [4:0]  ALUOp_ID,
+    output reg        DMSE_ID,         // Loadの符号拡張制御
+    output reg        RegDst_ID,       // rd(1) or rt(0) — 書き込み命令では1
+    output reg        ALUorSHIFT_ID,   // 1=SHIFT, 0=ALU
     // data path
     input      [31:0] IR,
-    output reg        RS1_PC_ID, // auipc, jal, jalr 用
-    output reg        RS1_Z_ID, // lui 用
-    // output reg        PC_E_ID, // これをBranch_IDで代替
-    output reg [4:0]  RD_ID, // 書き込み先レジスタ
-    output reg [4:0]  RT_ID, // ← 追加: 書き込み先を rs2(rt) にする場合用
-    output reg [31:0] IMM_VAL_EXT_ID // 拡張後の即値
+    output reg        RS1_PC_ID,
+    output reg        RS1_Z_ID,
+    output reg [4:0]  RD_ID,
+    output reg [4:0]  RT_ID,
+    output reg [31:0] IMM_VAL_EXT_ID
 );
     // デコード
     always @(*) begin
-        FT_ID       = 3'b000;
-        MemtoReg_ID = 2'b00;
-        RegWrite_ID = 1'b0;
-        Branch_ID   = 1'b0;
-        MemWrite_ID = 1'b0;
-        MemRead_ID  = 2'b00;
-        ALUSrc_ID   = 1'b0;
-        ALUOp_ID    = `IADD;
-        DMSE_ID     = 1'b0;
-        RegDst_ID   = 1'b0;  // 既定は rt 選択（RegWriteが1の命令で上書き）
-        ALUorSHIFT_ID = 1'b0;
-
-        RS1_PC_ID   = 1'b0;
-        RS1_Z_ID    = 1'b0;
-        // RD_ID       = 5'b00000;
-        // IMM_VAL_EXT_ID = 32'h0000_0000;
+        // 既定値
+        FT_ID         = 3'b000;
+        MemtoReg_ID   = 2'b00;  // R/I: ALU, U: ALU, Load: 01, J: 10
+        RegWrite_ID   = 1'b0;
+        Branch_ID     = 1'b0;
+        MemWrite_ID   = 1'b0;
+        MemRead_ID    = 2'b00;
+        ALUSrc_ID     = 1'b0;   // R/B: 0, それ以外: 1
+        ALUOp_ID      = `IADD;  // 既定
+        DMSE_ID       = 1'b0;
+        RegDst_ID     = 1'b0;   // 書き込み命令で1に設定
+        ALUorSHIFT_ID = 1'b0;   // 既定はALU
+        RS1_PC_ID     = 1'b0;
+        RS1_Z_ID      = 1'b0;
 
         case (`IR_OP)
-            `OP_LUI: begin 
-                FT_ID       = `FT_U;
-                RS1_Z_ID    = 1'b1;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd を選択
-                ALUSrc_ID   = 1'b1;
+            `OP_LUI: begin
+                FT_ID         = `FT_U;
+                RS1_Z_ID      = 1'b1;
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1; // rd
+                ALUSrc_ID     = 1'b1;
             end
             `OP_AUIPC: begin
-                FT_ID       = `FT_U;
-                RS1_PC_ID   = 1'b1;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd
-                ALUSrc_ID   = 1'b1;
+                FT_ID         = `FT_U;
+                RS1_PC_ID     = 1'b1;
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1; // rd
+                ALUSrc_ID     = 1'b1;
             end
             `OP_JAL: begin
-                FT_ID       = `FT_J;
-                RS1_PC_ID   = 1'b1;
-                Branch_ID   = 1'b1;
-                MemtoReg_ID = 2'b10;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd
-                ALUSrc_ID   = 1'b1;
+                FT_ID         = `FT_J;
+                RS1_PC_ID     = 1'b1;
+                Branch_ID     = 1'b1;
+                MemtoReg_ID   = 2'b10; // PC+4
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1;  // rd
+                ALUSrc_ID     = 1'b1;
             end
             `OP_JALR: begin
-                FT_ID       = `FT_I;
-                Branch_ID   = 1'b1;
-                MemtoReg_ID = 2'b10;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd
-                ALUSrc_ID   = 1'b1;
+                FT_ID         = `FT_I;
+                Branch_ID     = 1'b1;
+                MemtoReg_ID   = 2'b10; // PC+4
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1;  // rd
+                ALUSrc_ID     = 1'b1;
             end
             `OP_BR: begin
-                FT_ID       = `FT_B;
-                Branch_ID   = 1'b1;
-                ALUSrc_ID   = 1'b0;
-                RegDst_ID   = 1'b0; // don't care（書き込みしない）
-                case(`IR_F3)
-                    3'b000: ALUOp_ID = `IADD; // beq(仮)
-                    3'b001: ALUOp_ID = `ISUB; // bne
-                    3'b100: ALUOp_ID = `ISUB; // blt
-                    3'b101: ALUOp_ID = `IADD; // bge
-                    3'b110: ALUOp_ID = `ISUB; // bltu
-                    3'b111: ALUOp_ID = `IADD; // bgeu
+                FT_ID         = `FT_B;
+                Branch_ID     = 1'b1;
+                ALUSrc_ID     = 1'b0;  // rs2
+                RegDst_ID     = 1'b0;  // don't care
+                // 分岐条件は ALU が bit0 で返す前提（origin と同じ）
+                case (`IR_F3)
+                    3'b000: ALUOp_ID = `equal;                 // beq
+                    3'b001: ALUOp_ID = `notEqual;              // bne
+                    3'b100: ALUOp_ID = `lessThan;              // blt
+                    3'b101: ALUOp_ID = `greaterEqual;          // bge
+                    3'b110: ALUOp_ID = `lessThanUnsigned;      // bltu
+                    3'b111: ALUOp_ID = `greaterEqualUnsigned;  // bgeu
+                    default: ALUOp_ID = `IADD;
                 endcase
             end
             `OP_LOAD: begin
-                FT_ID       = `FT_I;
-                MemtoReg_ID = 2'b01;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd
-                ALUSrc_ID   = 1'b1;
-                case(`IR_F3)
-                    3'b000: begin DMSE_ID = 1'b1; end // lb
-                    3'b001: begin DMSE_ID = 1'b1; end // lh
-                    3'b010: begin DMSE_ID = 1'b1; end // lw
-                    3'b100: DMSE_ID = 1'b0; // lbu
-                    3'b101: DMSE_ID = 1'b0; // lhu
-                    3'b110: DMSE_ID = 1'b0; // lwu
+                FT_ID         = `FT_I;
+                MemtoReg_ID   = 2'b01; // DMEM
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1;  // rd
+                ALUSrc_ID     = 1'b1;  // rs1 + imm
+                case (`IR_F3)
+                    3'b000: begin MemRead_ID = 2'b01; DMSE_ID = 1'b1; end // lb
+                    3'b001: begin MemRead_ID = 2'b10; DMSE_ID = 1'b1; end // lh
+                    3'b010: begin MemRead_ID = 2'b11; DMSE_ID = 1'b1; end // lw
+                    3'b100: begin MemRead_ID = 2'b01; DMSE_ID = 1'b0; end // lbu
+                    3'b101: begin MemRead_ID = 2'b10; DMSE_ID = 1'b0; end // lhu
+                    3'b110: begin MemRead_ID = 2'b11; DMSE_ID = 1'b0; end // lwu
+                    default: begin MemRead_ID = 2'b00; DMSE_ID = 1'b0; end
                 endcase
             end
             `OP_STORE: begin
-                FT_ID       = `FT_S;
-                RegWrite_ID = 1'b0;
-                RegDst_ID   = 1'b0; // don't care
-                ALUSrc_ID   = 1'b1;
+                FT_ID         = `FT_S;
+                MemWrite_ID   = 1'b1;  // TODO幅は未対応: 
+                RegWrite_ID   = 1'b0;
+                RegDst_ID     = 1'b0;  // don't care
+                ALUSrc_ID     = 1'b1;  // rs1 + imm（アドレス計算）
             end
             `OP_FUNC1: begin // I-type ALU
-                FT_ID       = `FT_I;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd
-                ALUSrc_ID   = 1'b1;
-                case(`IR_F3)
+                FT_ID         = `FT_I;
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1;  // rd
+                ALUSrc_ID     = 1'b1;  // imm
+                case (`IR_F3)
                     3'b000: ALUOp_ID = `IADD; // addi
-                    3'b001: if(`IR_F7 == 7'b0000000) ALUOp_ID = `ISLL; // slli
-                    3'b010: ALUOp_ID = `IADD; // slti(仮)
-                    3'b011: ALUOp_ID = `IADD; // sltiu(仮)
-                    3'b100: ALUOp_ID = `IXOR; // xori
-                    3'b101: begin
-                        if(`IR_F7 == 7'b0000000) ALUOp_ID = `ISRL; // srli
-                        else if(`IR_F7 == 7'b0100000) ALUOp_ID = `ISRA; // srai
+                    3'b001: begin // slli
+                        if (`IR_F7 == 7'b0000000) begin ALUOp_ID = `ISLL; ALUorSHIFT_ID = 1'b1; end
                     end
-                    3'b110: ALUOp_ID = `IOR; // ori
-                    3'b111: ALUOp_ID = `IAND; // andi
+                    3'b010: ALUOp_ID = `lessThan;          // slti
+                    3'b011: ALUOp_ID = `lessThanUnsigned;  // sltiu
+                    3'b100: ALUOp_ID = `IXOR;              // xori
+                    3'b101: begin // srli/srai
+                        if (`IR_F7 == 7'b0000000) begin ALUOp_ID = `ISRL; ALUorSHIFT_ID = 1'b1; end
+                        else if (`IR_F7 == 7'b0100000) begin ALUOp_ID = `ISRA; ALUorSHIFT_ID = 1'b1; end
+                    end
+                    3'b110: ALUOp_ID = `IOR;               // ori
+                    3'b111: ALUOp_ID = `IAND;              // andi
                 endcase
             end
             `OP_FUNC2: begin // R-type
-                FT_ID       = `FT_R;
-                RegWrite_ID = 1'b1;
-                RegDst_ID   = 1'b1; // rd
-                ALUSrc_ID   = 1'b0;
-                case(`IR_F3)
+                FT_ID         = `FT_R;
+                RegWrite_ID   = 1'b1;
+                RegDst_ID     = 1'b1;  // rd
+                ALUSrc_ID     = 1'b0;  // rs2
+                case (`IR_F3)
                     3'b000: begin
-                        if(`IR_F7 == 7'b0000000) ALUOp_ID = `IADD; // add
-                        else if(`IR_F7 == 7'b0100000) ALUOp_ID = `ISUB; // sub
+                        if (`IR_F7 == 7'b0000000) ALUOp_ID = `IADD; // add
+                        else if (`IR_F7 == 7'b0100000) ALUOp_ID = `ISUB; // sub
                     end
-                    3'b001: if(`IR_F7 == 7'b0000000) ALUOp_ID = `ISLL; // sll
-                    3'b010: if(`IR_F7 == 7'b0000000) ALUOp_ID = `IADD; // slt(仮)
-                    3'b011: if(`IR_F7 == 7'b0000000) ALUOp_ID = `IADD; // sltu(仮)
-                    3'b100: if(`IR_F7 == 7'b0000000) ALUOp_ID = `IXOR; // xor
+                    3'b001: if (`IR_F7 == 7'b0000000) begin ALUOp_ID = `ISLL; ALUorSHIFT_ID = 1'b1; end // sll
+                    3'b010: if (`IR_F7 == 7'b0000000) ALUOp_ID = `lessThan;             // slt
+                    3'b011: if (`IR_F7 == 7'b0000000) ALUOp_ID = `lessThanUnsigned;     // sltu
+                    3'b100: if (`IR_F7 == 7'b0000000) ALUOp_ID = `IXOR;                 // xor
                     3'b101: begin
-                        if(`IR_F7 == 7'b0000000) ALUOp_ID = `ISRL; // srl
-                        else if(`IR_F7 == 7'b0100000) ALUOp_ID = `ISRA; // sra
+                        if (`IR_F7 == 7'b0000000) begin ALUOp_ID = `ISRL; ALUorSHIFT_ID = 1'b1; end // srl
+                        else if (`IR_F7 == 7'b0100000) begin ALUOp_ID = `ISRA; ALUorSHIFT_ID = 1'b1; end // sra
                     end
-                    3'b110: if(`IR_F7 == 7'b0000000) ALUOp_ID = `IOR; // or
-                    3'b111: if(`IR_F7 == 7'b0000000) ALUOp_ID = `IAND; // and
+                    3'b110: if (`IR_F7 == 7'b0000000) ALUOp_ID = `IOR;                  // or
+                    3'b111: if (`IR_F7 == 7'b0000000) ALUOp_ID = `IAND;                 // and
                 endcase
+            end
+            default: begin
+                // 既定値のまま
             end
         endcase
 
