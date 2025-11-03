@@ -8,35 +8,32 @@ module id_stage (
     output reg [1:0]  MemtoReg_ID,
     output reg        RegWrite_ID,
     output reg        Branch_ID,
-    output reg        MemWrite_ID,     // TODO）1=store命令（幅は未サポート: 
-    output reg [1:0]  MemRead_ID,      // 01=byte, 10=half, 11=word
-    output reg        ALUSrc_ID,       // 即値(1) or レジスタ(0)
+    output reg [1:0]  MemWrite_ID,     // 00:none, 01:byte, 10:half, 11:word
+    output reg [1:0]  MemRead_ID,      // 00:none, 01:byte, 10:half, 11:word
+    output reg        ALUSrc_ID,
     output reg [4:0]  ALUOp_ID,
-    output reg        DMSE_ID,         // Loadの符号拡張制御
-    output reg        RegDst_ID,       // rd(1) or rt(0) — 書き込み命令では1
-    output reg        ALUorSHIFT_ID,   // 1=SHIFT, 0=ALU
+    output reg        DMSE_ID,
+    output reg        ALUorSHIFT_ID,
     // data path
     input      [31:0] IR,
     output reg        RS1_PC_ID,
     output reg        RS1_Z_ID,
     output reg [4:0]  RD_ID,
-    output reg [4:0]  RT_ID,
     output reg [31:0] IMM_VAL_EXT_ID
 );
     // デコード
     always @(*) begin
         // 既定値
         FT_ID         = 3'b000;
-        MemtoReg_ID   = 2'b00;  // R/I: ALU, U: ALU, Load: 01, J: 10
+        MemtoReg_ID   = 2'b00;
         RegWrite_ID   = 1'b0;
         Branch_ID     = 1'b0;
-        MemWrite_ID   = 1'b0;
+        MemWrite_ID   = 2'b00;  // ← 2bit化
         MemRead_ID    = 2'b00;
-        ALUSrc_ID     = 1'b0;   // R/B: 0, それ以外: 1
-        ALUOp_ID      = `IADD;  // 既定
+        ALUSrc_ID     = 1'b0;
+        ALUOp_ID      = `IADD;
         DMSE_ID       = 1'b0;
-        RegDst_ID     = 1'b0;   // 書き込み命令で1に設定
-        ALUorSHIFT_ID = 1'b0;   // 既定はALU
+        ALUorSHIFT_ID = 1'b0;
         RS1_PC_ID     = 1'b0;
         RS1_Z_ID      = 1'b0;
 
@@ -45,14 +42,12 @@ module id_stage (
                 FT_ID         = `FT_U;
                 RS1_Z_ID      = 1'b1;
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1; // rd
                 ALUSrc_ID     = 1'b1;
             end
             `OP_AUIPC: begin
                 FT_ID         = `FT_U;
                 RS1_PC_ID     = 1'b1;
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1; // rd
                 ALUSrc_ID     = 1'b1;
             end
             `OP_JAL: begin
@@ -61,7 +56,6 @@ module id_stage (
                 Branch_ID     = 1'b1;
                 MemtoReg_ID   = 2'b10; // PC+4
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1;  // rd
                 ALUSrc_ID     = 1'b1;
             end
             `OP_JALR: begin
@@ -69,14 +63,12 @@ module id_stage (
                 Branch_ID     = 1'b1;
                 MemtoReg_ID   = 2'b10; // PC+4
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1;  // rd
-                ALUSrc_ID     = 1'b1;
+                ALUSrc_ID     = 1'b1;  // rs1 + imm
             end
             `OP_BR: begin
                 FT_ID         = `FT_B;
                 Branch_ID     = 1'b1;
                 ALUSrc_ID     = 1'b0;  // rs2
-                RegDst_ID     = 1'b0;  // don't care
                 // 分岐条件は ALU が bit0 で返す前提（origin と同じ）
                 case (`IR_F3)
                     3'b000: ALUOp_ID = `equal;                 // beq
@@ -92,7 +84,6 @@ module id_stage (
                 FT_ID         = `FT_I;
                 MemtoReg_ID   = 2'b01; // DMEM
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1;  // rd
                 ALUSrc_ID     = 1'b1;  // rs1 + imm
                 case (`IR_F3)
                     3'b000: begin MemRead_ID = 2'b01; DMSE_ID = 1'b1; end // lb
@@ -106,15 +97,18 @@ module id_stage (
             end
             `OP_STORE: begin
                 FT_ID         = `FT_S;
-                MemWrite_ID   = 1'b1;  // TODO幅は未対応: 
                 RegWrite_ID   = 1'b0;
-                RegDst_ID     = 1'b0;  // don't care
                 ALUSrc_ID     = 1'b1;  // rs1 + imm（アドレス計算）
+                case (`IR_F3)
+                    3'b000: MemWrite_ID = 2'b01; // sb
+                    3'b001: MemWrite_ID = 2'b10; // sh
+                    3'b010: MemWrite_ID = 2'b11; // sw
+                    default: MemWrite_ID = 2'b00;
+                endcase
             end
             `OP_FUNC1: begin // I-type ALU
                 FT_ID         = `FT_I;
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1;  // rd
                 ALUSrc_ID     = 1'b1;  // imm
                 case (`IR_F3)
                     3'b000: ALUOp_ID = `IADD; // addi
@@ -135,7 +129,6 @@ module id_stage (
             `OP_FUNC2: begin // R-type
                 FT_ID         = `FT_R;
                 RegWrite_ID   = 1'b1;
-                RegDst_ID     = 1'b1;  // rd
                 ALUSrc_ID     = 1'b0;  // rs2
                 case (`IR_F3)
                     3'b000: begin
@@ -160,7 +153,7 @@ module id_stage (
         endcase
 
         RD_ID = `IR_RD;
-        RT_ID = `IR_RS2; // rs2 を rt として使用
+        // RT_ID は削除
     end
 
     // 即値抽出（符号拡張）
@@ -173,5 +166,4 @@ module id_stage (
             `FT_J: IMM_VAL_EXT_ID = { {11{IR[31]}}, IR[31], IR[19:12], IR[20], IR[30:21], 1'b0 };
         endcase
     end
-
 endmodule
