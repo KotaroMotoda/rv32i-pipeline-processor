@@ -1,4 +1,4 @@
-# Ignore local simulation files in np/
+np_old# Ignore local simulation files in np/
 np/Makefile
 
 np/tb.v
