@@ -48,12 +48,10 @@ module riscv
     wire        RS1_PC_ID;
     wire        RS1_Z_ID;
     wire        Branch_ID;
-    wire        RegDst_ID;
     wire        ALUorSHIFT_ID;
     wire [1:0]  MemWrite_ID;
     wire [1:0]  MemRead_ID;
     wire [4:0]  RD_ID;
-    wire [4:0]  RT_ID;
     wire [31:0] IMM_VAL_EXT_ID;
 
     // RF output
@@ -68,12 +66,10 @@ module riscv
     wire [4:0]  ALUOp_DE;
     wire [31:0] IMM_VAL_EXT_DE;
     wire [4:0]  RD_DE;
-    wire [4:0]  RT_DE;
     wire        RS1_PC_DE;
     wire        RS1_Z_DE;
     wire [1:0]  MemtoReg_DE;
     wire        RegWrite_DE;
-    wire        RegDst_DE;
     wire        ALUSrc_DE;
     wire        Branch_DE;
     wire        ALUorSHIFT_DE;
@@ -93,10 +89,8 @@ module riscv
     wire [31:0] ALU_VAL_EM;
     wire [31:0] STORE_VAL_EM;
     wire [4:0]  RD_EM;
-    wire [4:0]  RT_EM;
     wire [1:0]  MemtoReg_EM;
     wire        RegWrite_EM;
-    wire        RegDst_EM;
     wire [1:0]  MemWrite_EM;
     wire [1:0]  MemRead_EM;
     wire        DMSE_EM;
@@ -105,7 +99,6 @@ module riscv
     wire [31:0] PC4_MW;
     wire [31:0] ALU_VAL_MW;
     wire [4:0]  RD_MW;
-    wire [4:0]  RT_MW;
     wire [1:0]  MemtoReg_MW;
     wire        RegWrite_MW;
     wire        RegDst_MW;
@@ -144,12 +137,10 @@ module riscv
         .ALUSrc_ID(ALUSrc_ID),
         .ALUOp_ID(ALUOp_ID),
         .DMSE_ID(DMSE_ID),
-        .RegDst_ID(RegDst_ID),
         .ALUorSHIFT_ID(ALUorSHIFT_ID),
         .RS1_PC_ID(RS1_PC_ID),
         .RS1_Z_ID(RS1_Z_ID),
         .RD_ID(RD_ID),
-        .RT_ID(RT_ID),
         .IMM_VAL_EXT_ID(IMM_VAL_EXT_ID)
     );
 
@@ -172,14 +163,12 @@ module riscv
         .RF_DATA1(RF_DATA1), .RF_DATA2(RF_DATA2),
         .ALUOp_ID(ALUOp_ID),
         .RD_ID(RD_ID),
-        .RT_ID(RT_ID),
         .IMM_VAL_EXT_ID(IMM_VAL_EXT_ID),
         .ALUSrc_ID(ALUSrc_ID),
         .FT_ID(FT_ID),
         .RS1_PC_ID(RS1_PC_ID), .RS1_Z_ID(RS1_Z_ID),
         .MemtoReg_ID(MemtoReg_ID),
         .RegWrite_ID(RegWrite_ID),
-        .RegDst_ID(RegDst_ID),
         .Branch_ID(Branch_ID),
         .MemWrite_ID(MemWrite_ID),
         .MemRead_ID(MemRead_ID),
@@ -192,11 +181,9 @@ module riscv
         .ALUOp_DE(ALUOp_DE),
         .IMM_VAL_EXT_DE(IMM_VAL_EXT_DE),
         .RD_DE(RD_DE),
-        .RT_DE(RT_DE),
         .RS1_PC_DE(RS1_PC_DE), .RS1_Z_DE(RS1_Z_DE),
         .MemtoReg_DE(MemtoReg_DE),
         .RegWrite_DE(RegWrite_DE),
-        .RegDst_DE(RegDst_DE),
         .ALUSrc_DE(ALUSrc_DE),
         .FT_DE(FT_DE),
         .Branch_DE(Branch_DE),
@@ -211,10 +198,8 @@ module riscv
         // EX/MEM 出力
         .PC4_EM(PC4_EM), .ALU_VAL_EM(ALU_VAL_EM), .STORE_VAL_EM(STORE_VAL_EM),
         .RD_EM(RD_EM),
-        .RT_EM(RT_EM),
         .MemtoReg_EM(MemtoReg_EM),
         .RegWrite_EM(RegWrite_EM),
-        .RegDst_EM(RegDst_EM),
         .MemWrite_EM(MemWrite_EM),
         .MemRead_EM(MemRead_EM),
         .DMSE_EM(DMSE_EM),
@@ -222,7 +207,6 @@ module riscv
         // MEM/WB 出力
         .PC4_MW(PC4_MW), .ALU_VAL_MW(ALU_VAL_MW),
         .RD_MW(RD_MW),
-        .RT_MW(RT_MW),
         .MemtoReg_MW(MemtoReg_MW),
         .RegWrite_MW(RegWrite_MW)
     );

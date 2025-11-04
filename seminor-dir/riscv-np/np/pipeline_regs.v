@@ -2,6 +2,8 @@ module pipeline_regs (
     input  CLK, input RST,
     // IF/ID in
     input  [31:0] PC_IF, input [31:0] IDATA_IF, input [31:0] PC4_IF,
+    // IF/ID out
+    output reg [31:0] PC_FD, output reg [31:0] IDATA_FD, output reg [31:0] PC4_FD,
     // ID->EX in
     input  [31:0] RF_DATA1, input [31:0] RF_DATA2,
     input  [4:0]  ALUOp_ID,
