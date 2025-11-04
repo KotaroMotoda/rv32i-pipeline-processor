@@ -1,6 +1,3 @@
-`include "riscv.vh"
-`include "inst.vh"
-
 module if_stage
     #(
         parameter IMEM_BASE = 32'h0000_0000,
@@ -24,6 +21,12 @@ module if_stage
     end
 
     assign PC4_IF = PC_IF + 4;
+
+    // TODO: 分岐成立時のパイプライン・フラッシュ
+    // - EX で isBranch_E=1 のサイクルに IF/ID レジスタ(PC_FD/IDATA_FD/PC4_FD)を NOP/0 にクリアする
+    // - 実装案: pipeline_regs に flush_FD 入力を追加し、ここから isBranch_E を1サイクルパルスで与える
+    // - 優先度: RST > flush > stall(将来追加時)
+    // - 必要に応じて ID/EX もフラッシュ
 
     always @(posedge CLK or posedge RST) begin
         if (RST)
