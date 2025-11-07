@@ -28,18 +28,18 @@ _start:
 #	csrw minstret, zero
 #	csrw minstreth, zero
 
-	#clear registers
+	# clear registers
 	li  x1, 0
 	li  x2, 0
-	li  x3, 0
+	li  x3, -2
 	li  x4, 0
 	li  x5, 0
 	li  x6, 0
 	li  x7, 0
 	li  x8, 0
-	li  x9, 0
+	la  x9, test_data
 	li  x10,0
-	li  x11,0
+	lb  x11,0(x9)
 	li  x12,0
 	li  x13,0
 	li  x14,0
@@ -91,3 +91,8 @@ _start:
 	nop
 	nop
 	ebreak
+
+# ---- データセクション ----
+	.section ".data"
+test_data:
+	.byte 0xFE      # = -2（符号付き8bit）

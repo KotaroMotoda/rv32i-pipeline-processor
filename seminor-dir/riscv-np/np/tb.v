@@ -33,7 +33,7 @@ module riscv_tb ();
       
       for( i = addr ; i<1024 ; i=i+1 )
 	begin
-	   data = riscv.dmem.mem[i];
+	   data = riscv.mem_stage_inst.dmem_inst.mem[i];
 	   $display( "%08x %02x%02x%02x%02x", addr+i*4,
 		     data[7:0], data[15:8], data[23:16], data[31:24] );
 	end
