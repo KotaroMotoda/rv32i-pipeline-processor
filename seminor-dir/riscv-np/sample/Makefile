@@ -6,8 +6,8 @@ LD     = $(CROSS_COMPILE)ld
 OBJCOPY= $(CROSS_COMPILE)objcopy
 OBJDUMP= $(CROSS_COMPILE)objdump
 
-CFLAGS  = -g -march=rv32i -ffreestanding 
-ASFLAGS = -g --gstabs+ -march=rv32i
+CFLAGS  = -g -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -fno-builtin
+ASFLAGS = -g --gstabs+ -march=rv32i -mabi=ilp32
 LDFLAGS = -m elf32lriscv_ilp32 --no-relax -Bstatic -T link.ld -nostdlib
 OBJS	= startup.o sort.o
 

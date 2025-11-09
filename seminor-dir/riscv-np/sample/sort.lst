@@ -7,47 +7,44 @@ Disassembly of section .text.init:
 00000000 <_start>:
    0:	00000093          	li	ra,0
    4:	00000113          	li	sp,0
-   8:	ffe00193          	li	gp,-2
+   8:	00000193          	li	gp,0
    c:	00000213          	li	tp,0
   10:	00000293          	li	t0,0
   14:	00000313          	li	t1,0
-  18:	00000393          	li	t2,0
+  18:	001005b7          	lui	a1,0x100
   1c:	00000413          	li	s0,0
-  20:	00100497          	auipc	s1,0x100
-  24:	01848493          	addi	s1,s1,24 # 100038 <test_data>
-  28:	00000513          	li	a0,0
-  2c:	00048583          	lb	a1,0(s1)
-  30:	00000613          	li	a2,0
-  34:	00000693          	li	a3,0
-  38:	00000713          	li	a4,0
-  3c:	00000793          	li	a5,0
-  40:	00102197          	auipc	gp,0x102
-  44:	80018193          	addi	gp,gp,-2048 # 101840 <__global_pointer$>
-  48:	00102117          	auipc	sp,0x102
-  4c:	ff810113          	addi	sp,sp,-8 # 102040 <_sp>
-  50:	00000513          	li	a0,0
-  54:	00000593          	li	a1,0
-  58:	00000097          	auipc	ra,0x0
-  5c:	018080e7          	jalr	24(ra) # 70 <main>
+  20:	00000493          	li	s1,0
+  24:	00000513          	li	a0,0
+  28:	03858593          	addi	a1,a1,56 # 100038 <test_data>
+  2c:	00000613          	li	a2,0
+  30:	00000693          	li	a3,0
+  34:	00000713          	li	a4,0
+  38:	0005a783          	lw	a5,0(a1)
+  3c:	00102197          	auipc	gp,0x102
+  40:	80418193          	addi	gp,gp,-2044 # 101840 <__global_pointer$>
+  44:	00102117          	auipc	sp,0x102
+  48:	ffc10113          	addi	sp,sp,-4 # 102040 <_sp>
+  4c:	00000513          	li	a0,0
+  50:	00000593          	li	a1,0
+  54:	00000097          	auipc	ra,0x0
+  58:	014080e7          	jalr	20(ra) # 68 <main>
+  5c:	00000013          	nop
   60:	00000013          	nop
-  64:	00000013          	nop
-  68:	00100073          	ebreak
-  6c:	0000                	.insn	2, 0x
-	...
+  64:	00100073          	ebreak
 
 Disassembly of section .text:
 
-00000070 <main>:
-  70:	ff010113          	addi	sp,sp,-16
-  74:	00812623          	sw	s0,12(sp)
-  78:	01010413          	addi	s0,sp,16
-  7c:	00000013          	nop
-  80:	00000013          	nop
-  84:	00078513          	mv	a0,a5
-  88:	00c12403          	lw	s0,12(sp)
-  8c:	01010113          	addi	sp,sp,16
-  90:	00008067          	ret
-  94:	0000                	.insn	2, 0x
+00000068 <main>:
+  68:	ff010113          	addi	sp,sp,-16
+  6c:	00812623          	sw	s0,12(sp)
+  70:	01010413          	addi	s0,sp,16
+  74:	00000013          	nop
+  78:	00000013          	nop
+  7c:	00078513          	mv	a0,a5
+  80:	00c12403          	lw	s0,12(sp)
+  84:	01010113          	addi	sp,sp,16
+  88:	00008067          	ret
+  8c:	0000                	.insn	2, 0x
 	...
 
 Disassembly of section .eh_frame:
@@ -65,7 +62,7 @@ Disassembly of section .eh_frame:
   100016:	0000                	.insn	2, 0x
   100018:	0018                	.insn	2, 0x0018
   10001a:	0000                	.insn	2, 0x
-  10001c:	0054                	.insn	2, 0x0054
+  10001c:	004c                	.insn	2, 0x004c
   10001e:	fff0                	.insn	2, 0xfff0
   100020:	0024                	.insn	2, 0x0024
   100022:	0000                	.insn	2, 0x
@@ -83,8 +80,8 @@ Disassembly of section .eh_frame:
 Disassembly of section .data:
 
 00100038 <test_data>:
-  100038:	00fe                	.insn	2, 0x00fe
-	...
+  100038:	80fe                	.insn	2, 0x80fe
+  10003a:	1234                	.insn	2, 0x1234
 
 0010003c <data>:
   10003c:	cf1e                	.insn	2, 0xcf1e
@@ -1727,13 +1724,13 @@ Disassembly of section .stab:
    c:	0000000b          	.insn	4, 0x000b
   10:	0064                	.insn	2, 0x0064
   12:	0000                	.insn	2, 0x
-  14:	0070                	.insn	2, 0x0070
+  14:	0068                	.insn	2, 0x0068
   16:	0000                	.insn	2, 0x
   18:	0001                	.insn	2, 0x0001
   1a:	0000                	.insn	2, 0x
   1c:	0064                	.insn	2, 0x0064
   1e:	0000                	.insn	2, 0x
-  20:	0070                	.insn	2, 0x0070
+  20:	0068                	.insn	2, 0x0068
   22:	0000                	.insn	2, 0x
   24:	0000                	.insn	2, 0x
   26:	0000                	.insn	2, 0x
@@ -1788,81 +1785,81 @@ Disassembly of section .stab:
   92:	0000                	.insn	2, 0x
   94:	0044                	.insn	2, 0x0044
   96:	0029                	.insn	2, 0x0029
-  98:	0028                	.insn	2, 0x0028
+  98:	0024                	.insn	2, 0x0024
   9a:	0000                	.insn	2, 0x
   9c:	0000                	.insn	2, 0x
   9e:	0000                	.insn	2, 0x
   a0:	0044                	.insn	2, 0x0044
   a2:	002a                	.insn	2, 0x002a
-  a4:	002c                	.insn	2, 0x002c
+  a4:	0028                	.insn	2, 0x0028
   a6:	0000                	.insn	2, 0x
   a8:	0000                	.insn	2, 0x
   aa:	0000                	.insn	2, 0x
   ac:	0044                	.insn	2, 0x0044
-  ae:	0030002b          	.insn	4, 0x0030002b
+  ae:	002c002b          	.insn	4, 0x002c002b
   b2:	0000                	.insn	2, 0x
   b4:	0000                	.insn	2, 0x
   b6:	0000                	.insn	2, 0x
   b8:	0044                	.insn	2, 0x0044
   ba:	002c                	.insn	2, 0x002c
-  bc:	0034                	.insn	2, 0x0034
+  bc:	0030                	.insn	2, 0x0030
   be:	0000                	.insn	2, 0x
   c0:	0000                	.insn	2, 0x
   c2:	0000                	.insn	2, 0x
   c4:	0044                	.insn	2, 0x0044
   c6:	002d                	.insn	2, 0x002d
-  c8:	0038                	.insn	2, 0x0038
+  c8:	0034                	.insn	2, 0x0034
   ca:	0000                	.insn	2, 0x
   cc:	0000                	.insn	2, 0x
   ce:	0000                	.insn	2, 0x
   d0:	0044                	.insn	2, 0x0044
   d2:	002e                	.insn	2, 0x002e
-  d4:	003c                	.insn	2, 0x003c
+  d4:	0038                	.insn	2, 0x0038
   d6:	0000                	.insn	2, 0x
   d8:	0000                	.insn	2, 0x
   da:	0000                	.insn	2, 0x
   dc:	0044                	.insn	2, 0x0044
   de:	004d                	.insn	2, 0x004d
-  e0:	0040                	.insn	2, 0x0040
+  e0:	003c                	.insn	2, 0x003c
   e2:	0000                	.insn	2, 0x
   e4:	0000                	.insn	2, 0x
   e6:	0000                	.insn	2, 0x
   e8:	0044                	.insn	2, 0x0044
-  ea:	0048004f          	.insn	4, 0x0048004f
+  ea:	0044004f          	.insn	4, 0x0044004f
   ee:	0000                	.insn	2, 0x
   f0:	0000                	.insn	2, 0x
   f2:	0000                	.insn	2, 0x
   f4:	0044                	.insn	2, 0x0044
-  f6:	00500057          	.insn	4, 0x00500057
+  f6:	004c0057          	.insn	4, 0x004c0057
   fa:	0000                	.insn	2, 0x
   fc:	0000                	.insn	2, 0x
   fe:	0000                	.insn	2, 0x
  100:	0044                	.insn	2, 0x0044
  102:	0058                	.insn	2, 0x0058
- 104:	0054                	.insn	2, 0x0054
+ 104:	0050                	.insn	2, 0x0050
  106:	0000                	.insn	2, 0x
  108:	0000                	.insn	2, 0x
  10a:	0000                	.insn	2, 0x
  10c:	0044                	.insn	2, 0x0044
  10e:	0059                	.insn	2, 0x0059
- 110:	0058                	.insn	2, 0x0058
+ 110:	0054                	.insn	2, 0x0054
  112:	0000                	.insn	2, 0x
  114:	0000                	.insn	2, 0x
  116:	0000                	.insn	2, 0x
  118:	0044                	.insn	2, 0x0044
- 11a:	0060005b          	.insn	4, 0x0060005b
+ 11a:	005c005b          	.insn	4, 0x005c005b
  11e:	0000                	.insn	2, 0x
  120:	0000                	.insn	2, 0x
  122:	0000                	.insn	2, 0x
  124:	0044                	.insn	2, 0x0044
  126:	005c                	.insn	2, 0x005c
- 128:	0064                	.insn	2, 0x0064
+ 128:	0060                	.insn	2, 0x0060
  12a:	0000                	.insn	2, 0x
  12c:	0000                	.insn	2, 0x
  12e:	0000                	.insn	2, 0x
  130:	0044                	.insn	2, 0x0044
  132:	005d                	.insn	2, 0x005d
- 134:	0068                	.insn	2, 0x0068
+ 134:	0064                	.insn	2, 0x0064
 	...
 
 Disassembly of section .stabstr:
@@ -1895,14 +1892,14 @@ Disassembly of section .stabstr:
   42:	656e                	.insn	2, 0x656e
   44:	702d                	.insn	2, 0x702d
   46:	6f72                	.insn	2, 0x6f72
-  48:	73736563          	bltu	t1,s7,772 <main+0x702>
+  48:	73736563          	bltu	t1,s7,772 <main+0x70a>
   4c:	732f726f          	jal	tp,f777e <__stack_size+0xf677e>
   50:	6d65                	.insn	2, 0x6d65
   52:	6e69                	.insn	2, 0x6e69
   54:	642d726f          	jal	tp,d7696 <__stack_size+0xd6696>
   58:	7269                	.insn	2, 0x7269
   5a:	7369722f          	.insn	4, 0x7369722f
-  5e:	6e2d7663          	bgeu	s10,sp,74a <main+0x6da>
+  5e:	6e2d7663          	bgeu	s10,sp,74a <main+0x6e2>
   62:	2f70                	.insn	2, 0x2f70
   64:	706d6173          	.insn	4, 0x706d6173
   68:	656c                	.insn	2, 0x656c
@@ -1924,7 +1921,7 @@ Disassembly of section .debug_info:
   14:	0000                	.insn	2, 0x
   16:	0000                	.insn	2, 0x
   18:	0000                	.insn	2, 0x
-  1a:	0070                	.insn	2, 0x0070
+  1a:	0068                	.insn	2, 0x0068
   1c:	0000                	.insn	2, 0x
   1e:	0024                	.insn	2, 0x0024
   20:	0000                	.insn	2, 0x
@@ -1936,26 +1933,27 @@ Disassembly of section .debug_info:
   2c:	0000                	.insn	2, 0x
   2e:	0300                	.insn	2, 0x0300
   30:	00000037          	lui	zero,0x0
-  34:	03ff 0400 0704 004e 	.insn	10, 0x004e0704040003ff
+  34:	03ff 0400 0704 005b 	.insn	10, 0x005b0704040003ff
   3c:	0000 
   3e:	0405                	.insn	2, 0x0405
   40:	6905                	.insn	2, 0x6905
   42:	746e                	.insn	2, 0x746e
   44:	0600                	.insn	2, 0x0600
-  46:	0000005b          	.insn	4, 0x005b
+  46:	0068                	.insn	2, 0x0068
+  48:	0000                	.insn	2, 0x
   4a:	0301                	.insn	2, 0x0301
   4c:	2605                	.insn	2, 0x2605
   4e:	0000                	.insn	2, 0x
   50:	0500                	.insn	2, 0x0500
   52:	10003c03          	.insn	4, 0x10003c03
   56:	0700                	.insn	2, 0x0700
-  58:	0060                	.insn	2, 0x0060
+  58:	006d                	.insn	2, 0x006d
   5a:	0000                	.insn	2, 0x
   5c:	0701                	.insn	2, 0x0701
   5e:	0104                	.insn	2, 0x0104
   60:	003e                	.insn	2, 0x003e
   62:	0000                	.insn	2, 0x
-  64:	0070                	.insn	2, 0x0070
+  64:	0068                	.insn	2, 0x0068
   66:	0000                	.insn	2, 0x
   68:	0024                	.insn	2, 0x0024
   6a:	0000                	.insn	2, 0x
@@ -1975,7 +1973,7 @@ Disassembly of section .debug_abbrev:
   16:	1349                	.insn	2, 0x1349
   18:	1301                	.insn	2, 0x1301
   1a:	0000                	.insn	2, 0x
-  1c:	49002103          	lw	sp,1168(zero) # 490 <main+0x420>
+  1c:	49002103          	lw	sp,1168(zero) # 490 <main+0x428>
   20:	00052f13          	slti	t5,a0,0
   24:	0400                	.insn	2, 0x0400
   26:	0024                	.insn	2, 0x0024
@@ -2013,7 +2011,7 @@ Disassembly of section .debug_aranges:
    a:	0004                	.insn	2, 0x0004
    c:	0000                	.insn	2, 0x
    e:	0000                	.insn	2, 0x
-  10:	0070                	.insn	2, 0x0070
+  10:	0068                	.insn	2, 0x0068
   12:	0000                	.insn	2, 0x
   14:	0024                	.insn	2, 0x0024
 	...
@@ -2046,7 +2044,7 @@ Disassembly of section .debug_line:
   34:	0000                	.insn	2, 0x
   36:	0105                	.insn	2, 0x0105
   38:	0500                	.insn	2, 0x0500
-  3a:	7002                	.insn	2, 0x7002
+  3a:	6802                	.insn	2, 0x6802
   3c:	0000                	.insn	2, 0x
   3e:	0300                	.insn	2, 0x0300
   40:	05010887          	.insn	4, 0x05010887
@@ -2097,17 +2095,24 @@ Disassembly of section .debug_str:
   46:	6174                	.insn	2, 0x6174
   48:	646e                	.insn	2, 0x646e
   4a:	6e69                	.insn	2, 0x6e69
-  4c:	6e750067          	jr	1767(a0)
-  50:	6e676973          	.insn	4, 0x6e676973
-  54:	6465                	.insn	2, 0x6465
-  56:	6920                	.insn	2, 0x6920
-  58:	746e                	.insn	2, 0x746e
-  5a:	6400                	.insn	2, 0x6400
-  5c:	7461                	.insn	2, 0x7461
-  5e:	0061                	.insn	2, 0x0061
-  60:	616d                	.insn	2, 0x616d
-  62:	6e69                	.insn	2, 0x6e69
-	...
+  4c:	662d2067          	.insn	4, 0x662d2067
+  50:	6f6e                	.insn	2, 0x6f6e
+  52:	622d                	.insn	2, 0x622d
+  54:	6975                	.insn	2, 0x6975
+  56:	746c                	.insn	2, 0x746c
+  58:	6e69                	.insn	2, 0x6e69
+  5a:	7500                	.insn	2, 0x7500
+  5c:	736e                	.insn	2, 0x736e
+  5e:	6769                	.insn	2, 0x6769
+  60:	656e                	.insn	2, 0x656e
+  62:	2064                	.insn	2, 0x2064
+  64:	6e69                	.insn	2, 0x6e69
+  66:	0074                	.insn	2, 0x0074
+  68:	6164                	.insn	2, 0x6164
+  6a:	6174                	.insn	2, 0x6174
+  6c:	6d00                	.insn	2, 0x6d00
+  6e:	6961                	.insn	2, 0x6961
+  70:	006e                	.insn	2, 0x006e
 
 Disassembly of section .debug_line_str:
 
@@ -2117,11 +2122,11 @@ Disassembly of section .debug_line_str:
    6:	6b6d                	.insn	2, 0x6b6d
    8:	726f772f          	.insn	4, 0x726f772f
    c:	6170736b          	.insn	4, 0x6170736b
-  10:	672f6563          	bltu	t5,s2,67a <main+0x60a>
+  10:	672f6563          	bltu	t5,s2,67a <main+0x612>
   14:	7469                	.insn	2, 0x7469
   16:	7568                	.insn	2, 0x7568
   18:	2e62                	.insn	2, 0x2e62
-  1a:	2f6d6f63          	bltu	s10,s6,318 <main+0x2a8>
+  1a:	2f6d6f63          	bltu	s10,s6,318 <main+0x2b0>
   1e:	61746f4b          	.insn	4, 0x61746f4b
   22:	6f72                	.insn	2, 0x6f72
   24:	6f4d                	.insn	2, 0x6f4d
