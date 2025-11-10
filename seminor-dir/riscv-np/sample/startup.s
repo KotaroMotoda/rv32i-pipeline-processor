@@ -28,22 +28,37 @@ _start:
 #	csrw minstret, zero
 #	csrw minstreth, zero
 
-	# clear registers
-	li  x1, 0
-	li  x2, 0
-	li  x3, 0
-	li  x4, 0
-	li  x5, 0
-	li  x6, 0
-	lui   x11, %hi(test_data)        # 依存1: LUI→ADDI（x11で統一）
-	li  x8, 0
-	li  x9, 0
-	li    x10, 0                 # 独立命令で埋める
-	addi  x11, x11, %lo(test_data)     # x11 完成
-	li    x12, 0                     # 依存2: ADDI→LB を1拍以上空ける
-	li    x13, 0
-	li    x14, 0
-	lw    x15, 0(x11)                  # 32ビットロード → 0x123480FE
+    # clear registers
+    li  x1, 0
+    li  x2, 0
+    li  x3, 0
+    li  x4, 0
+    
+    # --- BEQ Test ---
+    # Test: Branch if Equal (should be taken)
+    # x5 と x6 が等しいので beq_taken ラベルに分岐するはず
+    li  x5, 3
+    li  x6, 4
+    li  x15, 0                  # 結果用レジスタ (デフォルト=0:失敗)
+    beq x5, x6, beq_taken       # 分岐命令
+    
+    # 分岐が成功すれば、以下の2行はスキップされる
+    j   beq_end
+
+beq_taken:
+    li  x15, 1                  # 分岐成功。x15 に 1 を設定
+
+beq_end:
+    # --- End of Test ---
+
+    li  x7, 0
+    li  x8, 0
+    li  x9, 0
+    li  x10, 0
+    li  x11, 0
+    li  x12, 0
+    li  x13, 0
+    li  x14, 0
 #	li  x16,0
 #	li  x17,0
 #	li  x18,0
@@ -95,4 +110,4 @@ _start:
 # ---- データセクション ----
 	.section ".data"
 test_data:
-	.byte 0xFE, 0x80, 0x34, 0x12   # 32bit値 0x123480FE（LE）
+	.byte 0xFE, 0x80, 0x34, 0x12   # 32bit値 0x123480FE（LE)

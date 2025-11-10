@@ -28,7 +28,7 @@ module id_stage (
         MemtoReg_ID   = 2'b00;
         RegWrite_ID   = 1'b0;
         Branch_ID     = 1'b0;
-        MemWrite_ID   = 2'b00;  // ← 2bit化
+        MemWrite_ID   = 2'b00; 
         MemRead_ID    = 2'b00;
         ALUSrc_ID     = 1'b0;
         ALUOp_ID      = `IADD;
