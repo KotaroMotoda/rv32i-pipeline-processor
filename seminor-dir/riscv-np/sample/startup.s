@@ -23,17 +23,16 @@
 
 _start:
 
-    li x1, 0          # フラグ用
-    li x2, 0
-    li x3, 0
-	li  x4, 0    
-    li  x5, 0        
+    li x1, 3          
+    li x2, 4
+    sub x3, x2, x1
+	 add x4, x1, x2    
+    sub  x5, x2, x1       
     li  x6, 0        
     li  x7, 0
     li  x8, 0
     li  x9, 0
-    jal x1, jump_target   # 無条件ジャンプ。戻りアドレスは x1 に入る
-    li x10, 111            # ジャンプ失敗時にここが実行される
+    li  x10, 0
     li  x11, 0
     li  x12, 0
     li  x13, 0
