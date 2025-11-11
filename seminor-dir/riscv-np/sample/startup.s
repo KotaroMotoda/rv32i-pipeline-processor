@@ -22,43 +22,23 @@
 	.type _start, @function
 
 _start:
-	#clear minstret
-	# 0xB82|0xB02 mistreth|minstret (64bit) the number of executed instructions
-	# 0xB80|0xB00 mcycleh |  mcycle (64bit) the number of machine cycles	
-#	csrw minstret, zero
-#	csrw minstreth, zero
 
-    # clear registers
-    li  x1, 0
-    li  x2, 0
-    li  x3, 0
-    li  x4, 0
-    
-    # --- BEQ Test ---
-    # Test: Branch if Equal (should be taken)
-    # x5 と x6 が等しいので beq_taken ラベルに分岐するはず
-    li  x5, 3
-    li  x6, 4
-    li  x15, 0                  # 結果用レジスタ (デフォルト=0:失敗)
-    beq x5, x6, beq_taken       # 分岐命令
-    
-    # 分岐が成功すれば、以下の2行はスキップされる
-    j   beq_end
-
-beq_taken:
-    li  x15, 1                  # 分岐成功。x15 に 1 を設定
-
-beq_end:
-    # --- End of Test ---
-
+    li x1, 0          # フラグ用
+    li x2, 0
+    li x3, 0
+	li  x4, 0    
+    li  x5, 0        
+    li  x6, 0        
     li  x7, 0
     li  x8, 0
     li  x9, 0
-    li  x10, 0
+    jal x1, jump_target   # 無条件ジャンプ。戻りアドレスは x1 に入る
+    li x10, 111            # ジャンプ失敗時にここが実行される
     li  x11, 0
     li  x12, 0
     li  x13, 0
     li  x14, 0
+    li  x15, 0
 #	li  x16,0
 #	li  x17,0
 #	li  x18,0
@@ -75,6 +55,14 @@ beq_end:
 #	li  x29,0
 #	li  x30,0
 #	li  x31,0
+
+jump_target:
+    li x3, 999            # ジャンプ成功時にここが実行される
+
+end:
+    nop
+    nop
+    ebreak
 
 	#cache configuration
 #	li t1, 0x55555555
@@ -110,4 +98,6 @@ beq_end:
 # ---- データセクション ----
 	.section ".data"
 test_data:
-	.byte 0xFE, 0x80, 0x34, 0x12   # 32bit値 0x123480FE（LE)
+	.word 5
+
+
