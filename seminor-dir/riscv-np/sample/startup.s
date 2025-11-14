@@ -22,22 +22,28 @@
 	.type _start, @function
 
 _start:
+	#clear minstret
+	# 0xB82|0xB02 mistreth|minstret (64bit) the number of executed instructions
+	# 0xB80|0xB00 mcycleh |  mcycle (64bit) the number of machine cycles	
+#	csrw minstret, zero
+#	csrw minstreth, zero
 
-    li x1, 3          
-    li x2, 4
-    sub x3, x2, x1
-	 add x4, x1, x2    
-    sub  x5, x2, x1       
-    li  x6, 0        
-    li  x7, 0
-    li  x8, 0
-    li  x9, 0
-    li  x10, 0
-    li  x11, 0
-    li  x12, 0
-    li  x13, 0
-    li  x14, 0
-    li  x15, 0
+	#clear registers
+	li  x1, 0
+	li  x2, 0
+	li  x3, 0
+	li  x4, 0
+	li  x5, 0
+	li  x6, 0
+	li  x7, 0
+	li  x8, 0
+	li  x9, 0
+	li  x10,0
+	li  x11,0
+	li  x12,0
+	li  x13,0
+	li  x14,0
+	li  x15,0
 #	li  x16,0
 #	li  x17,0
 #	li  x18,0
@@ -54,14 +60,6 @@ _start:
 #	li  x29,0
 #	li  x30,0
 #	li  x31,0
-
-jump_target:
-    li x3, 999            # ジャンプ成功時にここが実行される
-
-end:
-    nop
-    nop
-    ebreak
 
 	#cache configuration
 #	li t1, 0x55555555
@@ -93,10 +91,3 @@ end:
 	nop
 	nop
 	ebreak
-
-# ---- データセクション ----
-	.section ".data"
-test_data:
-	.word 5
-
-
