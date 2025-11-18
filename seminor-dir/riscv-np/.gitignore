@@ -1,4 +1,5 @@
 np_old
 np/Makefile
 np/tb.v
+np/riscv.vcd
 sample/Makefile
