@@ -31,10 +31,10 @@ A curated workspace for developing and presenting an educational RV32I processor
 ## Roadmap
 
 - [x] Single-cycle RV32I baseline
-- [ ] 5-stage pipeline: IF, ID, EX, MEM, WB
-- [ ] Hazard detection and data forwarding
-- [ ] Control hazard handling (flush, basic prediction strategy optional)
-- [ ] Memory interface refinement and alignment rules
+- [x] 5-stage pipeline: IF, ID, EX, MEM, WB
+- [x] Hazard detection and data forwarding
+- [x] Control hazard handling (flush, basic prediction strategy optional)
+- [x] Memory interface refinement and alignment rules
 - [ ] Timing closure at 120 MHz (post-route on target FPGA)
 - [ ] Documentation: microarchitecture diagrams and timing reports
 
