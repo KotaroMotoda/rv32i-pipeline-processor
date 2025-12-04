@@ -3,7 +3,7 @@
 #define LED_ADDR  0x00120000u
 #define LED_DELAY 100000u
 
-// 累積和の結果を保存（1,3,6,10,15,21,28,36,45,55）
+// 累積和の結果を保存（1,3,6,10,15,21,28,36,45,55）=> 
 volatile uint32_t results[10];
 
 static inline void led_write(uint32_t v) {

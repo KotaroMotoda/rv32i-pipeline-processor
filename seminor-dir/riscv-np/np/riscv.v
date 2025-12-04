@@ -8,7 +8,7 @@ module riscv #(
 )(
     input  wire        CLK,
     input  wire        RSTN,
-    output wire [31:0] LED    // 外部I/O出力（必要に応じてピン展開）
+    output wire [31:0] LED    
 );
     wire RST = ~RSTN;
 
@@ -58,7 +58,7 @@ module riscv #(
         .MWSTB (MWSTB)
     );
 
-    // Data Memory Enable（origin と同じ判定）
+    // Data Memory Enable
     assign CEM = ( ( |MemWrite_EM || |MemRead_EM ) && (MADDR[31:20] == DMEM_BASE[31:20]) );
 
     // LED MMIO デコード（0x0011_FFFF より上）
