@@ -6,10 +6,21 @@ module riscv #(
     parameter DMEM_FILE = "data.mif",
     parameter LED_BASE  = 32'h0012_0000  // 0x0011_FFFF より上
 )(
-    input  wire        CLK,
-    input  wire        RSTN,
+    input  wire        CLK, // 100MHzで入ってくる想定
+    input  wire        RSTN_IN,
     output wire [31:0] LED    
 );
+    wire CLK75;
+    wire LOCKED;
+    // 100MHz -> 75MHz に,周波数を落とす
+    clock_wi_0 clk_wiz_inst (
+        .clk_in1( CLK ),
+        .clk_out1( CLK75 ),
+        .reset( ~RSTN_IN ),
+        .locked(LOCKED)
+    );
+
+    assign RSTN    = RSTN_IN & LOCKED;
     wire RST = ~RSTN;
 
     // コア ⇔ トップ（MEMバス）
@@ -31,7 +42,7 @@ module riscv #(
 
     // コア本体
     riscv_core core (
-        .CLK(CLK),
+        .CLK(CLK75),
         .RSTN(RSTN),
         // MEMバス（コア→トップ）
         .ALU_VAL_EM(ALU_VAL_EM),
@@ -45,7 +56,7 @@ module riscv #(
 
     // Data Aligner（origin と同じ）
     daligner daligner_inst (
-        .CLK   (CLK),
+        .CLK   (CLK75),
         .ADDRI (ALU_VAL_EM),
         .DATAI (STORE_VAL_EM),
         .DATAO (MEM_DATA_M),     // アライン／符号拡張済みデータをコアへ返す
@@ -66,7 +77,7 @@ module riscv #(
     assign LED = led_reg;
 
     // LED 書き込み（MWSTBに従ってバイト単位更新）
-    always @(posedge CLK or posedge RST) begin
+    always @(posedge CLK75 or posedge RST) begin
         if (RST) begin
             led_reg <= 32'h0000_0000;
         end else if (is_led_access && |MemWrite_EM) begin
@@ -82,7 +93,7 @@ module riscv #(
         .DMEM_SIZE(DMEM_SIZE),
         .INIT_FILE(DMEM_FILE)
     ) dmem_inst (
-        .CLK (CLK),
+        .CLK (CLK75),
         .ADDR(MADDR),
         .DATAI(MDATAO),
         .DATAO(MDATAI_DMEM),

@@ -44,22 +44,22 @@ _start:
 	li  x13,0
 	li  x14,0
 	li  x15,0
-#	li  x16,0
-#	li  x17,0
-#	li  x18,0
-#	li  x19,0
-#	li  x20,0
-#	li  x21,0
-#	li  x22,0
-#	li  x23,0
-#	li  x24,0
-#	li  x25,0
-#	li  x26,0
-#	li  x27,0
-#	li  x28,0
-#	li  x29,0
-#	li  x30,0
-#	li  x31,0
+ 	li  x16,0
+ 	li  x17,0
+ 	li  x18,0
+ 	li  x19,0
+ 	li  x20,0
+ 	li  x21,0
+ 	li  x22,0
+ 	li  x23,0
+ 	li  x24,0
+ 	li  x25,0
+	li  x26,0
+ 	li  x27,0
+ 	li  x28,0
+ 	li  x29,0
+ 	li  x30,0
+	li  x31,0
 
 	#cache configuration
 #	li t1, 0x55555555
