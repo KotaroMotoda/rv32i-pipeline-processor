@@ -1,23 +1,27 @@
 #include <stdint.h>
 
-#define LED_ADDR  0x00120000u
-#define LED_DELAY 100000u
-
-// 24bitカウンタにして,上位8bitを,LEDに出力する. 
-
-// 累積和の結果を保存（1,3,6,10,15,21,28,36,45,55）=> 
-volatile uint32_t results[10];
+#define LED_ADDR        0x00120000u
+#define LED_DELAY       150000u
+#define LED_PAUSE       600000u
+#define LED_MASK        0x00FFFFFFu
 
 static inline void led_write(uint32_t v) {
-    *(volatile uint32_t*)(LED_ADDR) = v;  // 32bit 書き込み
+    *(volatile uint32_t*)(LED_ADDR) = v;
+}
+
+static inline void busy_wait(uint32_t loops) {
+    for (volatile uint32_t d = 0; d < loops; ++d) {
+        __asm__ volatile("nop");
+    }
 }
 
 int main(void) {
-    short cnt;
-    cnt = 0;
-    while(1){
-        cnt ++ ;
-        led_write(cnt);
-        for(volatile uint32_t d = 0; d < LED_DELAY; d++); // 遅延
+    uint32_t counter = 0;
+
+    while (1) {
+        led_write(counter & 0xFFFF);            // 下位16bitだけLEDへ
+        counter = (counter + 1) & LED_MASK;     // 24bit カウンタ
+        busy_wait(LED_DELAY);                   // 短い待機
+        busy_wait(LED_PAUSE);                   // 追加の待機
     }
 }
