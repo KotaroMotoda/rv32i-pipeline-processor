@@ -13,7 +13,7 @@ module riscv #(
     wire CLK75;
     wire LOCKED;
     // 100MHz -> 75MHz に,周波数を落とす
-    clock_wi_0 clk_wiz_inst (
+    clk_wiz_0 clk_wiz_inst (
         .clk_in1( CLK ),
         .clk_out1( CLK75 ),
         .reset( ~RSTN_IN ),
