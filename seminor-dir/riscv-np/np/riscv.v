@@ -8,7 +8,7 @@ module riscv #(
 )(
     input  wire        CLK, // 100MHzで入ってくる想定
     input  wire        RSTN_IN,
-    output wire [31:0] LED    
+    output wire [15:0] LED    
 );
     wire CLK75;
     wire LOCKED;
@@ -74,7 +74,7 @@ module riscv #(
 
     // LED MMIO デコード（0x0011_FFFF より上）
     wire is_led_access = ( |MemWrite_EM || |MemRead_EM ) && ( {MADDR, 2'b00} >= LED_BASE );
-    assign LED = led_reg;
+    assign LED = led_reg[15:0];
 
     // LED 書き込み（MWSTBに従ってバイト単位更新）
     always @(posedge CLK75 or posedge RST) begin
