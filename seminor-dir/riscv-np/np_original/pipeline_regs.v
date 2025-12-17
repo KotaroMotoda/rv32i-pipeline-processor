@@ -21,6 +21,8 @@ module pipeline_regs (
     input  wire [31:0] RF_DATA2,
     input  wire [4:0]  ALUOp_ID,
     input  wire [4:0]  RD_ID,
+    input  wire [4:0]  RS1_ID,
+    input  wire [4:0]  RS2_ID,
     input  wire [31:0] IMM_VAL_EXT_ID,
     input  wire        ALUSrc_ID,
     input  wire [2:0]  FT_ID,
@@ -43,6 +45,8 @@ module pipeline_regs (
     output reg  [4:0]  ALUOp_DE,
     output reg  [31:0] IMM_VAL_EXT_DE,
     output reg  [4:0]  RD_DE,
+    output reg  [4:0]  RS1_DE,
+    output reg  [4:0]  RS2_DE,
     output reg         RS1_PC_DE, 
     output reg         RS1_Z_DE,
     output reg  [1:0]  MemtoReg_DE,
@@ -100,16 +104,16 @@ module pipeline_regs (
     always @(posedge CLK or posedge RST) begin
         if (RST || flush_DE) begin
             PC_DE<=0; PC4_DE<=0; RF_DATA1_DE<=0; RF_DATA2_DE<=0;
-            ALUOp_DE<=0; IMM_VAL_EXT_DE<=0; RD_DE<=0;
+            ALUOp_DE<=0; IMM_VAL_EXT_DE<=0; RD_DE<=0; RS1_DE<=0; RS2_DE<=0;
             RS1_PC_DE<=0; RS1_Z_DE<=0;
             MemtoReg_DE<=0; RegWrite_DE<=0; ALUSrc_DE<=0; FT_DE<=0; Branch_DE<=0;
-            MemWrite_DE<=0; MemRead_DE<=0; ALUorSHIFT_DE<=0; DMSE_DE<=0;
+            MemWrite_DE<=0; MemRead_DE<=0; ALUorSHIFT_DE<=0; DMSE_DE<=0; PACK_SIZE_DE<=0;
         end else if (!stall_DE) begin
             PC_DE<=PC_FD; PC4_DE<=PC4_FD; RF_DATA1_DE<=RF_DATA1; RF_DATA2_DE<=RF_DATA2;
-            ALUOp_DE<=ALUOp_ID; IMM_VAL_EXT_DE<=IMM_VAL_EXT_ID; RD_DE<=RD_ID;
+            ALUOp_DE<=ALUOp_ID; IMM_VAL_EXT_DE<=IMM_VAL_EXT_ID; RD_DE<=RD_ID; RS1_DE<=RS1_ID; RS2_DE<=RS2_ID;
             RS1_PC_DE<=RS1_PC_ID; RS1_Z_DE<=RS1_Z_ID;
             MemtoReg_DE<=MemtoReg_ID; RegWrite_DE<=RegWrite_ID; ALUSrc_DE<=ALUSrc_ID; FT_DE<=FT_ID; Branch_DE<=Branch_ID;
-            MemWrite_DE<=MemWrite_ID; MemRead_DE<=MemRead_ID; ALUorSHIFT_DE<=ALUorSHIFT_ID; DMSE_DE<=DMSE_ID;
+            MemWrite_DE<=MemWrite_ID; MemRead_DE<=MemRead_ID; ALUorSHIFT_DE<=ALUorSHIFT_ID; DMSE_DE<=DMSE_ID; PACK_SIZE_DE<=PACK_SIZE_ID;
         end
         // stall_DE のときは保持
     end
