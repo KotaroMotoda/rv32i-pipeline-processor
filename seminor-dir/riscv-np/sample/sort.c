@@ -1027,33 +1027,6 @@ int data[] = {
 266115363
 };
 
-void quicksort(int arr[], int left, int right) {
-  if (left >= right) return;
-
-  int pivot = arr[(left + right) / 2];
-  int i = left;
-  int j = right;
-
-  while (i <= j) {
-    while (arr[i] < pivot) i++;
-    while (arr[j] > pivot) j--;
-    if (i <= j) {
-      int tmp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = tmp;
-      j--;
-      i++;
-    }
-  }
-
-  quicksort(arr, left, j);
-  quicksort(arr, i, right);
-}
-
 int main() {
-  int i;
-
-  quicksort(data, 0, SIZE - 1);
-
-  return 0;
+  return;
 }
