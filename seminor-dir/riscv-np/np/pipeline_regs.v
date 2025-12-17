@@ -33,6 +33,7 @@ module pipeline_regs (
     input  wire [1:0]  MemRead_ID,
     input  wire        ALUorSHIFT_ID,
     input  wire        DMSE_ID,
+    input  wire [1:0]  PACK_SIZE_ID,
 
     // ID/EX out
     output reg  [31:0] PC_DE, 
@@ -53,6 +54,7 @@ module pipeline_regs (
     output reg  [1:0]  MemRead_DE,
     output reg         ALUorSHIFT_DE,
     output reg         DMSE_DE,
+    output reg  [1:0]  PACK_SIZE_DE,
 
     // EX->MEM in
     input  wire [31:0] ALU_VAL_E, 

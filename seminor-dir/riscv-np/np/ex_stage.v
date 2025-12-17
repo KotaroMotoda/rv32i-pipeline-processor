@@ -24,6 +24,8 @@ module ex_stage (
     input  [31:0] ALU_VAL_EM,   // EX/MEM からの前段結果
     input  [31:0] RD_VAL_WB,    // MEM/WB からの書き戻し値（最終値）
 
+    input [1:0] PACK_SIZE_DE,
+
     output [31:0] ALU_VAL_E,
     output [31:0] STORE_VAL_E,
     output        isBranch_E,
@@ -69,6 +71,7 @@ module ex_stage (
         .A(opA),
         .B(data2),
         .C(ALUOp_DE),
+        .P(PACK_SIZE_DE),
         .Y(alu_val_e)
     );
 

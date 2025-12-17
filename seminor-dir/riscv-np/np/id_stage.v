@@ -19,7 +19,8 @@ module id_stage (
     output reg        RS1_PC_ID,
     output reg        RS1_Z_ID,
     output reg [4:0]  RD_ID,
-    output reg [31:0] IMM_VAL_EXT_ID
+    output reg [31:0] IMM_VAL_EXT_ID,
+    output reg [1:0]    PACK_SIZE_ID
 );
     // デコード
     always @(*) begin
@@ -36,6 +37,7 @@ module id_stage (
         ALUorSHIFT_ID = 1'b0;
         RS1_PC_ID     = 1'b0;
         RS1_Z_ID      = 1'b0;
+        PACK_SIZE_ID  = 2'b11; // デフォルトは通常動作
 
         case (`IR_OP)
             `OP_LUI: begin
@@ -145,6 +147,20 @@ module id_stage (
                     end
                     3'b110: if (`IR_F7 == 7'b0000000) ALUOp_ID = `IOR;                  // or
                     3'b111: if (`IR_F7 == 7'b0000000) ALUOp_ID = `IAND;                 // and
+                endcase
+            end
+            `OP_PACK: begin
+                FT_ID = `FT_P;
+                RegWrite_ID   = 1'b1;
+                ALUSrc_ID     = 1'b0;  // rs2
+                PACK_SIZE_ID = `IR_PACK_SIZE;
+                case (`IR_ADD_OR_SUB)
+                    4'b0000: begin
+                        ALUOp_ID = `IADD;
+                    end
+                    4'b1000: begin
+                        ALUOp_ID = `ISUB;
+                    end
                 endcase
             end
             default: begin

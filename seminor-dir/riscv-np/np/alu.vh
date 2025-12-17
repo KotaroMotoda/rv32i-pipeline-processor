@@ -51,8 +51,13 @@
 `define IMULHSU	5'b11010
 `define IMULHU	5'b11011
 
-// Divider
-`define IDIV	5'b11100
-`define IDIVU	5'b11101
-`define IREM	5'b11110
-`define IREMU	5'b11111
+// // Divider
+// `define IDIV	5'b11100
+// `define IDIVU	5'b11101
+// `define IREM	5'b11110
+// `define IREMU	5'b11111
+
+// `define PADD.B 5'b11100
+// `define PSUB.B 5'b11101
+// `define PADD.H 5'b11110
+// `define PSUB.H 5'b11111
