@@ -37,8 +37,16 @@ module dmem
 	if( WSTB[3] ) dataw[31:24] <= DATAI[31:24];
      end
 
-   always @( posedge CLK )
-     if( CE && ( |WSTB ) )
-       mem[ ADDR[16:2] ] <= dataw;
+  always @( posedge CLK )
+    if( CE && ( |WSTB ) )
+     mem[ ADDR[16:2] ] <= dataw;
+
+  // Simulation helper: allow hierarchical memory read by index
+  function [31:0] get_mem_word;
+    input [31:0] idx;
+    begin
+      get_mem_word = mem[idx];
+    end
+  endfunction
 	
 endmodule

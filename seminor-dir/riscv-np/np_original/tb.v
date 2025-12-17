@@ -25,7 +25,7 @@ module riscv_tb ();
       integer i;
       reg [31:0] data;
       for (i = addr; i < 1024; i = i + 1) begin
-         data = riscv.dmem_inst.mem[i];
+         data = riscv.mem_stage_inst.dmem_inst.get_mem_word(i);
          $display("%08x %02x%02x%02x%02x", addr + i*4,
                   data[7:0], data[15:8], data[23:16], data[31:24]);
       end
@@ -40,8 +40,8 @@ module riscv_tb ();
       $finish();
    end
 
-   always @(posedge CLK)
-     if (riscv.core.PC_IF == 32'h00000064) begin
+    always @(posedge CLK)
+       if (riscv.PC_IF == 32'h00000064) begin
         $display("Time", $time);
         dump(0);
         $finish;
@@ -68,11 +68,7 @@ module riscv_tb ();
 `endif
 
    initial begin
-      for (dump_i=0; dump_i<32768; dump_i=dump_i+1) $dumpvars(0, riscv.dmem_inst.mem[dump_i]);
-   end
-
-   initial begin
-      $dumpvars(0, riscv.core.PC_IF);
+      $dumpvars(0, riscv.PC_IF);
    end
 
 endmodule
