@@ -53,7 +53,7 @@ module riscv_tb ();
       .DMEM_SIZE(32768)
    ) riscv (
       .CLK(CLK),
-      .RSTN(RSTN)
+      .RSTN_IN(RSTN)
    );
 
 `ifdef ST_DEBUG
