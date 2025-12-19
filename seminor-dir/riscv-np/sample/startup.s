@@ -29,11 +29,11 @@ _start:
 #	csrw minstreth, zero
 
 	#clear registers
-	li  x1, 0
-	li  x2, 0
+	li  x1, 0xFFFEFFFF  
+   li  x2, 0x00000001    
 	li  x3, 0
 	li  x4, 0
-	li  x5, 0
+	.word 0x802082BB
 	li  x6, 0
 	li  x7, 0
 	li  x8, 0
@@ -60,6 +60,11 @@ _start:
  	li  x29,0
  	li  x30,0
 	li  x31,0
+
+# PADD.B 0x842082BB 
+# PSUB.B 0xC42082BB 
+# PADD.H 0x802082BB
+# PSUB.H 0xC02082BB
 
 	#cache configuration
 #	li t1, 0x55555555

@@ -3,3 +3,5 @@ np/Makefile
 np/tb.v
 np/riscv.vcd
 sample/Makefile
+np_original/tb.v
+np_original/riscv.vcd
