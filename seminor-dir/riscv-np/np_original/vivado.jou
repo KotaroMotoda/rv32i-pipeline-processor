@@ -1,0 +1,30 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Mon Dec 22 12:38:04 2025
+# Process ID: 146481
+# Current directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original
+# Command line: vivado
+# Log file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/vivado.log
+# Journal file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/vivado.jou
+# Running On: st139, OS: Linux, CPU Frequency: 2200.000 MHz, CPU Physical cores: 4, Host memory: 16453 MB
+#-----------------------------------------------------------
+start_gui
+open_project /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.xpr
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v] -no_script -reset -force -quiet
+remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v
+update_compile_order -fileset sources_1
+add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+update_files -from_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu_1bit_tmp.v -to_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v -filesets [get_filesets *]
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1

@@ -1,0 +1,419 @@
+/*
+
+Xilinx Vivado v2022.2 (64-bit) [Major: 2022, Minor: 2]
+SW Build: 3671981 on Fri Oct 14 04:59:54 MDT 2022
+IP Build: 3669848 on Fri Oct 14 08:30:02 MDT 2022
+
+Process ID (PID): 146481
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Mon Dec 22 12:38:22 JST 2025
+Time zone: 	Japan Standard Time (Asia/Tokyo)
+
+OS: Ubuntu
+OS Version: 5.15.0-58-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: 1
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.11 64-bit
+Java home: 	/opt/xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9
+Java executable: 	/opt/xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m, -Xrs]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	c3253
+User home directory: /st/c2023/c3253
+User working directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/xilinx/Vivado
+HDI_APPROOT: /opt/xilinx/Vivado/2022.2
+RDI_DATADIR: /opt/xilinx/Vivado/2022.2/data
+RDI_BINDIR: /opt/xilinx/Vivado/2022.2/bin
+
+Vivado preferences file: /st/c2023/c3253/.Xilinx/Vivado/2022.2/vivado.xml
+Vivado preferences directory: /st/c2023/c3253/.Xilinx/Vivado/2022.2/
+Vivado layouts directory: /st/c2023/c3253/.Xilinx/Vivado/2022.2/data/layouts
+PlanAhead jar file: 	/opt/xilinx/Vivado/2022.2/lib/classes/planAhead.jar
+Vivado log file: 	/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/vivado.log
+Vivado journal file: 	/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-146481-st139
+
+Xilinx Environment Variables
+----------------------------
+RDI_APPROOT: /opt/xilinx/Vivado/2022.2
+RDI_BASEROOT: /opt/xilinx/Vivado
+RDI_BINROOT: /opt/xilinx/Vivado/2022.2/bin
+RDI_BUILD: yes
+RDI_DATADIR: /opt/xilinx/Vivado/2022.2/data
+RDI_INSTALLROOT: /opt/xilinx
+RDI_INSTALLVER: 2022.2
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 11.0.11_9
+RDI_LIBDIR: /opt/xilinx/Vivado/2022.2/lib/lnx64.o/Ubuntu:/opt/xilinx/Vivado/2022.2/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /opt/xilinx/Vitis/2022.2/bin:/opt/xilinx/Vivado/2022.2/ids_lite/ISE/bin/lin64
+RDI_PROG: /opt/xilinx/Vivado/2022.2/bin/unwrapped/lnx64.o/vivado
+RDI_TPS_ROOT: /opt/xilinx/Vivado/2022.2/tps/lnx64
+RDI_USE_JDK11: True
+XILINX: /opt/xilinx/Vivado/2022.2/ids_lite/ISE
+XILINXD_LICENSE_FILE: 2150@133.95.140.129
+XILINX_DSP: /opt/xilinx/Vivado/2022.2/ids_lite/ISE
+XILINX_HLS: /opt/xilinx/Vitis_HLS/2022.2
+XILINX_PLANAHEAD: /opt/xilinx/Vivado/2022.2
+XILINX_SDK: /opt/xilinx/Vitis/2022.2
+XILINX_VITIS: /opt/xilinx/Vitis/2022.2
+XILINX_VIVADO: /opt/xilinx/Vivado/2022.2
+XILINX_VIVADO_HLS: /opt/xilinx/Vivado/2022.2
+
+
+GUI allocated memory:	410 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,644 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,535 MB. GUI used memory: 56 MB. Current time: 12/22/25, 12:38:23 PM JST
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.xpr", 0); // b.a
+// [GUI Memory]: 62 MB (+62224kb) [00:00:13]
+// [Engine Memory]: 1,535 MB (+1458510kb) [00:00:13]
+// Opening Vivado Project: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.xpr. Version: Vivado v2022.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.xpr 
+// Tcl Message: INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.gen/sources_1'. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 1,658 MB (+47617kb) [00:00:19]
+// WARNING: HEventQueue.dispatchEvent() is taking  1468 ms.
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/Vivado/2022.2/data/ip'. 
+// [GUI Memory]: 96 MB (+33180kb) [00:00:20]
+// Project name: alu_estimate; location: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate; part: xc7a100tcsg324-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:06 . Memory (MB): peak = 6996.418 ; gain = 176.531 ; free physical = 4582 ; free virtual = 10917 
+dismissDialog("Open Project"); // bq
+// [GUI Memory]: 115 MB (+14356kb) [00:00:22]
+// [Engine Memory]: 1,774 MB (+34902kb) [00:00:22]
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false, false, false, false, true, false); // D - Popup Trigger
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // U
+// Tcl Message: export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v] -no_script -reset -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v 
+// [GUI Memory]: 121 MB (+685kb) [00:00:30]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,806 MB. GUI used memory: 64 MB. Current time: 12/22/25, 12:38:43 PM JST
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 4); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1]", 4); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, Non-module Files, alu.vh]", 6, false); // D
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 1, true); // D - Node
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // B
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 18 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v 
+dismissDialog("Add Sources"); // bq
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 1); // D
+// HMemoryUtils.trashcanNow. Engine heap size: 1,853 MB. GUI used memory: 66 MB. Current time: 12/22/25, 12:39:13 PM JST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false); // D
+// [Engine Memory]: 1,869 MB (+7270kb) [00:01:06]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false, false, false, false, true, false); // D - Popup Trigger
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1160] Copying file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.runs/synth_1/alu.dcp to /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.srcs/utils_1/imports/synth_1 and adding it to utils fileset 
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,888 MB. GUI used memory: 67 MB. Current time: 12/22/25, 12:39:56 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,893 MB. GUI used memory: 67 MB. Current time: 12/22/25, 12:40:26 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Dec 22 12:40:26 2025] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:05 ; elapsed = 00:01:00 . Memory (MB): peak = 7148.863 ; gain = 10.000 ; free physical = 2353 ; free virtual = 8919 
+// 'i' command handler elapsed time: 63 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 105 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN, "Open Synthesized Design"); // a
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN
+// Tcl Message: open_run synth_1 -name synth_1 
+// Tcl Message: Design is defaulting to impl run constrset: constrs_1 Design is defaulting to synth run part: xc7a100tcsg324-1 
+// [Engine Memory]: 2,015 MB (+54098kb) [00:04:07]
+// HMemoryUtils.trashcanNow. Engine heap size: 2,089 MB. GUI used memory: 67 MB. Current time: 12/22/25, 12:42:18 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 2,161 MB. GUI used memory: 67 MB. Current time: 12/22/25, 12:42:43 PM JST
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 2,298 MB. GUI used memory: 68 MB. Current time: 12/22/25, 12:42:59 PM JST
+// [Engine Memory]: 2,299 MB (+192972kb) [00:04:50]
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// [Engine Memory]: 2,442 MB (+29385kb) [00:04:51]
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: INFO: [Device 21-403] Loading part xc7a100tcsg324-1 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 7414.094 ; gain = 0.000 ; free physical = 3814 ; free virtual = 10176 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2022.2 INFO: [Project 1-570] Preparing netlist for logic optimization INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 7523.027 ; gain = 0.000 ; free physical = 3715 ; free virtual = 10078 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// ExpRunCommands.openSynthResults elapsed time: 48.2s
+// Device view-level: 0.0
+// [GUI Memory]: 135 MB (+7619kb) [00:04:52]
+// Tcl Message: open_run: Time (s): cpu = 00:00:11 ; elapsed = 00:00:48 . Memory (MB): peak = 7693.562 ; gain = 544.699 ; free physical = 3600 ; free virtual = 9963 
+// 'dD' command handler elapsed time: 48 seconds
+// Elapsed time: 48 seconds
+dismissDialog("Open Synthesized Design"); // bq
+// RouteApi::initDelayMediator elapsed time: 4.5s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// [Engine Memory]: 2,756 MB (+200841kb) [00:05:06]
+// Elapsed time: 18 seconds
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:40:29 JST 2025 ; 7640", 2, "report_utilization", 1, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:40:29 JST 2025 ; 7640", 2, "Utilization - Synth Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:40:29 JST 2025 ; 7640", 2); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:40:29 JST 2025 ; 7640", 2, "Utilization - Synth Design", 0, false, false, false, false, false, true); // J - Double Click
+floatFrame(PAResourceOtoP.PAViews_PAR_REPORT, "Utilization - Synth Design - synth_1"); // R
+// PAResourceOtoP.PAViews_PAR_REPORT: PAR Report: float view
+// HMemoryUtils.trashcanNow. Engine heap size: 2,799 MB. GUI used memory: 99 MB. Current time: 12/22/25, 12:43:38 PM JST
+selectCodeEditor("Utilization - Synth Design - synth_1", 328, 314); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 519, 336); // F
+// Elapsed time: 16 seconds
+selectCodeEditor("Utilization - Synth Design - synth_1", 510, 375); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 510, 375); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 510, 375); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 516, 358); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 491, 404); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 447, 415); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 395, 249); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 392, 277); // F
+// Elapsed time: 13 seconds
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Mon Dec 22 12:40:29 JST 2025 ; 18038", 3, "synthesis_report", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Mon Dec 22 12:40:29 JST 2025 ; 18038", 3, "synthesis_report", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Mon Dec 22 12:40:29 JST 2025 ; 18038", 3); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Mon Dec 22 12:40:29 JST 2025 ; 18038", 3, "synthesis_report", 0, false, false, false, false, false, true); // J - Double Click
+floatFrame(PAResourceOtoP.PAViews_PAR_REPORT, "synthesis_report - synth_1"); // R
+// PAResourceOtoP.PAViews_PAR_REPORT: PAR Report: float view
+// [GUI Memory]: 144 MB (+2135kb) [00:06:24]
+// Elapsed time: 12 seconds
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:40:29 JST 2025 ; 7640", 2, "report_utilization", 1, false); // J
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aa
+selectTab((HResource) null, (HResource) null, "Log", 2); // aa
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aa
+selectTab((HResource) null, (HResource) null, "Tcl Console", 0); // aa
+selectTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu, Leaf Cells (308)]", 2, false); // aF
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aa
+selectTab((HResource) null, (HResource) null, "Netlist", 1); // aa
+// Device view-level: 0.4
+// [GUI Memory]: 155 MB (+4683kb) [00:07:04]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design, Report Utilization]", 25, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RESOURCE_UTILIZATION
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+// 'cr' command handler elapsed time: 5 seconds
+dismissDialog("Report Utilization"); // a
+expandTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu, Nets (458)]", 1); // aF
+collapseTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu, Nets (458)]", 1); // aF
+expandTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu, Leaf Cells (308)]", 2); // aF
+collapseTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu, Leaf Cells (308)]", 2); // aF
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // o
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+// Elapsed time: 92 seconds
+selectCodeEditor("synthesis_report - synth_1", 1240, 356); // F
+selectCodeEditor("synthesis_report - synth_1", 280, 157); // F
+selectCodeEditor("synthesis_report - synth_1", 265, 185); // F
+selectCodeEditor("synthesis_report - synth_1", 402, 288); // F
+selectCodeEditor("synthesis_report - synth_1", 521, 420); // F
+// Elapsed time: 29 seconds
+selectCodeEditor("Utilization - Synth Design - synth_1", 354, 294); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 238, 203); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 341, 294); // F
+typeControlKey((HResource) null, "Utilization - Synth Design - synth_1", 'c'); // F
+// Elapsed time: 81 seconds
+selectCodeEditor("Utilization - Synth Design - synth_1", 1051, 357); // F
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aa
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false, false, false, false, true, false); // D - Popup Trigger
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 8, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false, false, false, false, true, false); // D - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+closeFrame(PAResourceOtoP.PAViews_PAR_REPORT, "Utilization - Synth Design - synth_1"); // R
+dockFrame(PAResourceOtoP.PAViews_PAR_REPORT, "Utilization - Synth Design - synth_1"); // R
+// HMemoryUtils.trashcanNow. Engine heap size: 2,804 MB. GUI used memory: 102 MB. Current time: 12/22/25, 12:49:33 PM JST
+closeView(PAResourceOtoP.PAViews_PAR_REPORT, "PAR Report"); // c
+closeFrame(PAResourceOtoP.PAViews_PAR_REPORT, "synthesis_report - synth_1"); // R
+dockFrame(PAResourceOtoP.PAViews_PAR_REPORT, "synthesis_report - synth_1"); // R
+// Device view-level: 0.0
+// Device view-level: 0.4
+// HMemoryUtils.trashcanNow. Engine heap size: 2,805 MB. GUI used memory: 112 MB. Current time: 12/22/25, 12:49:42 PM JST
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false, false, false, false, true, false); // D - Popup Trigger
+selectMenuItem(PAResourceCommand.PACommandNames_SRC_REPLACE_FILE, "Replace File..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_SRC_REPLACE_FILE
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu_1bit_tmp.v");
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_files -from_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu_1bit_tmp.v -to_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v -filesets [get_filesets *] 
+// Tcl Message: INFO: [filemgmt 20-762] Replacing file '/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v' with file '/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu_1bit_tmp.v'. 
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// Device view-level: 0.4
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.srcs/utils_1/imports/synth_1/alu.dcp with file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.runs/synth_1/alu.dcp 
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,810 MB. GUI used memory: 104 MB. Current time: 12/22/25, 12:50:27 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 2,810 MB. GUI used memory: 105 MB. Current time: 12/22/25, 12:50:57 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Dec 22 12:50:57 2025] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/alu_estimate/alu_estimate.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:02 ; elapsed = 00:01:00 . Memory (MB): peak = 8057.379 ; gain = 3.422 ; free physical = 1619 ; free virtual = 8030 
+// 'i' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 28 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN
+// TclEventType: DESIGN_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,811 MB. GUI used memory: 99 MB. Current time: 12/22/25, 12:51:26 PM JST
+// Engine heap size: 2,812 MB. GUI used memory: 100 MB. Current time: 12/22/25, 12:51:26 PM JST
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: close_design 
+// TclEventType: DESIGN_CLOSE
+// Tcl Message: open_run synth_1 -name synth_1 
+// Tcl Message: Design is defaulting to impl run constrset: constrs_1 Design is defaulting to synth run part: xc7a100tcsg324-1 
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 2,812 MB. GUI used memory: 77 MB. Current time: 12/22/25, 12:51:26 PM JST
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 8057.379 ; gain = 0.000 ; free physical = 3357 ; free virtual = 9799 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2022.2 INFO: [Project 1-570] Preparing netlist for logic optimization INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 8057.379 ; gain = 0.000 ; free physical = 3290 ; free virtual = 9732 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Device view-level: 0.0
+dismissDialog("Reloading design"); // bq
+selectCodeEditor(RDIResource.TclConsoleView_TCL_CONSOLE_CODE_EDITOR, 295, 53); // cD
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTab((HResource) null, (HResource) null, "Log", 2); // aa
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 232, 118); // B
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 361, 109); // B
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // o
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_GRAPH, "Graph", 0); // e
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:51:00 JST 2025 ; 7682", 2, "Utilization - Synth Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:51:00 JST 2025 ; 7682", 2); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization - Synth Design ; report_utilization ;  ; Mon Dec 22 12:51:00 JST 2025 ; 7682", 2, "Utilization - Synth Design", 0, false, false, false, false, false, true); // J - Double Click
+// [GUI Memory]: 164 MB (+853kb) [00:13:43]
+// Elapsed time: 18 seconds
+selectCodeEditor("Utilization - Synth Design - synth_1", 569, 235); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 274, 389); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 324, 408); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 421, 370); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 345, 385); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 259, 306); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 293, 385); // F
+typeControlKey((HResource) null, "Utilization - Synth Design - synth_1", 'c'); // F
+selectCodeEditor("Utilization - Synth Design - synth_1", 522, 286); // F
+// Elapsed time: 50 seconds
+selectCodeEditor("Utilization - Synth Design - synth_1", 353, 274); // F
