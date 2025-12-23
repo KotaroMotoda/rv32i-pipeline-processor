@@ -12,8 +12,8 @@ module alu ( A, B, C, P, Y );
     // Split-carry ripple adder --------------------------------------------
     wire is_sub;
     wire [31:0] b_xor;
-    wire [4:0]  carry;   // per-byte carry chain (carry[4] is final cout)
-    wire [3:0]  link_en; // carry enable per byte position
+    wire [32:0] carry;
+    wire [31:0] link_en; // carry enable per bit position
     wire [31:0] add_sum;
 
     assign is_sub = (C == `SUB)  | (C == `ISUB);
@@ -22,18 +22,17 @@ module alu ( A, B, C, P, Y );
     assign b_xor   = B ^ {32{is_sub}};
     assign carry[0] = is_sub;
 
-    // Carry link enable: 1 allows carry to flow to next byte; 0 cuts and injects sub as new cin
-    // link_en[0]: byte0->byte1, link_en[1]: byte1->byte2, link_en[2]: byte2->byte3, link_en[3]: byte3 final cout
-    assign link_en = (P == 2'b10) ? 4'b1000 : // byte: cut all inter-byte carries
-                     (P == 2'b00) ? 4'b1101 : // halfword: cut between lower and upper half
-                                      4'b1111; // word (11 or 01): no cut
+    // Carry link enable: 1 allows carry to flow to next bit; 0 cuts and injects sub as new cin
+    assign link_en = (P == 2'b10) ? 32'hFF7F7F7F : // byte: cut at bits 7,15,23
+                     (P == 2'b00) ? 32'hFFFF7FFF : // halfword: cut at bit 15
+                                      32'hFFFFFFFF; // word (11 or 01): no cut
 
-    genvar bi;
+    genvar i;
     generate
-        for (bi = 0; bi < 4; bi = bi + 1) begin : ADDER_BYTE
+        for (i = 0; i < 32; i = i + 1) begin : ADDER
             wire cout_raw;
-            assign {cout_raw, add_sum[8*bi +: 8]} = A[8*bi +: 8] + b_xor[8*bi +: 8] + carry[bi];
-            assign carry[bi+1] = link_en[bi] ? cout_raw : is_sub;
+            assign {cout_raw, add_sum[i]} = A[i] + b_xor[i] + carry[i];
+            assign carry[i+1] = link_en[i] ? cout_raw : is_sub;
         end
     endgenerate
 
@@ -44,7 +43,7 @@ module alu ( A, B, C, P, Y );
     wire [32:0] xor_res;
     reg  [32:0] X; // selected result (33-bit to keep carry)
 
-    assign add_res = {carry[4], add_sum};
+    assign add_res = {carry[32], add_sum};
     assign and_res = {1'b0, A & B};
     assign or_res  = {1'b0, A | B};
     assign xor_res = {1'b0, A ^ B};
@@ -66,9 +65,7 @@ module alu ( A, B, C, P, Y );
     wire lessThanFlag; // less than flag
 
     // For Pモード（8/16bit分割）ではオーバーフローを無効化。ワード時のみ従来のOFを計算。
-    assign overflowFlag = ((P == 2'b11) || (P == 2'b01)) ? (is_sub ? ((A[31] ^ B[31]) & (A[31] ^ add_sum[31]))
-                                                           : (~(A[31] ^ B[31]) & (A[31] ^ add_sum[31])))
-                                                         : 1'b0;
+    assign overflowFlag = ((P == 2'b11) || (P == 2'b01)) ? (carry[31] ^ carry[32]) : 1'b0;
     assign zeroFlag = (X[31:0] == 32'b0);
     assign lessThanUnsignedFlag = (A < B);
     assign lessThanFlag = ($signed(A) < $signed(B));

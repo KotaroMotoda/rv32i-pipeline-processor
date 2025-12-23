@@ -1732,7 +1732,7 @@ sort.elf:     ファイル形式 elf32-littleriscv
    2:	0000                	unimp
    4:	0000                	unimp
    6:	0028                	addi	a0,sp,8
-   8:	0038                	addi	a4,sp,8
+   8:	0060                	addi	s0,sp,12
    a:	0000                	unimp
    c:	0000000b          	0xb
   10:	0064                	addi	s1,sp,12
@@ -1978,16 +1978,32 @@ sort.elf:     ファイル形式 elf32-littleriscv
   12:	3332                	fld	ft6,296(sp)
   14:	3233632f          	0x3233632f
   18:	3335                	jal	fffffd44 <_vram_base+0x800ffd44>
-  1a:	6d65732f          	0x6d65732f
-  1e:	6e69                	lui	t3,0x1a
-  20:	642d726f          	jal	tp,d7662 <__stack_size+0xd6662>
-  24:	7269                	lui	tp,0xffffa
-  26:	7369722f          	0x7369722f
-  2a:	6e2d7663          	bleu	sp,s10,716 <main+0x666>
-  2e:	2f70                	fld	fa2,216(a4)
-  30:	706d6173          	csrrsi	sp,0x706,26
-  34:	656c                	flw	fa1,76(a0)
-  36:	          	0x2f
+  1a:	7469672f          	0x7469672f
+  1e:	742d                	lui	s0,0xfffeb
+  20:	6172                	flw	ft2,28(sp)
+  22:	2d646563          	bltu	s0,s6,2ec <main+0x23c>
+  26:	6964                	flw	fs1,84(a0)
+  28:	2f72                	fld	ft10,280(sp)
+  2a:	7672                	flw	fa2,60(sp)
+  2c:	2d693233          	0x2d693233
+  30:	6970                	flw	fa2,84(a0)
+  32:	6570                	flw	fa2,76(a0)
+  34:	696c                	flw	fa1,84(a0)
+  36:	656e                	flw	fa0,216(sp)
+  38:	702d                	c.lui	zero,0xfffeb
+  3a:	6f72                	flw	ft10,28(sp)
+  3c:	73736563          	bltu	t1,s7,766 <main+0x6b6>
+  40:	732f726f          	jal	tp,f7772 <__stack_size+0xf6772>
+  44:	6d65                	lui	s10,0x19
+  46:	6e69                	lui	t3,0x1a
+  48:	642d726f          	jal	tp,d768a <__stack_size+0xd668a>
+  4c:	7269                	lui	tp,0xffffa
+  4e:	7369722f          	0x7369722f
+  52:	6e2d7663          	bleu	sp,s10,73e <main+0x68e>
+  56:	2f70                	fld	fa2,216(a4)
+  58:	706d6173          	csrrsi	sp,0x706,26
+  5c:	656c                	flw	fa1,76(a0)
+  5e:	          	0x2f
 
 セクション .debug_info の逆アセンブル:
 
@@ -1998,11 +2014,11 @@ sort.elf:     ファイル形式 elf32-littleriscv
    6:	0000                	unimp
    8:	0000                	unimp
    a:	0104                	addi	s1,sp,128
-   c:	003e                	c.slli	zero,0xf
+   c:	0066                	c.slli	zero,0x19
    e:	0000                	unimp
-  10:	770c                	flw	fa1,40(a4)
+  10:	9f0c                	0x9f0c
   12:	0000                	unimp
-  14:	1200                	addi	s0,sp,288
+  14:	0000                	unimp
   16:	0000                	unimp
   18:	b000                	fsd	fs0,32(s0)
   1a:	0000                	unimp
@@ -2017,13 +2033,13 @@ sort.elf:     ファイル形式 elf32-littleriscv
   2c:	0000                	unimp
   2e:	00003603          	0x3603
   32:	ff00                	fsw	fs0,56(a4)
-  34:	04040003          	lb	zero,64(s0) # 1c040 <__stack_size+0x1b040>
-  38:	00000507          	0x507
+  34:	04040003          	lb	zero,64(s0) # fffeb040 <_vram_base+0x800eb040>
+  38:	00005907          	0x5907
   3c:	0500                	addi	s0,sp,640
   3e:	0504                	addi	s1,sp,640
   40:	6e69                	lui	t3,0x1a
   42:	0074                	addi	a3,sp,12
-  44:	0006                	c.slli	zero,0x1
+  44:	5406                	lw	s0,96(sp)
   46:	0000                	unimp
   48:	0100                	addi	s0,sp,128
   4a:	00250503          	lb	a0,2(a0)
@@ -2031,7 +2047,7 @@ sort.elf:     ファイル形式 elf32-littleriscv
   50:	0305                	addi	t1,t1,1
   52:	0000                	unimp
   54:	0010                	0x10
-  56:	00007e07          	0x7e07
+  56:	0000a607          	flw	fa2,0(ra) # 11638d54 <_sp+0x11536d54>
   5a:	0100                	addi	s0,sp,128
   5c:	0406                	slli	s0,s0,0x1
   5e:	3d05                	jal	fffffe8e <_vram_base+0x800ffe8e>
@@ -2141,57 +2157,73 @@ sort.elf:     ファイル形式 elf32-littleriscv
 セクション .debug_str の逆アセンブル:
 
 00000000 <.debug_str>:
-   0:	6164                	flw	fs1,68(a0)
-   2:	6174                	flw	fa3,68(a0)
-   4:	7500                	flw	fs0,40(a0)
-   6:	736e                	flw	ft6,248(sp)
-   8:	6769                	lui	a4,0x1a
-   a:	656e                	flw	fa0,216(sp)
-   c:	2064                	fld	fs1,192(s0)
-   e:	6e69                	lui	t3,0x1a
-  10:	0074                	addi	a3,sp,12
-  12:	2f74732f          	0x2f74732f
-  16:	32303263          	0x32303263
-  1a:	33632f33          	0x33632f33
-  1e:	3532                	fld	fa0,296(sp)
-  20:	65732f33          	0x65732f33
-  24:	696d                	lui	s2,0x1b
-  26:	6f6e                	flw	ft10,216(sp)
-  28:	2d72                	fld	fs10,280(sp)
-  2a:	6964                	flw	fs1,84(a0)
-  2c:	2f72                	fld	ft10,280(sp)
-  2e:	6972                	flw	fs2,28(sp)
-  30:	2d766373          	csrrsi	t1,0x2d7,12
-  34:	706e                	flw	ft0,248(sp)
-  36:	6d61732f          	0x6d61732f
-  3a:	6c70                	flw	fa2,92(s0)
-  3c:	0065                	c.nop	25
-  3e:	20554e47          	fmsub.s	ft8,fa0,ft5,ft4,rmm
-  42:	20373143          	fmadd.s	ft2,fa4,ft3,ft4,rup
-  46:	2e38                	fld	fa4,88(a2)
-  48:	2e32                	fld	ft8,264(sp)
-  4a:	2030                	fld	fa2,64(s0)
-  4c:	6d2d                	lui	s10,0xb
-  4e:	7261                	lui	tp,0xffff8
-  50:	723d6863          	bltu	s10,gp,780 <main+0x6d0>
-  54:	3376                	fld	ft6,376(sp)
-  56:	6932                	flw	fs2,12(sp)
-  58:	2d20                	fld	fs0,88(a0)
-  5a:	616d                	addi	sp,sp,240
-  5c:	6962                	flw	fs2,24(sp)
-  5e:	693d                	lui	s2,0xf
-  60:	706c                	flw	fa1,100(s0)
-  62:	2d203233          	0x2d203233
-  66:	662d2067          	0x662d2067
-  6a:	7266                	flw	ft4,120(sp)
-  6c:	6565                	lui	a0,0x19
-  6e:	6e617473          	csrrci	s0,0x6e6,2
-  72:	6964                	flw	fs1,84(a0)
-  74:	676e                	flw	fa4,216(sp)
-  76:	7300                	flw	fs0,32(a4)
-  78:	2e74726f          	jal	tp,47b5e <__stack_size+0x46b5e>
-  7c:	616d0063          	beq	s10,s6,67c <main+0x5cc>
-  80:	6e69                	lui	t3,0x1a
+   0:	2f74732f          	0x2f74732f
+   4:	32303263          	0x32303263
+   8:	33632f33          	0x33632f33
+   c:	3532                	fld	fa0,296(sp)
+   e:	69672f33          	0x69672f33
+  12:	2d74                	fld	fa3,216(a0)
+  14:	7274                	flw	fa3,100(a2)
+  16:	6361                	lui	t1,0x18
+  18:	6465                	lui	s0,0x19
+  1a:	642d                	lui	s0,0xb
+  1c:	7269                	lui	tp,0xffffa
+  1e:	3376722f          	0x3376722f
+  22:	6932                	flw	fs2,12(sp)
+  24:	702d                	c.lui	zero,0xfffeb
+  26:	7069                	c.lui	zero,0xffffa
+  28:	6c65                	lui	s8,0x19
+  2a:	6e69                	lui	t3,0x1a
+  2c:	2d65                	jal	6e4 <main+0x634>
+  2e:	7270                	flw	fa2,100(a2)
+  30:	7365636f          	jal	t1,56766 <__stack_size+0x55766>
+  34:	2f726f73          	csrrsi	t5,0x2f7,4
+  38:	696d6573          	csrrsi	a0,0x696,26
+  3c:	6f6e                	flw	ft10,216(sp)
+  3e:	2d72                	fld	fs10,280(sp)
+  40:	6964                	flw	fs1,84(a0)
+  42:	2f72                	fld	ft10,280(sp)
+  44:	6972                	flw	fs2,28(sp)
+  46:	2d766373          	csrrsi	t1,0x2d7,12
+  4a:	706e                	flw	ft0,248(sp)
+  4c:	6d61732f          	0x6d61732f
+  50:	6c70                	flw	fa2,92(s0)
+  52:	0065                	c.nop	25
+  54:	6164                	flw	fs1,68(a0)
+  56:	6174                	flw	fa3,68(a0)
+  58:	7500                	flw	fs0,40(a0)
+  5a:	736e                	flw	ft6,248(sp)
+  5c:	6769                	lui	a4,0x1a
+  5e:	656e                	flw	fa0,216(sp)
+  60:	2064                	fld	fs1,192(s0)
+  62:	6e69                	lui	t3,0x1a
+  64:	0074                	addi	a3,sp,12
+  66:	20554e47          	fmsub.s	ft8,fa0,ft5,ft4,rmm
+  6a:	20373143          	fmadd.s	ft2,fa4,ft3,ft4,rup
+  6e:	2e38                	fld	fa4,88(a2)
+  70:	2e32                	fld	ft8,264(sp)
+  72:	2030                	fld	fa2,64(s0)
+  74:	6d2d                	lui	s10,0xb
+  76:	7261                	lui	tp,0xffff8
+  78:	723d6863          	bltu	s10,gp,7a8 <main+0x6f8>
+  7c:	3376                	fld	ft6,376(sp)
+  7e:	6932                	flw	fs2,12(sp)
+  80:	2d20                	fld	fs0,88(a0)
+  82:	616d                	addi	sp,sp,240
+  84:	6962                	flw	fs2,24(sp)
+  86:	693d                	lui	s2,0xf
+  88:	706c                	flw	fa1,100(s0)
+  8a:	2d203233          	0x2d203233
+  8e:	662d2067          	0x662d2067
+  92:	7266                	flw	ft4,120(sp)
+  94:	6565                	lui	a0,0x19
+  96:	6e617473          	csrrci	s0,0x6e6,2
+  9a:	6964                	flw	fs1,84(a0)
+  9c:	676e                	flw	fa4,216(sp)
+  9e:	7300                	flw	fs0,32(a4)
+  a0:	2e74726f          	jal	tp,47b86 <__stack_size+0x46b86>
+  a4:	616d0063          	beq	s10,s6,6a4 <main+0x5f4>
+  a8:	6e69                	lui	t3,0x1a
 	...
 
 セクション .comment の逆アセンブル:
