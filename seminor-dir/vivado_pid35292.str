@@ -1,0 +1,1129 @@
+/*
+
+Xilinx Vivado v2022.2 (64-bit) [Major: 2022, Minor: 2]
+SW Build: 3671981 on Fri Oct 14 04:59:54 MDT 2022
+IP Build: 3669848 on Fri Oct 14 08:30:02 MDT 2022
+
+Process ID (PID): 35292
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Wed Jan 07 17:22:56 JST 2026
+Time zone: 	Japan Standard Time (Asia/Tokyo)
+
+OS: Ubuntu
+OS Version: 5.15.0-58-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: 1
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.11 64-bit
+Java home: 	/opt/xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9
+Java executable: 	/opt/xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m, -Xrs]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	c3253
+User home directory: /st/c2023/c3253
+User working directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/xilinx/Vivado
+HDI_APPROOT: /opt/xilinx/Vivado/2022.2
+RDI_DATADIR: /opt/xilinx/Vivado/2022.2/data
+RDI_BINDIR: /opt/xilinx/Vivado/2022.2/bin
+
+Vivado preferences file: /st/c2023/c3253/.Xilinx/Vivado/2022.2/vivado.xml
+Vivado preferences directory: /st/c2023/c3253/.Xilinx/Vivado/2022.2/
+Vivado layouts directory: /st/c2023/c3253/.Xilinx/Vivado/2022.2/data/layouts
+PlanAhead jar file: 	/opt/xilinx/Vivado/2022.2/lib/classes/planAhead.jar
+Vivado log file: 	/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/vivado.log
+Vivado journal file: 	/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-35292-st141
+
+Xilinx Environment Variables
+----------------------------
+RDI_APPROOT: /opt/xilinx/Vivado/2022.2
+RDI_BASEROOT: /opt/xilinx/Vivado
+RDI_BINROOT: /opt/xilinx/Vivado/2022.2/bin
+RDI_BUILD: yes
+RDI_DATADIR: /opt/xilinx/Vivado/2022.2/data
+RDI_INSTALLROOT: /opt/xilinx
+RDI_INSTALLVER: 2022.2
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 11.0.11_9
+RDI_LIBDIR: /opt/xilinx/Vivado/2022.2/lib/lnx64.o/Ubuntu:/opt/xilinx/Vivado/2022.2/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /opt/xilinx/Vitis/2022.2/bin:/opt/xilinx/Vivado/2022.2/ids_lite/ISE/bin/lin64
+RDI_PROG: /opt/xilinx/Vivado/2022.2/bin/unwrapped/lnx64.o/vivado
+RDI_TPS_ROOT: /opt/xilinx/Vivado/2022.2/tps/lnx64
+RDI_USE_JDK11: True
+XILINX: /opt/xilinx/Vivado/2022.2/ids_lite/ISE
+XILINXD_LICENSE_FILE: 2150@133.95.140.129
+XILINX_DSP: /opt/xilinx/Vivado/2022.2/ids_lite/ISE
+XILINX_HLS: /opt/xilinx/Vitis_HLS/2022.2
+XILINX_PLANAHEAD: /opt/xilinx/Vivado/2022.2
+XILINX_SDK: /opt/xilinx/Vitis/2022.2
+XILINX_VITIS: /opt/xilinx/Vitis/2022.2
+XILINX_VIVADO: /opt/xilinx/Vivado/2022.2
+XILINX_VIVADO_HLS: /opt/xilinx/Vivado/2022.2
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,511 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,557 MB. GUI used memory: 62 MB. Current time: 1/7/26, 5:22:57 PM JST
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+selectButton(PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, "Create Project"); // u
+// Run Command: PAResourceCommand.PACommandNames_NEW_PROJECT
+selectButton("NEXT", "Next >"); // JButton
+// Elapsed time: 143 seconds
+setText(PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, "assess_alu_on_board"); // Q
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 36 seconds
+selectButton("NEXT", "Next >"); // JButton
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 54 seconds
+selectButton("NEXT", "Next >"); // JButton
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+dismissFileChooser();
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+dismissFileChooser();
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+// Elapsed time: 26 seconds
+String[] filenames31467 = {"/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.vh", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v"};
+setFileChooser(filenames31467);
+selectButton("NEXT", "Next >"); // JButton
+// [GUI Memory]: 92 MB (+94273kb) [00:05:25]
+// [Engine Memory]: 1,579 MB (+1503943kb) [00:05:25]
+// [GUI Memory]: 100 MB (+2998kb) [00:05:25]
+// [GUI Memory]: 133 MB (+29346kb) [00:05:25]
+selectButton("NEXT", "Next >"); // JButton
+// HMemoryUtils.trashcanNow. Engine heap size: 1,630 MB. GUI used memory: 64 MB. Current time: 1/7/26, 5:28:07 PM JST
+selectTab(PAResourceOtoP.PartChooser_TABBED_PANE, (HResource) null, "Boards", 1); // g
+// [GUI Memory]: 247 MB (+112346kb) [00:05:29]
+// [Engine Memory]: 1,746 MB (+92671kb) [00:05:29]
+selectComboBox(PAResourceAtoD.BoardChooser_VENDOR, "xilinx.com", 12); // a.a
+// HMemoryUtils.trashcanNow. Engine heap size: 1,658 MB. GUI used memory: 66 MB. Current time: 1/7/26, 5:28:22 PM JST
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 85 seconds
+selectComboBox(PAResourceAtoD.BoardChooser_VENDOR, "All", 0); // a.a
+selectTreeTable(PAResourceAtoD.BoardChooser_BOARD_TABLE, "Nexys A7-100T ; Nexys A7-100T ; Nexys A7-100T ; digilentinc.com ; 1.2 ; xc7a100tcsg324-1 ; 324 ; D.0 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ;  ; 32 ;  ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0 ;  ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 3, "Nexys A7-100T", 0, false); // I
+openHTML ("https://digilent.com/reference/programmable-logic/nexys-a7/start");I
+// Elapsed time: 15 seconds
+selectTreeTable(PAResourceAtoD.BoardChooser_BOARD_TABLE, "Nexys A7-100T ; Nexys A7-100T ; Nexys A7-100T ; digilentinc.com ; 1.2 ; xc7a100tcsg324-1 ; 324 ; D.0 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ;  ; 32 ;  ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0 ;  ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 3, "xc7a100tcsg324-1", 5, false); // I
+selectTreeTable(PAResourceAtoD.BoardChooser_BOARD_TABLE, "Nexys A7-100T ; Nexys A7-100T ; Nexys A7-100T ; digilentinc.com ; 1.2 ; xc7a100tcsg324-1 ; 324 ; D.0 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ;  ; 32 ;  ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0 ;  ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 3, "0", 17, false); // I
+selectTreeTable(PAResourceAtoD.BoardChooser_BOARD_TABLE, "Nexys A7-100T ; Nexys A7-100T ; Nexys A7-100T ; digilentinc.com ; 1.2 ; xc7a100tcsg324-1 ; 324 ; D.0 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ;  ; 32 ;  ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0 ;  ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 3, "Nexys A7-100T", 0, false); // I
+openHTML ("https://digilent.com/reference/programmable-logic/nexys-a7/start");I
+selectButton("NEXT", "Next >"); // JButton
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: create_project assess_alu_on_board /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board -part xc7a100tcsg324-1 
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// WARNING: HEventQueue.dispatchEvent() is taking  1175 ms.
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/Vivado/2022.2/data/ip'. 
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: BOARD_MODIFIED
+// Tcl Message: set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project] 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.vh 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes {/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v} 
+// Elapsed time: 10 seconds
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 424 seconds
+dismissDialog("Create Project"); // bq
+dismissDialog("New Project"); // f
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTab(PAResourceOtoP.ProjectDashboardView_TABBED_PANE, PAResourceOtoP.ProjectDashboardView_DASHBOARD, "Dashboard", 1); // u
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+selectTab(PAResourceOtoP.ProjectDashboardView_TABBED_PANE, PAResourceOtoP.ProjectDashboardView_OVERVIEW, "Overview", 0); // u
+// Elapsed time: 228 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 1, true, false, false, false, false, true); // D - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 1, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, "Add or create simulation sources"); // a
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, "Add or create constraints"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceAtoD.ConstraintsChooserPanel_ADD_EXISTING_OR_CREATE_NEW_CONSTRAINTS, "Add"); // B
+selectMenuItem(PAResourceAtoD.ConstraintsChooserPanel_ADD_FILES, "Add Files..."); // ao
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 14 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -fileset constrs_1 -norecurse /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc 
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1]", 2); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1]", 2); // D
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,763 MB. GUI used memory: 79 MB. Current time: 1/7/26, 5:35:13 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,763 MB. GUI used memory: 118 MB. Current time: 1/7/26, 5:35:43 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 17:35:43 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:05 ; elapsed = 00:01:00 . Memory (MB): peak = 7027.340 ; gain = 5.000 ; free physical = 5071 ; free virtual = 9234 
+// 'i' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 21 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // S.a
+// Elapsed time: 12 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 6, true); // D - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details. ]", 3, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6156] failed synthesizing module 'alu_top' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:1]. ]", 2, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details. ]", 3, false); // u.d
+// Elapsed time: 10 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false, false, false, false, false, true); // u.d - Double Click
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false, false, false, false, false, true); // u.d - Double Click
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false, false, false, false, true, false); // u.d - Popup Trigger
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6156] failed synthesizing module 'alu_top' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:1]. ]", 2, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details. ]", 3, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false); // u.d
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'op' does not exist for instance 'alu' of module 'alu' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:24]. ]", 1, false, false, false, false, true, false); // u.d - Popup Trigger
+// Elapsed time: 17 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6156] failed synthesizing module 'alu_top' [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v:1]. ]", 2, false, false, false, false, true, false); // u.d - Popup Trigger
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details. ]", 3, false, false, false, false, true, false); // u.d - Popup Trigger
+selectMenu(PAResourceItoN.MsgTreePanel_MESSAGE_SEVERITY, "Message Severity"); // al
+openHTML ("http://www.xilinx.com/cgi-bin/search/errornav?E=&B=&T=Common%3A17-69");u
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details. ]", 3, false, false, false, false, true, false); // u.d - Popup Trigger
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 82 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 2, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // U
+// Tcl Message: export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v] -no_script -reset -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 6, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, "Add or create simulation sources"); // a
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, "Add or create constraints"); // a
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 20 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v 
+dismissDialog("Add Sources"); // bq
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu (alu.v)]", 2, false); // D
+// [Engine Memory]: 1,834 MB (+925kb) [00:16:37]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 3, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1]", 4, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 5, true); // D - Node
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 5); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1]", 6, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // D - Node
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog Header]", 1); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog Header, alu.vh]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 3, true); // D - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1]", 5); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, clock.xdc]", 6, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 4, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 3, true); // D - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1]", 8); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, alu_top (top.v)]", 10, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 3, true); // D - Node
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 1); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 2); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenuItem(PAResourceQtoS.SrcMenu_OPEN_SELECTED_SOURCE_FILES, "Open File"); // ao
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 1, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 2, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true, false, false, false, false, true); // D - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog Header]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 3, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 3, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v)]", 3, true, false, false, false, false, true); // D - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog Header, alu.vh]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog Header, alu.vh]", 2, false, false, false, false, false, true); // D - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v), u_alu : alu (alu.v)]", 4, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v), u_alu : alu (alu.v)]", 4, false, false, false, false, false, true); // D - Double Click
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,915 MB. GUI used memory: 141 MB. Current time: 1/7/26, 5:40:45 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,915 MB. GUI used memory: 78 MB. Current time: 1/7/26, 5:41:15 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 17:41:15 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:03 ; elapsed = 00:01:00 . Memory (MB): peak = 7173.395 ; gain = 9.992 ; free physical = 4811 ; free virtual = 9008 
+// 'i' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 40 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a
+selectRadioButton(PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN, "Open Synthesized Design"); // a
+// HMemoryUtils.trashcanNow. Engine heap size: 1,918 MB. GUI used memory: 79 MB. Current time: 1/7/26, 5:41:57 PM JST
+selectRadioButton(PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION, "Run Implementation"); // a
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Synthesis Completed"); // S.a
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 17:41:32 JST 2026 ; 21738", 3, "synthesis_report", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 17:41:32 JST 2026 ; 21738", 3, "synthesis_report", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 17:41:32 JST 2026 ; 21738", 3); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 17:41:32 JST 2026 ; 21738", 3, "synthesis_report", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("synthesis_report - synth_1", 194, 331); // F
+selectCodeEditor("synthesis_report - synth_1", 235, 343); // F
+selectCodeEditor("synthesis_report - synth_1", 336, 229); // F
+selectCodeEditor("synthesis_report - synth_1", 235, 218); // F
+selectCodeEditor("synthesis_report - synth_1", 153, 150); // F
+selectCodeEditor("synthesis_report - synth_1", 210, 305); // F
+selectCodeEditor("synthesis_report - synth_1", 188, 341); // F
+selectCodeEditor("synthesis_report - synth_1", 148, 289); // F
+selectCodeEditor("synthesis_report - synth_1", 184, 344); // F
+selectCodeEditor("synthesis_report - synth_1", 210, 338); // F
+typeControlKey((HResource) null, "synthesis_report - synth_1", 'c'); // F
+selectCodeEditor("synthesis_report - synth_1", 614, 134); // F
+// Elapsed time: 51 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 17, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,934 MB. GUI used memory: 101 MB. Current time: 1/7/26, 5:43:51 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,934 MB. GUI used memory: 80 MB. Current time: 1/7/26, 5:44:21 PM JST
+// TclEventType: RUN_MODIFY
+// [Engine Memory]: 1,934 MB (+8215kb) [00:21:42]
+// Tcl Message: [Wed Jan  7 17:44:21 2026] Launched impl_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:03 ; elapsed = 00:01:00 . Memory (MB): peak = 7190.395 ; gain = 15.000 ; free physical = 4770 ; free virtual = 9017 
+// 'a' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 106 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Implementation Completed"); // S.a
+floatFrame(PAResourceOtoP.PAViews_REPORTS, "Reports"); // R
+// PAResourceOtoP.PAViews_REPORTS: Reports: float view
+maximizeFrame(PAResourceOtoP.PAViews_REPORTS, "Reports"); // R
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "IO - Place Design ; report_io ;  ; Wed Jan 07 17:44:33 JST 2026 ; 98955", 14, "Wed Jan 07 17:44:33 JST 2026", 3, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 204, 220); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 366, 402); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 189, 294); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 186, 343); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 204, 446); // F
+// Elapsed time: 50 seconds
+typeControlKey((HResource) null, "Timing Summary - Route Design - impl_1", 'c'); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 267, 275); // F
+// Elapsed time: 51 seconds
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 1,938 MB. GUI used memory: 91 MB. Current time: 1/7/26, 5:48:22 PM JST
+// Elapsed time: 60 seconds
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Post-Place Power Opt Design (post_place_power_opt_design) ;  ;  ;  ; ", 20, "Post-Place Power Opt Design (post_place_power_opt_design)", 0, true); // J - Node
+// Elapsed time: 12 seconds
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 17:45:49 JST 2026 ; 194647", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 334, 237); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 368, 325); // F
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "WNS"); // d.c
+// Elapsed time: 26 seconds
+selectCodeEditor("Timing Summary - Route Design - impl_1", 164, 240); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 195, 284); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 201, 350); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 178, 241); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 191, 204); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 318, 202); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 318, 202, false, false, false, false, true); // F - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 284, 254); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 269, 312); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 99, 296); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 99, 296); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 130, 339); // F
+// Elapsed time: 34 seconds
+selectCodeEditor("Timing Summary - Route Design - impl_1", 332, 303); // F
+// Elapsed time: 20 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "Min"); // d.c
+selectCodeEditor("Timing Summary - Route Design - impl_1", 180, 325); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 195, 376); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 194, 299); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 195, 331); // F
+// Elapsed time: 30 seconds
+selectCodeEditor("Timing Summary - Route Design - impl_1", 94, 131); // F
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "Design Timing Summary"); // d.c
+selectCodeEditor("Timing Summary - Route Design - impl_1", 156, 140); // F
+typeControlKey((HResource) null, "Timing Summary - Route Design - impl_1", 'c'); // F
+// Elapsed time: 293 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 18, true); // f - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// HMemoryUtils.trashcanNow. Engine heap size: 2,003 MB. GUI used memory: 92 MB. Current time: 1/7/26, 5:56:57 PM JST
+// Tcl Message: open_run impl_1 
+// Elapsed time: 22 seconds
+selectButton(RDIResource.ProgressDialog_CANCEL, "Cancel"); // a
+selectButton(RDIResource.ProgressDialog_CANCEL, "Cancel"); // a
+selectButton(RDIResource.ProgressDialog_CANCEL, "Cancel"); // a
+// HMemoryUtils.trashcanNow. Engine heap size: 2,224 MB. GUI used memory: 92 MB. Current time: 1/7/26, 5:57:27 PM JST
+// TclEventType: DESIGN_CLOSE
+// [Engine Memory]: 2,227 MB (+206443kb) [00:35:02]
+// TclEventType: DESIGN_NEW_FAILED
+// Tcl Message: INFO: [Device 21-403] Loading part xc7a100tcsg324-1 INFO: [Common 17-41] Interrupt caught. Command should exit soon. 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 7478.785 ; gain = 0.000 ; free physical = 5737 ; free virtual = 10064 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2022.2 
+// Tcl Message: open_run: Time (s): cpu = 00:00:04 ; elapsed = 00:00:45 . Memory (MB): peak = 7481.754 ; gain = 281.941 ; free physical = 5737 ; free virtual = 10064 
+// Tcl Message: INFO: [Common 17-344] 'open_run' was cancelled 
+// CommandFailedException: ERROR: [Common 17-69] Command failed:  
+// 'dD' command handler elapsed time: 45 seconds
+// Elapsed time: 21 seconds
+dismissDialog("Open Implemented Design"); // bq
+selectCodeEditor("Timing Summary - Route Design - impl_1", 193, 276); // F
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 16); // f
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 16); // f
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design, Report Timing Summary]", 19, false); // f
+// Tcl Message: open_run impl_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,316 MB. GUI used memory: 92 MB. Current time: 1/7/26, 5:57:52 PM JST
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: POWER_CNS_STALE
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 2,928 MB. GUI used memory: 92 MB. Current time: 1/7/26, 5:57:57 PM JST
+// [Engine Memory]: 2,943 MB (+633479kb) [00:35:18]
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// DeviceView Instantiated
+// WARNING: HEventQueue.dispatchEvent() is taking  1100 ms.
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 7484.723 ; gain = 0.000 ; free physical = 5693 ; free virtual = 10030 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2022.2 INFO: [Project 1-570] Preparing netlist for logic optimization INFO: [Timing 38-478] Restoring timing data from binary archive. INFO: [Timing 38-479] Binary timing data restore complete. INFO: [Project 1-856] Restoring constraints from binary archive. INFO: [Project 1-853] Binary constraint restore complete. 
+// Tcl Message: Reading XDEF placement. Reading placer database... Reading XDEF routing. 
+// Tcl Message: Read XDEF Files: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 8123.734 ; gain = 0.000 ; free physical = 5138 ; free virtual = 9479 
+// Tcl Message: Restored from archive | CPU: 0.020000 secs | Memory: 0.383636 MB | 
+// Tcl Message: Finished XDEF File Restore: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 8123.734 ; gain = 0.000 ; free physical = 5138 ; free virtual = 9479 Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 8123.734 ; gain = 0.000 ; free physical = 5138 ; free virtual = 9479 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+dockFrame(PAResourceOtoP.PAViews_REPORTS, "Reports"); // R
+maximizeFrame(PAResourceOtoP.PAViews_REPORTS, "Reports"); // R
+// Device view-level: 0.0
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Tcl Message: open_run: Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 8326.262 ; gain = 844.508 ; free physical = 4995 ; free virtual = 9373 
+// TclEventType: DRC_ADDED
+// TclEventType: METHODOLOGY_ADDED
+// [Engine Memory]: 3,091 MB (+456kb) [00:35:20]
+// TclEventType: POWER_UPDATED
+// TclEventType: TIMING_SUMMARY_UPDATED
+// Run Command: PAResourceCommand.PACommandNames_REPORT_TIMING_SUMMARY
+// Elapsed time: 80 seconds
+selectTab(PAResourceQtoS.ReportTimingSummaryDialog_REPORT_TIMING_SUMMARY_DIALOG_TABBED, PAResourceQtoS.ReportTimingSummaryDialog_ADVANCED, "Advanced", 1); // g
+selectTab(PAResourceQtoS.ReportTimingSummaryDialog_REPORT_TIMING_SUMMARY_DIALOG_TABBED, PAResourceTtoZ.TimingDialogUtils_TIMER_SETTINGS, "Timer Settings", 2); // g
+selectTab(PAResourceQtoS.ReportTimingSummaryDialog_REPORT_TIMING_SUMMARY_DIALOG_TABBED, PAResourceQtoS.ReportTimingSummaryDialog_ADVANCED, "Advanced", 1); // g
+selectTab(PAResourceQtoS.ReportTimingSummaryDialog_REPORT_TIMING_SUMMARY_DIALOG_TABBED, PAResourceQtoS.ReportTimingSummaryDialog_OPTIONS, "Options", 0); // g
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// 'p' command handler elapsed time: 86 seconds
+dismissDialog("Report Timing Summary"); // ag
+// TclEventType: TIMING_RESULTS_STALE
+// TclEventType: TIMING_SUMMARY_UPDATED
+// Tcl Message: report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1 
+// Tcl Message: INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max. INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs 
+// Elapsed time: 11 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Timing Summary - Route Design - impl_1", 6); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "synthesis_report - synth_1", 5); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Timing Summary - Route Design - impl_1", 6); // o
+expandTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu_top, u_alu (alu)]", 3); // aF
+collapseTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu_top, u_alu (alu)]", 3); // aF
+expandTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu_top, Leaf Cells (287)]", 2); // aF
+collapseTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu_top, Leaf Cells (287)]", 2); // aF
+expandTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu_top, Nets (390)]", 1); // aF
+collapseTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[alu_top, Nets (390)]", 1); // aF
+// Elapsed time: 24 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design, Report Timing Summary]", 19, false); // f
+// Run Command: PAResourceCommand.PACommandNames_REPORT_TIMING_SUMMARY
+// HMemoryUtils.trashcanNow. Engine heap size: 3,153 MB. GUI used memory: 129 MB. Current time: 1/7/26, 6:00:17 PM JST
+selectTab(PAResourceQtoS.ReportTimingSummaryDialog_REPORT_TIMING_SUMMARY_DIALOG_TABBED, PAResourceQtoS.ReportTimingSummaryDialog_ADVANCED, "Advanced", 1); // g
+selectTab(PAResourceQtoS.ReportTimingSummaryDialog_REPORT_TIMING_SUMMARY_DIALOG_TABBED, PAResourceTtoZ.TimingDialogUtils_TIMER_SETTINGS, "Timer Settings", 2); // g
+// 'p' command handler elapsed time: 11 seconds
+dismissDialog("Report Timing Summary"); // ag
+// Elapsed time: 41 seconds
+selectCodeEditor("Timing Summary - Route Design - impl_1", 397, 370); // F
+typeControlKey((HResource) null, "Timing Summary - Route Design - impl_1", 'c'); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 443, 312); // F
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 93 seconds
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aa
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 5, true); // D - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 5); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, clock.xdc]", 7, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, clock.xdc]", 7, false, false, false, false, true, false); // D - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // U
+// Tcl Message: export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc] -no_script -reset -force -quiet 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  -fileset constrs_1 /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 8, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, "Add or create constraints"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceAtoD.ConstraintsChooserPanel_ADD_FILES, "Add Files"); // a
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 9 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -fileset constrs_1 -norecurse /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1]", 6, true); // D - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1]", 6); // D
+// Elapsed time: 15 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis]", 13, true); // f - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: RUN_MODIFY
+dismissDialog("Run Synthesis"); // u
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+closeView(PAResourceOtoP.PAViews_PAR_REPORT, "PAR Report"); // c
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_RESET
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: INFO: [Project 1-1160] Copying file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/alu_top.dcp to /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.srcs/utils_1/imports/synth_1 and adding it to utils fileset 
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,139 MB. GUI used memory: 128 MB. Current time: 1/7/26, 6:04:00 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,139 MB. GUI used memory: 127 MB. Current time: 1/7/26, 6:04:30 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 18:04:30 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:04 ; elapsed = 00:01:00 . Memory (MB): peak = 8326.262 ; gain = 0.000 ; free physical = 3974 ; free virtual = 8257 
+// 'i' command handler elapsed time: 62 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 70 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Synthesis Completed"); // S.a
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 17, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,140 MB. GUI used memory: 128 MB. Current time: 1/7/26, 6:06:16 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,140 MB. GUI used memory: 128 MB. Current time: 1/7/26, 6:06:46 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 18:06:46 2026] Launched impl_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:04 ; elapsed = 00:01:00 . Memory (MB): peak = 8326.262 ; gain = 0.000 ; free physical = 3969 ; free virtual = 8253 
+// 'a' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 269 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN, "Open Implemented Design"); // a
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Implementation Completed"); // S.a
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design]", 15); // f
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design]", 15); // f
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design, Report Timing Summary]", 19, false); // f
+// Tcl Message: open_run synth_1 -name synth_1 
+// Tcl Message: Design is defaulting to impl run constrset: constrs_1 Design is defaulting to synth run part: xc7a100tcsg324-1 
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: POWER_CNS_STALE
+// TclEventType: POWER_REPORT_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 3,165 MB. GUI used memory: 128 MB. Current time: 1/7/26, 6:11:32 PM JST
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// TclEventType: DESIGN_NEW
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// Device view-level: 0.0
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 8326.262 ; gain = 0.000 ; free physical = 5152 ; free virtual = 9444 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2022.2 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc] Finished Parsing XDC File [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc] 
+// Tcl Message: INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 8326.262 ; gain = 0.000 ; free physical = 5063 ; free virtual = 9358 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// Run Command: PAResourceCommand.PACommandNames_REPORT_TIMING_SUMMARY
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Report Timing Summary"); // ag
+// TclEventType: TIMING_RESULTS_STALE
+// TclEventType: TIMING_SUMMARY_UPDATED
+// Tcl Message: report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1 
+// Tcl Message: INFO: [Timing 38-35] Done setting XDC timing constraints. INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max. INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs 
+// [Engine Memory]: 3,362 MB (+122388kb) [00:48:56]
+// Elapsed time: 12 seconds
+selectTab((HResource) null, (HResource) null, "Log", 2); // aa
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:08:14 JST 2026 ; 200547", 29, "Timing Summary - Route Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:08:14 JST 2026 ; 200547", 29); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:08:14 JST 2026 ; 200547", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("Timing Summary - Route Design - impl_1", 410, 363); // F
+typeControlKey((HResource) null, "Timing Summary - Route Design - impl_1", 'c'); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 212, 127); // F
+// Elapsed time: 56 seconds
+selectCodeEditor("Timing Summary - Route Design - impl_1", 243, 254); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 119, 384); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 157, 442); // F
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 3,402 MB. GUI used memory: 139 MB. Current time: 1/7/26, 6:13:22 PM JST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,451 MB. GUI used memory: 139 MB. Current time: 1/7/26, 6:13:52 PM JST
+// Elapsed time: 55 seconds
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aa
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v), u_alu : alu (alu.v)]", 4, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v), u_alu : alu (alu.v)]", 4, false, false, false, false, true, false); // D - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // U
+// Tcl Message: export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v] -no_script -reset -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 9, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+selectButton("NEXT", "Next >"); // JButton
+// HMemoryUtils.trashcanNow. Engine heap size: 3,473 MB. GUI used memory: 142 MB. Current time: 1/7/26, 6:14:07 PM JST
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 9 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v 
+dismissDialog("Add Sources"); // bq
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 22 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: RUN_MODIFY
+dismissDialog("Run Synthesis"); // u
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+closeView(PAResourceOtoP.PAViews_PAR_REPORT, "PAR Report"); // c
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.srcs/utils_1/imports/synth_1/alu_top.dcp with file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/alu_top.dcp 
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,527 MB. GUI used memory: 141 MB. Current time: 1/7/26, 6:15:13 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,527 MB. GUI used memory: 141 MB. Current time: 1/7/26, 6:15:43 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 18:15:43 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:04 ; elapsed = 00:01:00 . Memory (MB): peak = 8648.648 ; gain = 0.000 ; free physical = 3809 ; free virtual = 8122 
+// 'i' command handler elapsed time: 64 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 36 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Synthesis Completed"); // S.a
+// Elapsed time: 19 seconds
+selectCodeEditor("alu.vh", 214, 198); // ac
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 18:16:03 JST 2026 ; 22480", 3, "synthesis_report", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 18:16:03 JST 2026 ; 22480", 3); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 18:16:03 JST 2026 ; 22480", 3, "synthesis_report", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("synthesis_report - synth_1", 172, 339); // F
+// Elapsed time: 34 seconds
+selectCodeEditor("synthesis_report - synth_1", 206, 263); // F
+selectCodeEditor("synthesis_report - synth_1", 183, 339); // F
+selectCodeEditor("synthesis_report - synth_1", 197, 180, false, false, false, true, false); // F - Popup Trigger
+selectMenuItem(PAResourceOtoP.PACodeView_COPY, "Copy"); // ao
+// Elapsed time: 127 seconds
+selectCodeEditor("synthesis_report - synth_1", 325, 288); // F
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 29, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,527 MB. GUI used memory: 140 MB. Current time: 1/7/26, 6:20:16 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,527 MB. GUI used memory: 140 MB. Current time: 1/7/26, 6:20:46 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 18:20:46 2026] Launched impl_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:03 ; elapsed = 00:01:00 . Memory (MB): peak = 8648.648 ; gain = 0.000 ; free physical = 3831 ; free virtual = 8147 
+// 'a' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 122 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Implementation Completed"); // S.a
+selectTab((HResource) null, (HResource) null, "Design Runs", 4); // aa
+selectTab((HResource) null, (HResource) null, "Timing", 5); // aa
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:22:23 JST 2026 ; 204110", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:22:23 JST 2026 ; 204110", 29, "Timing Summary - Route Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:22:23 JST 2026 ; 204110", 29); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:22:23 JST 2026 ; 204110", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 226, 260); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 244, 319); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 93, 127); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 331, 203); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 150, 197); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 252, 229); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 98, 198); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 83, 127); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 319, 140); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 57, 116); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 393, 263); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 111, 339); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 426, 322); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 393, 366); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 251, 317); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 429, 317); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 426, 337); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 379, 367); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 179, 324); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 375, 273); // F
+// TclEventType: DESIGN_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 18 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 8, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, clock.xdc]", 6, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints, constrs_1, clock.xdc]", 6, false, false, false, false, true, false); // D - Popup Trigger
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // U
+// Tcl Message: export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc] -no_script -reset -force -quiet 
+// TclEventType: DESIGN_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  -fileset constrs_1 /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 7, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, "Add or create constraints"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceAtoD.ConstraintsChooserPanel_ADD_FILES, "Add Files"); // a
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 9 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DESIGN_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -fileset constrs_1 -norecurse /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc 
+// Elapsed time: 49 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 29, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+dismissDialog("Synthesis is Out-of-date"); // u
+// TclEventType: RUN_MODIFY
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+closeView(PAResourceOtoP.PAViews_PAR_REPORT, "PAR Report"); // c
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.srcs/utils_1/imports/synth_1/alu_top.dcp with file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/alu_top.dcp 
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,529 MB. GUI used memory: 206 MB. Current time: 1/7/26, 6:25:27 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,529 MB. GUI used memory: 193 MB. Current time: 1/7/26, 6:25:57 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 18:25:58 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/runme.log [Wed Jan  7 18:25:58 2026] Launched impl_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:03 ; elapsed = 00:01:00 . Memory (MB): peak = 8648.648 ; gain = 0.000 ; free physical = 3797 ; free virtual = 8123 
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 190 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Implementation Completed"); // S.a
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aa
+selectTab((HResource) null, (HResource) null, "Log", 2); // aa
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:28:58 JST 2026 ; 207403", 29, "Timing Summary - Route Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:28:58 JST 2026 ; 207403", 29); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:28:58 JST 2026 ; 207403", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:28:58 JST 2026 ; 207403", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:28:58 JST 2026 ; 207403", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:28:58 JST 2026 ; 207403", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 408, 363); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 247, 222); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 65, 165); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 65, 165, false, false, false, false, true); // F - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 157, 193); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 279, 325); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 430, 352); // F
+typeControlKey((HResource) null, "Timing Summary - Route Design - impl_1", 'c'); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 223, 40); // F
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 3,546 MB (+16288kb) [01:09:04]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,562 MB. GUI used memory: 145 MB. Current time: 1/7/26, 6:31:47 PM JST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 132 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v), u_alu : alu (alu.v)]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, alu_top (top.v), u_alu : alu (alu.v)]", 3, false, false, false, false, true, false); // D - Popup Trigger
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ao
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // U
+// Tcl Message: export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v] -no_script -reset -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 7, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// HMemoryUtils.trashcanNow. Engine heap size: 3,595 MB. GUI used memory: 147 MB. Current time: 1/7/26, 6:32:07 PM JST
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+setFileChooser("/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v");
+selectButton("FINISH", "Finish"); // JButton
+// 'f' command handler elapsed time: 15 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v 
+dismissDialog("Add Sources"); // bq
+// HMemoryUtils.trashcanNow. Engine heap size: 3,639 MB. GUI used memory: 145 MB. Current time: 1/7/26, 6:32:27 PM JST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 10 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: RUN_MODIFY
+dismissDialog("Run Synthesis"); // u
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+closeView(PAResourceOtoP.PAViews_PAR_REPORT, "PAR Report"); // c
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.srcs/utils_1/imports/synth_1/alu_top.dcp with file /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/alu_top.dcp 
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,656 MB. GUI used memory: 149 MB. Current time: 1/7/26, 6:33:08 PM JST
+// TclEventType: RUN_MODIFY
+// HMemoryUtils.trashcanNow. Engine heap size: 3,656 MB. GUI used memory: 145 MB. Current time: 1/7/26, 6:33:38 PM JST
+// Tcl Message: [Wed Jan  7 18:33:38 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:03 ; elapsed = 00:01:00 . Memory (MB): peak = 8772.703 ; gain = 0.000 ; free physical = 3763 ; free virtual = 8110 
+// 'i' command handler elapsed time: 63 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// Elapsed time: 19 seconds
+selectTab((HResource) null, (HResource) null, "Log", 2); // aa
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 13 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Synthesis Completed"); // S.a
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "report_timing_summary", 1, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ;  ; ", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 18:33:55 JST 2026 ; 22672", 3, "synthesis_report", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 18:33:55 JST 2026 ; 22672", 3); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synthesis_report ;  ;  ; Wed Jan 07 18:33:55 JST 2026 ; 22672", 3, "synthesis_report", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("synthesis_report - synth_1", 355, 333); // F
+selectCodeEditor("synthesis_report - synth_1", 164, 247); // F
+selectCodeEditor("synthesis_report - synth_1", 187, 261); // F
+typeControlKey((HResource) null, "synthesis_report - synth_1", 'c'); // F
+selectCodeEditor("synthesis_report - synth_1", 348, 181); // F
+// Elapsed time: 134 seconds
+selectCodeEditor("synthesis_report - synth_1", 151, 313); // F
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 29, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,656 MB. GUI used memory: 146 MB. Current time: 1/7/26, 6:37:25 PM JST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,656 MB. GUI used memory: 146 MB. Current time: 1/7/26, 6:37:55 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jan  7 18:37:55 2026] Launched impl_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board/assess_alu_on_board.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:03 ; elapsed = 00:01:00 . Memory (MB): peak = 8772.703 ; gain = 0.000 ; free physical = 3790 ; free virtual = 8102 
+// 'a' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 95 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Implementation Completed"); // S.a
+selectCodeEditor("synthesis_report - synth_1", 152, 327); // F
+selectTab((HResource) null, (HResource) null, "Timing", 5); // aa
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aa
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Power - Route Design ; report_power ;  ; Wed Jan 07 18:39:25 JST 2026 ; 8140", 27, "Power - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Route Status - Route Design ; report_route_status ;  ; Wed Jan 07 18:39:25 JST 2026 ; 588", 28, "Route Status - Route Design", 0, false); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:39:25 JST 2026 ; 214283", 29, "Timing Summary - Route Design", 0, false); // J
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:39:25 JST 2026 ; 214283", 29); // J
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary - Route Design ; report_timing_summary ; max_paths = 10; report_unconstrained = true;  ; Wed Jan 07 18:39:25 JST 2026 ; 214283", 29, "Timing Summary - Route Design", 0, false, false, false, false, false, true); // J - Double Click
+selectCodeEditor("Timing Summary - Route Design - impl_1", 479, 184); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 365, 291); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 327, 378); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 63, 354); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 432, 317); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 417, 360); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 145, 47); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 379, 326); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 388, 363); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 272, 319); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 415, 387); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 486, 353); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 534, 333); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 506, 382); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 458, 169); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 433, 363); // F
+typeControlKey((HResource) null, "Timing Summary - Route Design - impl_1", 'c'); // F
+selectCodeEditor("Timing Summary - Route Design - impl_1", 227, 83); // F
