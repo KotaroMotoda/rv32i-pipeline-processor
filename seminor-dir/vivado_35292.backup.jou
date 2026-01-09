@@ -1,0 +1,72 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Jan  7 17:22:25 2026
+# Process ID: 35292
+# Current directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir
+# Command line: vivado
+# Log file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/vivado.log
+# Journal file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/vivado.jou
+# Running On: st141, OS: Linux, CPU Frequency: 2200.000 MHz, CPU Physical cores: 4, Host memory: 16453 MB
+#-----------------------------------------------------------
+start_gui
+create_project assess_alu_on_board /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/assess_alu_on_board -part xc7a100tcsg324-1
+set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
+add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.vh
+add_files -norecurse -scan_for_includes {/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v}
+update_compile_order -fileset sources_1
+add_files -fileset constrs_1 -norecurse /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v] -no_script -reset -force -quiet
+remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v
+add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/top.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+open_run impl_1
+open_run impl_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc] -no_script -reset -force -quiet
+remove_files  -fileset constrs_1 /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc
+add_files -fileset constrs_1 -norecurse /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v] -no_script -reset -force -quiet
+remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v
+update_compile_order -fileset sources_1
+add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc] -no_script -reset -force -quiet
+remove_files  -fileset constrs_1 /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc
+add_files -fileset constrs_1 -norecurse /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/clock.xdc
+reset_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+export_ip_user_files -of_objects  [get_files /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v] -no_script -reset -force -quiet
+remove_files  /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v
+update_compile_order -fileset sources_1
+add_files -norecurse -scan_for_includes /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/alu_for_assess/alu.v
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
