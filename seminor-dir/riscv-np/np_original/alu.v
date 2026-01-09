@@ -186,6 +186,7 @@ module alu(A, B, C, P, Y);
     input [31:0] A;
     input [31:0] B;
     input [4:0]  C;
+    input [1:0]  P;
     output [31:0] Y;
     reg [31:0] Y;
     reg [32:0] X;  // オーバーフロー検出のための33bitレジスタ

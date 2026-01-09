@@ -1,0 +1,28 @@
+
+*** Running vivado
+    with args -log riscv_tb.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source riscv_tb.tcl
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source riscv_tb.tcl -notrace
+Command: synth_design -top riscv_tb -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 103028
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/opt/xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+ERROR: [Synth 8-36] 'P' is not declared [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v:185]
+INFO: [Synth 8-10285] module 'alu' is ignored due to previous errors [/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v:227]
+INFO: [Synth 8-9084] Verilog file '/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v' ignored due to errors
+Failed to read verilog '/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v'
+INFO: [Common 17-83] Releasing license: Synthesis
+8 Infos, 0 Warnings, 0 Critical Warnings and 2 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Fri Jan  9 17:01:12 2026...

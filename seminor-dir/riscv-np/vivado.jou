@@ -1,0 +1,21 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Jan  9 16:55:00 2026
+# Process ID: 101331
+# Current directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np
+# Command line: vivado
+# Log file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/vivado.log
+# Journal file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/vivado.jou
+# Running On: st140, OS: Linux, CPU Frequency: 2200.000 MHz, CPU Physical cores: 4, Host memory: 16453 MB
+#-----------------------------------------------------------
+start_gui
+create_project assess-processor-on-fpga /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/assess-processor-on-fpga -part xc7a100tcsg324-1
+set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
+add_files -norecurse -scan_for_includes {/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/inst.vh /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.vh /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/riscv.vh}
+add_files -norecurse -scan_for_includes {/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/shift.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/hazard_detection_unit.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/ex_stage.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/pipeline_regs.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/mem_stage.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/if_stage.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/daligner.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/riscv.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/wb_stage.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/forwarding_unit.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/tb.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/dmem.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/rf.v /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/id_stage.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1

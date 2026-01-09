@@ -1,0 +1,200 @@
+/*
+
+Xilinx Vivado v2022.2 (64-bit) [Major: 2022, Minor: 2]
+SW Build: 3671981 on Fri Oct 14 04:59:54 MDT 2022
+IP Build: 3669848 on Fri Oct 14 08:30:02 MDT 2022
+
+Process ID (PID): 101331
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Fri Jan 09 16:55:28 JST 2026
+Time zone: 	Japan Standard Time (Asia/Tokyo)
+
+OS: Ubuntu
+OS Version: 5.15.0-58-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: 1
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.11 64-bit
+Java home: 	/opt/xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9
+Java executable: 	/opt/xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m, -Xrs]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	c3253
+User home directory: /st/c2023/c3253
+User working directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/xilinx/Vivado
+HDI_APPROOT: /opt/xilinx/Vivado/2022.2
+RDI_DATADIR: /opt/xilinx/Vivado/2022.2/data
+RDI_BINDIR: /opt/xilinx/Vivado/2022.2/bin
+
+Vivado preferences file: /st/c2023/c3253/.Xilinx/Vivado/2022.2/vivado.xml
+Vivado preferences directory: /st/c2023/c3253/.Xilinx/Vivado/2022.2/
+Vivado layouts directory: /st/c2023/c3253/.Xilinx/Vivado/2022.2/data/layouts
+PlanAhead jar file: 	/opt/xilinx/Vivado/2022.2/lib/classes/planAhead.jar
+Vivado log file: 	/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/vivado.log
+Vivado journal file: 	/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-101331-st140
+
+Xilinx Environment Variables
+----------------------------
+RDI_APPROOT: /opt/xilinx/Vivado/2022.2
+RDI_BASEROOT: /opt/xilinx/Vivado
+RDI_BINROOT: /opt/xilinx/Vivado/2022.2/bin
+RDI_BUILD: yes
+RDI_DATADIR: /opt/xilinx/Vivado/2022.2/data
+RDI_INSTALLROOT: /opt/xilinx
+RDI_INSTALLVER: 2022.2
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 11.0.11_9
+RDI_LIBDIR: /opt/xilinx/Vivado/2022.2/lib/lnx64.o/Ubuntu:/opt/xilinx/Vivado/2022.2/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /opt/xilinx/Vitis/2022.2/bin:/opt/xilinx/Vivado/2022.2/ids_lite/ISE/bin/lin64
+RDI_PROG: /opt/xilinx/Vivado/2022.2/bin/unwrapped/lnx64.o/vivado
+RDI_TPS_ROOT: /opt/xilinx/Vivado/2022.2/tps/lnx64
+RDI_USE_JDK11: True
+XILINX: /opt/xilinx/Vivado/2022.2/ids_lite/ISE
+XILINXD_LICENSE_FILE: 2150@133.95.140.129
+XILINX_DSP: /opt/xilinx/Vivado/2022.2/ids_lite/ISE
+XILINX_HLS: /opt/xilinx/Vitis_HLS/2022.2
+XILINX_PLANAHEAD: /opt/xilinx/Vivado/2022.2
+XILINX_SDK: /opt/xilinx/Vitis/2022.2
+XILINX_VITIS: /opt/xilinx/Vitis/2022.2
+XILINX_VIVADO: /opt/xilinx/Vivado/2022.2
+XILINX_VIVADO_HLS: /opt/xilinx/Vivado/2022.2
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,454 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,504 MB. GUI used memory: 62 MB. Current time: 1/9/26, 4:55:29 PM JST
+selectButton(PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, "Create Project"); // u
+// Run Command: PAResourceCommand.PACommandNames_NEW_PROJECT
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 64 seconds
+selectButton("NEXT", "Next >"); // JButton
+// Elapsed time: 19 seconds
+setText(PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, "assess-processor-on-fpga", true); // Q
+selectButton("NEXT", "Next >"); // JButton
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_DIRECTORIES, "Add Directories"); // a
+dismissFolderChooser();
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+// HMemoryUtils.trashcanNow. Engine heap size: 1,582 MB. GUI used memory: 65 MB. Current time: 1/9/26, 4:57:29 PM JST
+// Elapsed time: 45 seconds
+String[] filenames31467 = {"/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.vh", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/daligner.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/dmem.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/ex_stage.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/forwarding_unit.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/hazard_detection_unit.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/id_stage.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/if_stage.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/inst.vh", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/mem_stage.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/pipeline_regs.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/rf.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/riscv.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/riscv.vh", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/shift.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/tb.v", "/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/wb_stage.v"};
+setFileChooser(filenames31467);
+selectButton("NEXT", "Next >"); // JButton
+// HMemoryUtils.trashcanNow. Engine heap size: 1,586 MB. GUI used memory: 64 MB. Current time: 1/9/26, 4:57:59 PM JST
+// [GUI Memory]: 67 MB (+68285kb) [00:02:56]
+// [Engine Memory]: 1,587 MB (+1512282kb) [00:02:56]
+// [GUI Memory]: 74 MB (+3775kb) [00:02:56]
+// [GUI Memory]: 107 MB (+30671kb) [00:02:56]
+// Elapsed time: 11 seconds
+selectButton("NEXT", "Next >"); // JButton
+setText("PAResourceEtoH.FPGAChooser_FPGA_TABLE_SEARCH_FIELD", "A"); // OverlayTextField
+selectTab(PAResourceOtoP.PartChooser_TABBED_PANE, (HResource) null, "Boards", 1); // g
+// [GUI Memory]: 247 MB (+140352kb) [00:03:05]
+// [Engine Memory]: 1,712 MB (+48214kb) [00:03:05]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,623 MB. GUI used memory: 66 MB. Current time: 1/9/26, 4:58:19 PM JST
+// Elapsed time: 17 seconds
+setText("PAResourceAtoD.BoardChooser_BOARD_TABLE_SEARCH_FIELD", "100T"); // OverlayTextField
+selectTreeTable(PAResourceAtoD.BoardChooser_BOARD_TABLE, "Nexys A7-100T ; Nexys A7-100T ; Nexys A7-100T ; digilentinc.com ; 1.2 ; xc7a100tcsg324-1 ; 324 ; D.0 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ;  ; 32 ;  ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0 ;  ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 0, "Nexys A7-100T", 0, false); // I
+openHTML ("https://digilent.com/reference/programmable-logic/nexys-a7/start");I
+selectButton("NEXT", "Next >"); // JButton
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: create_project assess-processor-on-fpga /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/assess-processor-on-fpga -part xc7a100tcsg324-1 
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// WARNING: HEventQueue.dispatchEvent() is taking  1035 ms.
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/Vivado/2022.2/data/ip'. 
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: BOARD_MODIFIED
+// Tcl Message: set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project] 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse -scan_for_includes {/st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/inst.vh /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/alu.vh /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/np_original/riscv.vh} 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 189 seconds
+dismissDialog("Create Project"); // bq
+dismissDialog("New Project"); // f
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 122 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation, Run Simulation]", 10, false); // f
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,725 MB. GUI used memory: 133 MB. Current time: 1/9/26, 5:01:22 PM JST
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,740 MB. GUI used memory: 76 MB. Current time: 1/9/26, 5:01:52 PM JST
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Fri Jan  9 17:01:52 2026] Launched synth_1... Run output will be captured here: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/assess-processor-on-fpga/assess-processor-on-fpga.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:19 ; elapsed = 00:01:00 . Memory (MB): peak = 7007.125 ; gain = 34.359 ; free physical = 1725 ; free virtual = 6168 
+// 'i' command handler elapsed time: 61 seconds
+// Elapsed time: 60 seconds
+dismissDialog("Starting Design Runs"); // bq
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // S.a
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
