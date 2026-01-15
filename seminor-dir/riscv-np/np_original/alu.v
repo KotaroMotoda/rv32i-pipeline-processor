@@ -1,6 +1,6 @@
 `include "alu.vh"
 
-8bitずつ分割するALUモジュール
+// 8bitずつ分割するALUモジュール
 module alu ( A, B, C, P, Y );
     input [31:0] A;
     input [31:0] B;
