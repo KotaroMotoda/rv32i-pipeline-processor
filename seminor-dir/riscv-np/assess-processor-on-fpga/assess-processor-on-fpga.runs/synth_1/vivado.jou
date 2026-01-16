@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Jan  9 17:00:54 2026
+# Process ID: 102969
+# Current directory: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/assess-processor-on-fpga/assess-processor-on-fpga.runs/synth_1
+# Command line: vivado -log riscv_tb.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source riscv_tb.tcl
+# Log file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/assess-processor-on-fpga/assess-processor-on-fpga.runs/synth_1/riscv_tb.vds
+# Journal file: /st/c2023/c3253/git-traced-dir/rv32i-pipeline-processor/seminor-dir/riscv-np/assess-processor-on-fpga/assess-processor-on-fpga.runs/synth_1/vivado.jou
+# Running On: st140, OS: Linux, CPU Frequency: 2200.000 MHz, CPU Physical cores: 4, Host memory: 16453 MB
+#-----------------------------------------------------------
+source riscv_tb.tcl -notrace
