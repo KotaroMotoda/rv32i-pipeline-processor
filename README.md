@@ -73,6 +73,8 @@ Note: Exact tool and file formats may vary by chosen FPGA vendor and board.
 
 ---
 
+
+
 ## Contributing
 
 Contributions that improve clarity, correctness, timing, or documentation are welcome.
