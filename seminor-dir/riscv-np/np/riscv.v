@@ -11,7 +11,7 @@ module riscv #(
     output wire [15:0] LED    
 );
     wire CLK75;
-    wire LOCKED;
+    wire LOCKED; // 1: 安定動作中, 0: クロックが出力されていない
     // 100MHz -> 75MHz に,周波数を落とす
     clk_wiz_0 clk_wiz_inst (
         .clk_in1( CLK ),
