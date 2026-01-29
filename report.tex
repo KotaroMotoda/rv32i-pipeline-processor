@@ -1,0 +1,555 @@
+\documentclass[11pt,a4paper]{bxjsarticle}
+
+\usepackage[margin=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% listings 設定（Verilog/HDLを想定）
+\lstdefinelanguage{Verilog}{
+  keywords={module,endmodule,input,output,wire,reg,parameter,localparam,assign,always,begin,end,if,else,case,endcase,for,generate,endgenerate,posedge,negedge},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]"
+}
+\lstset{
+本章は以下の3点にまとめる.
+
+\subsection{周波数の結果}
+FPGA上での動作確認では,本プロセッサは75MHzで動作した.一方,100MHzではタイミングを満たさず,同じ構成のままでは安定動作しなかった.
+
+\subsection{高速化のために実施した工夫(実装)}
+高速化(および制御の単純化)のため,分岐はEXステージで確定させ,EXからIFへ \texttt{isBranch\_E} と分岐先PC(\texttt{PC\_IMM\_E})を直接フィードバックしている.これにより,分岐成立時は次サイクルから正しいPCで命令フェッチを再開できる.
+
+また,分岐成立時に誤って先行フェッチ/デコードされた命令を消すため,パイプラインレジスタのflush信号(\texttt{flush\_FD},\texttt{flush\_DE})を \texttt{isBranch\_E} に接続し,IF/IDおよびID/EXをNOP化する構成にした.この方式は追加の状態機械を要さず実装が単純である.
+
+\subsection{今後の高速化案}
+今後さらに高速化するには,次の2方向が有効だと考える.
+
+\begin{itemize}
+\item 分岐予測を動的にして,分岐成立時のflush頻度(=無駄サイクル)を減らす.
+\item EXステージで直列に並ぶMUX/演算(オペランド選択,フォワーディング選択,即値/レジスタ選択など)を可能な範囲でID側へ前倒しし,EX→IFフィードバックを含むクリティカルパスを短縮する(例: 分岐ターゲットの事前計算や,分岐判定に必要な比較の前倒し).
+\end{itemize}
+    \item データパス仕様：EXでアドレス=rs1+immを計算し、MEMで \texttt{daligner} + \texttt{dmem} によりbyte/half/wordの読み出しと（必要なら）符号拡張を行い、WBでrdへ書き戻す（\texttt{MemtoReg=01}）。
+    \item 実装の工夫：メモリアライン／サイズ変換を \texttt{daligner} に集約し、\texttt{MemRead}（01/10/11）と\texttt{DMSE}（符号拡張）の組だけでlb/lh/lw/lbu/lhu等を扱えるようにした。
+  \end{itemize}
+
+  \item Sタイプ命令（\texttt{OP\_STORE}: store系）
+  \begin{itemize}
+    \item データパス仕様：EXでアドレス=rs1+immを計算し、MEMで \texttt{daligner} が生成するbyte enableに従って \texttt{dmem} に書き込む（\texttt{MemWrite}=01/10/11）。書き込みデータはrs2。
+    \item 実装の工夫：storeデータ（rs2）にもフォワーディングを適用し、\texttt{STORE\_VAL\_E = src2\_fwd} としてMEMへ渡すことで、直前の命令結果をストール無しでストアできる場合を増やした。
+  \end{itemize}
+
+  \item Bタイプ命令（\texttt{OP\_BR}: beq/bne/blt/bge/...）
+  \begin{itemize}
+    \item データパス仕様：EXで比較を行い（比較結果はALUのbit0で返す前提）、成立時は分岐先PC=PC+immへ更新する。分岐判定はEXなので、成立時はIF/IDとID/EXをflushする。
+    \item 実装の工夫：\texttt{isBranch\_E} をそのままIFのPC更新とパイプラインflush信号に使い、分岐成立時に「後続2命令をNOP化」するだけの単純な制御で制御ハザードを処理した（未成立はそのまま順次実行）。
+  \end{itemize}
+
+  \item Jタイプ命令（\texttt{OP\_JAL}）
+  \begin{itemize}
+    \item データパス仕様：EXで分岐先PC=PC+immを生成し、常に分岐する。同時にWBでrdへPC+4を書き戻す（\texttt{MemtoReg=10}）。
+    \item 実装の工夫：\texttt{RS1\_PC} を立ててALUのA入力をPCに切り替え、PC+immの加算をALUに統一することで、専用の分岐先加算器を増やさずに実装した。
+  \end{itemize}
+
+  \item Iタイプ命令（\texttt{OP\_JALR}）
+  \begin{itemize}
+    \item データパス仕様：EXで分岐先PC=(rs1+imm)\&\textasciitilde1を生成し、常に分岐する。同時にWBでrdへPC+4を書き戻す（\texttt{MemtoReg=10}）。
+    \item 実装の工夫：RISC-V仕様に合わせて分岐先のLSBを必ず0にするため、\texttt{\{alu\_val\_e[31:1], 1'b0\}} としてアドレスを丸める処理を入れた。
+  \end{itemize}
+
+  \item Uタイプ命令（\texttt{OP\_LUI} / \texttt{OP\_AUIPC}）
+  \begin{itemize}
+    \item データパス仕様：LUIはA=0としてimm(U)をそのままrdに書き戻し、AUIPCはA=PCとしてPC+imm(U)をrdに書き戻す（いずれも \texttt{ALUSrc=1}）。
+    \item 実装の工夫：A入力の選択を \texttt{RS1\_Z} / \texttt{RS1\_PC} によって行い、これらが立つ場合はフォワーディングを無効化して（常に0/PCを使う）、制御を簡潔にした。
+  \end{itemize}
+\end{itemize}
+
+\subsection{命令タイプに依存しない実装}
+\subsubsection*{書きたいこと}
+\begin{itemize}
+  \item フォワーディングユニット
+  \item ハザードとstall
+  \item 各制御信号の説明
+\end{itemize}
+
+ハザード、フォワーディングユニット、最後に各制御信号について述べたい。まず、ハザードについて述べる。ハザードとは、次のクロックで命令を実行できない状況を指す。これには、構造ハザード、データハザード、制御ハザードの三つがある。
+
+構造ハザードとは、一緒に実行される命令の組み合わせにハードウェアが対応できないために発生するハザードである。例えば、IDステージでレジスタ読み出し、WBステージでレジスタ書き込みを行う場合、レジスタへの操作が時間的に重複してしまうため工夫なしにはハザードが発生してしまう。私のプロセッサでは、レジスタ読み出し（ID）をクロック立ち上がり時に、レジスタ書き込み（WB）をクロック立ち下がり時に行うことで、構造ハザードの回避を図った。
+
+データハザードとは、命令の実行に必要なデータがまだ利用可能になっていないために発生してしまうハザードである。これを解決するのが後述するフォワーディングである。
+
+制御ハザードとは、パイプライン処理中の分岐のために発生するハザードである。私のプロセッサの場合、分岐の判定はEXステージであるため、分岐予測（本プロセッサでは静的分岐予測を採用）が外れてしまった場合には、すでに命令が発行された後続の2命令がストールされる。これに関しては単純な静的分岐予測器ではなく、動的分岐予測器などを用いて分岐予測ヒット率を上げることで、クロックの無駄を削減できるだろう。
+
+\subsubsection{フォワーディングユニット}
+私は以下のようにフォワーディングユニットを設計した（ALU入力が2つあるため制御信号も2系統）。
+
+\begin{lstlisting}[language=Verilog]
+always @(*) begin
+    if (RegWrite_EM && (RD_EM != 5'd0) && (RD_EM == RS1_DE))
+        ForwardA = 2'b10;
+    else if (RegWrite_MW && (RD_MW != 5'd0) && (RD_MW == RS1_DE))
+        ForwardA = 2'b01;
+    else
+        ForwardA = 2'b00;
+end
+
+always @(*) begin
+    if (RegWrite_EM && (RD_EM != 5'd0) && (RD_EM == RS2_DE))
+        ForwardB = 2'b10;
+    else if (RegWrite_MW && (RD_MW != 5'd0) && (RD_MW == RS2_DE))
+        ForwardB = 2'b01;
+    else
+        ForwardB = 2'b00;
+end
+\end{lstlisting}
+
+\begin{longtable}{@{}p{38mm}p{26mm}p{90mm}@{}}
+\toprule
+フォワーディング制御信号 & ソース & 概要 \\
+\midrule
+\endhead
+\texttt{ForwardA=00} & ID/EX & ALUの第一オペランドがレジスタファイルから得られる \\
+\texttt{ForwardA=10} & EX/MEM & ALUの第一オペランドが1クロック前のALU結果からフォワーディングされる \\
+\texttt{ForwardA=01} & MEM/WB & ALUの第一オペランドが2クロック前のALU結果からフォワーディングされる \\
+\texttt{ForwardB=00} & ID/EX & ALUの第二オペランドがレジスタファイルから得られる \\
+\texttt{ForwardB=10} & EX/MEM & ALUの第二オペランドが1クロック前のALU結果からフォワーディングされる \\
+\texttt{ForwardB=01} & MEM/WB & ALUの第二オペランドが2クロック前のALU結果からフォワーディングされる \\
+\bottomrule
+\end{longtable}
+
+同じレジスタを経由してデータを渡す方法もあり、これはバイパシングであると理解している。
+
+\subsubsection{ハザード検知ユニットとストール}
+以下にハザード検知ユニットを示す。
+\begin{lstlisting}[language=Verilog]
+`include "riscv.vh"
+
+module hazard_detection_unit (
+    input  [4:0] RS1_ID,
+    input  [4:0] RS2_ID,
+    input        RS1_PC_ID,
+    input        RS1_Z_ID,
+    input  [2:0] FT_ID,
+    input  [4:0] RD_DE,
+    input  [1:0] MemRead_DE,   // 00: none
+    output       hazard_stall
+);
+    // rs1/rs2 を本当に使う命令だけを対象にする
+    wire use_rs1 = ~(RS1_PC_ID | RS1_Z_ID); // PCやゼロを使う場合は依存なし
+    wire use_rs2 = (FT_ID == `FT_R) | (FT_ID == `FT_B) | (FT_ID == `FT_S); // R,B,S は rs2 使用
+
+    assign hazard_stall =
+        (MemRead_DE != 2'b00) &&
+        (RD_DE != 5'd0) &&
+        ( (use_rs1 && (RD_DE == RS1_ID)) ||
+          (use_rs2 && (RD_DE == RS2_ID)) );
+endmodule
+\end{lstlisting}
+
+ストールの実装例として、IFステージで作成される \texttt{PC}, \texttt{PC+4}, \texttt{IDATA} を停止させる（または維持する）という方針をとった。
+\begin{lstlisting}[language=Verilog]
+PC_FD    <= PC_IF;
+PC4_FD   <= PC4_IF;
+IDATA_FD <= IDATA_IF;
+\end{lstlisting}
+
+\subsubsection{制御信号の説明}
+（P命令は後述するため、ここでは除外する。）
+
+\begin{longtable}{@{}p{35mm}p{120mm}@{}}
+\toprule
+信号名 & 役割 \\
+\midrule
+\endhead
+\texttt{MemtoReg} & 00: レジスタへ書き込む値がALUから得られる。01: DMEMから得られる。10: PC+4（jalrなどの戻りポインタ）\\
+\texttt{RegWrite} & 0: レジスタ書き込みなし、1: レジスタ書き込み \\
+\texttt{Branch} & 0: 分岐しない、1: 分岐 \\
+\texttt{MemWrite} & 0: メモリ書き込みなし、1: メモリ書き込み \\
+\texttt{MemRead} & 0: メモリ読み出しなし、1: メモリ読み出し \\
+\texttt{ALUSrc} & 0: ALU第二引数が \texttt{RF\_DATA2}、1: ALU第二引数が \texttt{IMM\_VAL\_EXT} \\
+\texttt{ALUOp} & （詳細は実装に依存） \\
+\texttt{ALUorSHIFT} & ALUとSHIFTのどちらの結果を用いるか \\
+\texttt{DMSE} & （詳細は実装に依存） \\
+\texttt{FT} & 命令タイプ識別（IDステージで使用） \\
+\texttt{RS1\_PC} & Uタイプ命令（auipc）識別 \\
+\texttt{RS1\_Z} & Uタイプ命令（lui）識別 \\
+\bottomrule
+\end{longtable}
+
+\section{プロセッサ性能評価}
+本節では、5段パイプライン化したプロセッサの到達動作周波数と、分岐処理（制御ハザード）を短い制御で回すために行った工夫を述べる。ここで述べる実装は主に \texttt{seminor-dir/riscv-np/np\_original} のRTLに対応している。
+
+\subsection{動作周波数（75MHzの達成）}
+FPGAボードでは外部から100MHzのクロック（\texttt{CLK}）が入力される。一方で、私が作成した \texttt{riscv\_core} は100MHzではタイミングを満たさず、動作確認ができたのは75MHzであった。そのため、トップモジュールでは \texttt{clk\_wiz\_0}（MMCM）を用いて \texttt{CLK} を \texttt{CLK75} に変換し、コアには \texttt{CLK75} を入力している（詳細は次章）。また \texttt{LOCKED} をリセットにANDすることで、周波数変換が安定する前にコアが動き始めないようにしている。
+
+\subsection{\texttt{isBranch} の前倒し（EXで確定→IFへ即時フィードバック）}
+分岐/\texttt{jal}/\texttt{jalr} は「PCを更新するかどうか」と「更新先PC（ターゲット）」が分からないと次の命令フェッチが確定しない。本実装では、分岐判定はEXステージで行い、EXステージの出力 \texttt{isBranch\_E} と \texttt{PC\_IMM\_E} をそのままIFステージへ戻している。
+
+EXステージ（\texttt{seminor-dir/riscv-np/np\_original/ex\_stage.v}）では、分岐ターゲット \texttt{PC\_IMM\_E} を生成し、分岐成立（PC更新が必要）を \texttt{isBranch\_E} として生成する。
+\begin{lstlisting}[language=Verilog]
+// 分岐ターゲット生成
+wire [31:0] jalr_tgt  = { alu_val_e[31:1], 1'b0 };
+wire [31:0] br_addr_e = (FT_DE == `FT_I) ? jalr_tgt : (PC_DE + IMM_VAL_EXT_DE);
+assign PC_IMM_E = br_addr_e;
+
+// 分岐許可信号（B型のみ条件を見る）
+assign isBranch_E = Branch_DE && !((FT_DE == `FT_B) && !alu_val_e[0]);
+\end{lstlisting}
+
+IFステージ（\texttt{seminor-dir/riscv-np/np\_original/if\_stage.v}）では、通常は \texttt{PC\_IF <= PC\_IF + 4} だが、\texttt{isBranch\_E==1} のときに \texttt{PC\_IF <= PC\_IMM\_E} へ切り替える。
+\begin{lstlisting}[language=Verilog]
+always @(posedge CLK or posedge RST) begin
+    if (RST)
+        PC_IF <= 32'h0000_0000;
+    else if (isBranch_E)
+        PC_IF <= PC_IMM_E;
+    else if (stall_IF)
+        PC_IF <= PC_IF;
+    else
+        PC_IF <= PC_IF + 4;
+end
+\end{lstlisting}
+
+さらに、分岐成立時に誤って先行フェッチ/デコードした命令を消すため、\texttt{seminor-dir/riscv-np/np\_original/riscv.v} では \texttt{flush\_FD} と \texttt{flush\_DE} を \texttt{isBranch\_E} に直結している。
+\begin{lstlisting}[language=Verilog]
+wire flush_FD = isBranch_E;
+wire flush_DE = isBranch_E;
+\end{lstlisting}
+
+このように、EXで分岐が確定した瞬間に次サイクルから正しいPCへ遷移する制御が、追加の状態機械なしで実現できる。一方で、EXの結果（\texttt{isBranch\_E}, \texttt{PC\_IMM\_E}）がIFのPC更新に間に合う必要があるため、EX→IFのフィードバック経路がタイミング上の制約（クリティカルパス候補）になりやすい。
+
+\subsection{さらなる高速化の方向性}
+これ以上の高速化を狙う場合、次の2つが有効な手段として挙げられる。
+\begin{itemize}
+  \item 分岐予測を動的にして、分岐成立時のフラッシュ頻度（＝無駄サイクル）を減らす。
+  \item EXステージで直列に並ぶMUX/演算を、可能な範囲でID側に前倒ししてEXの組合せ遅延を短くする（例：オペランド選択や分岐ターゲットの \texttt{PC+imm} を事前計算してパイプラインレジスタに保持する）。
+\end{itemize}
+
+\section{FPGA搭載ボードのLEDに出力して動作確認}
+以下の三つの内容に分けて説明する。
+\begin{enumerate}
+  \item プロセッサと外部I/Oの接続、レイヤーの整理
+  \item トップモジュールの作成
+  \item 制約条件ファイル（.xdc）の作成
+\end{enumerate}
+
+\subsection{プロセッサと外部I/Oの接続、レイヤーの整理}
+大まかなレイヤーは上記に示す通りである。外部とのI/Oがはっきりしたことと、前章まで用いていたプロセッサモジュールが \texttt{riscv} と \texttt{riscv\_core} に分割されていることがわかる。
+
+\texttt{riscv} はプロセッサのトップモジュールとして扱い、プロセッサ外のモジュールとのI/Oを管理している。一方で \texttt{riscv\_core} では、完全にプロセッサの本体が定められており、前章までで扱っていたプロセッサに該当する。
+
+ボード上からプロセッサのトップモジュール（\texttt{riscv}）への入力は \texttt{CLK} と \texttt{RSTN} の二つのみである。私が作成したプロセッサ（\texttt{riscv\_core}）は100MHzに間に合わなかったが、75MHzでは動作確認できたので、ボードから入ってきたCLKは \texttt{clk\_wiz\_0}（Vivadoで事前生成）を通して75MHzに周波数を落としている。
+
+\subsection{トップモジュールの作成}
+トップモジュールの一部を以下に示す。
+\begin{lstlisting}[language=Verilog]
+module riscv #(
+   parameter DMEM_BASE = 32'h0010_0000,
+   parameter DMEM_SIZE = 32768,
+   parameter DMEM_FILE = "data.mif",
+   parameter LED_BASE  = 32'h0012_0000  // 0x0011_FFFF より上
+)(
+   input  wire        CLK, // 100MHzで入ってくる想定
+   input  wire        RSTN_IN,
+   output wire [15:0] LED
+);
+   wire CLK75;
+   wire LOCKED;
+
+   // 100MHz -> 75MHz に周波数を落とす
+   clk_wiz_0 clk_wiz_inst (
+       .clk_in1( CLK ),
+       .clk_out1( CLK75 ),
+       .reset( ~RSTN_IN ),
+       .locked(LOCKED)
+   );
+
+   assign RSTN    = RSTN_IN & LOCKED;
+   wire RST = ~RSTN;
+\end{lstlisting}
+
+利用したメモリはアドレスに応じて instruction memory と data memory の二つに分割されている。
+具体的には \texttt{0x0000\_0000}〜\texttt{0x000F\_FFFF} が instruction memory、\texttt{0x0010\_0000}〜\texttt{0x0011\_FFFF} が data memory である。LEDのために新しくメモリを確保する必要があるが、既存領域を侵害しないように \texttt{LED\_BASE=0x0012\_0000} としている。\\
+\texttt{LOCKED} とは \textbf{[todoの説明]}。
+
+\subsection{制約条件ファイル（.xdc）の作成}
+以下のように制約条件ファイルを作成した。
+\begin{lstlisting}
+## Configuration options
+set_property CFGBVS VCCO [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
+
+## Clock signal
+# 100 MHz clock
+set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { CLK }];
+create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK}];
+
+## Reset
+set_property -dict { PACKAGE_PIN C12   IOSTANDARD LVCMOS33 } [get_ports { RSTN }];
+
+## LEDs
+# Mapping WB_RD_VAL[0:15] to LD0-LD15
+set_property -dict { PACKAGE_PIN H17   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[0] }];  # LD0
+set_property -dict { PACKAGE_PIN K15   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[1] }];  # LD1
+set_property -dict { PACKAGE_PIN J13   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[2] }];  # LD2
+set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[3] }];  # LD3
+set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[4] }];  # LD4
+set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[5] }];  # LD5
+set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[6] }];  # LD6
+set_property -dict { PACKAGE_PIN U16   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[7] }];  # LD7
+set_property -dict { PACKAGE_PIN V16   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[8] }];  # LD8
+set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[9] }];  # LD9
+set_property -dict { PACKAGE_PIN U14   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[10] }]; # LD10
+set_property -dict { PACKAGE_PIN T16   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[11] }]; # LD11
+set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[12] }]; # LD12
+set_property -dict { PACKAGE_PIN V14   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[13] }]; # LD13
+set_property -dict { PACKAGE_PIN V12   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[14] }]; # LD14
+set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { WB_RD_VAL[15] }]; # LD15
+\end{lstlisting}
+
+制約条件ファイルには大きく分けて二つの役割があると感じている。
+\begin{enumerate}
+  \item クロック制約：外部クロック周波数をボード側で定義する。本構成では \texttt{CLK} が100MHzで入り、内部で75MHzへ変換するため、入力クロックを次で定義する。
+  \begin{lstlisting}
+create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK}];
+  \end{lstlisting}
+
+  \item ピン配置制約（I/O制約）：ボード上のどの素子に接続するかを指定する。今回はLED出力で動作確認するため、LEDピンへ割り当てる。
+\end{enumerate}
+
+参考として、ピン対応表を示す。
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+riscv & board \\
+\midrule
+E3  & clk \\
+C12 & rst \\
+H17 & LD0 \\
+K15 & LD1 \\
+J13 & LD2 \\
+N14 & LD3 \\
+R18 & LD4 \\
+V17 & LD5 \\
+U17 & LD6 \\
+U16 & LD7 \\
+V16 & LD8 \\
+T15 & LD9 \\
+U14 & LD10 \\
+T16 & LD11 \\
+V15 & LD12 \\
+V14 & LD13 \\
+V12 & LD14 \\
+V11 & LD15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{P命令拡張}
+以下の二つの内容に分けて説明する。
+\begin{enumerate}
+  \item P命令の特長、目的
+  \item 実装
+\end{enumerate}
+
+\subsection{P命令の特長、目的}
+SIMD命令は1つの命令で複数データを同時に処理する命令であり、32bitレジスタを複数の小さなデータ（レーン）に分割して独立に演算する。本レポートで扱うP命令は、32bitを
+
+\begin{itemize}
+  \item byte（8bit）$\times$4レーン
+  \item halfword（16bit）$\times$2レーン
+\end{itemize}
+
+として扱い、各レーンごとに加算/減算を行う（レーン間のキャリーは伝播しない）。例えば \texttt{PADD.B} は各8bitごとに $\texttt{A[i]}+\texttt{B[i]}$ を計算し、オーバーフローは次のレーンへ渡さずに切り捨てるため、「4個の8bit加算を並列に行う」意味になる。
+
+このようなパック演算は、画素処理や量子化済みニューラルネット等の「小さい整数を大量に足し引きする」処理で有効であり、同じスループットをより少ない命令数で達成できる。その結果、分岐やロードストアが律速になりやすいエッジ向けの処理でも、実行効率の改善が期待できる。
+
+\subsection{実装}
+今回、私が実装したP命令は以下の4種類である。
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+  oprule
+命令名 & 内容 & P[1:0] \\
+\midrule
+PADD.B & 8bitずつに分割して加算する命令 & 10 \\
+PSUB.B & 8bitずつに分割して減算する命令 & 10 \\
+PADD.H & 16bitずつに分割して加算する命令 & 00 \\
+PSUB.H & 16bitずつに分割して減算する命令 & 00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+以下では、CS専攻の人間が再実装できる粒度になるように、デコード、データパス、ALUの変更点をまとめる（実装は \texttt{seminor-dir/riscv-np/np_original}）。
+
+\subsubsection{命令エンコード（最小限）}
+P命令は独自opcode \texttt{OP\_PACK} を割り当てており、命令語の一部ビットで「演算種別（add/sub）」と「パックサイズ」を指定する。
+
+\begin{itemize}
+  \item opcode: \texttt{IR[6:0] = 7'b0111011}（\texttt{OP\_PACK}）
+  \item pack size: \texttt{IR[26:25]}（\texttt{IR\_PACK\_SIZE}）
+  \item add/sub: \texttt{IR[30:27]}（\texttt{IR\_ADD\_OR\_SUB}）で \texttt{0000:add}, \texttt{1000:sub}
+\end{itemize}
+
+\subsubsection{デコードとデータパス（どこをどう流すか）}
+  exttt{id\_stage.v} では \texttt{OP\_PACK} を検出すると、基本的にはR-typeと同様にrs1/rs2を演算してrdへ書き戻す設定にする（メモリは使わない）。
+
+\begin{itemize}
+  \item \texttt{FT\_ID = FT\_P}
+  \item \texttt{RegWrite\_ID = 1}
+  \item \texttt{ALUSrc\_ID = 0}（B入力はrs2）
+  \item \texttt{ALUOp\_ID = IADD} または \texttt{ISUB}
+  \item 追加信号 \texttt{PACK\_SIZE\_ID = IR\_PACK\_SIZE}
+\end{itemize}
+
+この \texttt{PACK\_SIZE\_ID} はパイプラインレジスタで \texttt{PACK\_SIZE\_DE} としてEXまで運ばれ、EXステージでALUにそのまま渡される（\texttt{ex\_stage.v} の \texttt{alu\_inst(.P(PACK\_SIZE\_DE))}）。
+
+\subsubsection{ALU（レーン間キャリーを切る実装）}
+P命令の本質は「レーン間キャリーを伝播させない加減算」である。そのためALU内の加算器を、32bitを8bit$\times$4に分割したリップルキャリー加算器として実装し、パックサイズに応じてキャリーの接続を切る。
+
+  exttt{alu.v} では \texttt{P} に応じて \texttt{link\_en[3:0]} を設定している。
+
+\begin{itemize}
+  \item byte（\texttt{P=2'b10}）: \texttt{link\_en=4'b1000} とし、byte0$\rightarrow$1、1$\rightarrow$2、2$\rightarrow$3 のキャリー連結を全て切る
+  \item halfword（\texttt{P=2'b00}）: \texttt{link\_en=4'b1101} とし、下位16bitと上位16bitの間だけキャリーを切る
+  \item word（\texttt{P=2'b11} または \texttt{01}）: \texttt{link\_en=4'b1111} とし、通常の32bit加算として動作
+\end{itemize}
+
+各8bit加算の次キャリーは、\texttt{link\_en} が1なら本当のcarry-outを次段へ渡し、0なら「新しいレーンのcarry-in」として \texttt{is\_sub} を入れ直す（減算時は2の補数のため \texttt{cin=1} が必要）。
+
+また、パック時（8/16bit）は32bit全体のオーバーフロー判定が意味を持ちにくいので、\texttt{overflowFlag} はword時のみ有効化している。
+
+新しく追加した制御信号 \texttt{P[1:0]} は、このように「どこでキャリーを切るか」を指定するために導入した。
+
+\section{link\_en長ごとの性能を動作周波数と回路規模で比較}
+以下の二つの内容に分けて説明する。
+\begin{enumerate}
+  \item link\_en長とは
+  \item aluのみの性能比較
+  \item プロセッサの性能比較
+\end{enumerate}
+
+\subsection{link\_en長とは}
+制御信号 \texttt{P} にパッケージサイズが格納されており、これを条件分岐にかけて32個のFA間の繰上げを繋ぐ／切るをマスクしている。このマスクが \texttt{link\_en (link\_enabled)} である。1の時に繰上げを許可し、0の時に切ることを想定している。
+
+定義は以下の通りである。
+\begin{lstlisting}[language=Verilog]
+assign link_en = (P == 2'b10) ? 32'hFF7F7F7F : // byte: cut at bits 7,15,23
+                 (P == 2'b00) ? 32'hFFFF7FFF : // halfword: cut at bit 15
+                                32'hFFFFFFFF; // word (11 or 01): no cut
+\end{lstlisting}
+
+指摘を元に、キャリーを切る可能性がある部分に絞って \texttt{link\_en} を8bit単位で指定し直した。
+\begin{lstlisting}[language=Verilog]
+assign link_en = (P == 2'b10) ? 4'b1000 : // byte: cut all inter-byte carries
+                 (P == 2'b00) ? 4'b1101 : // halfword: cut between lower and upper half
+                                4'b1111; // word (11 or 01): no cut
+\end{lstlisting}
+
+\subsection{aluの性能比較}
+本節では、ALU単体をFPGAに載せた場合の回路規模とタイミング余裕（WNS）を比較する。100MHz（周期10ns）制約を与え、Timing SummaryのWNSから、最悪パス遅延 $D \approx 10\mathrm{ns}-\mathrm{WNS}$ と最大動作周波数の目安 $f_{max} \approx 1/D$ を概算した。
+
+\subsubsection*{回路規模（Utilization）}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+	oprule
+指標 & original & 1bit & 8bit \\
+\midrule
+CARRY4 & 9 & 0 & 12 \\
+LUT2 & 0 & 3 & 1 \\
+LUT3 & 0 & 5 & 1 \\
+LUT4 & 40 & 15 & 12 \\
+LUT5 & 5 & 9 & 9 \\
+LUT6 & 69 & 79 & 97 \\
+LUT合計（LUT2--6） & 114 & 111 & 120 \\
+FF（FDRE） & 101 & 103 & 103 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ALU単体では、LUT合計は1bitが最小だった。一方で1bitはCARRY4が0となっており、ツールがキャリー・チェインを使わずにLUTで加算を実現した可能性が高い。
+
+\subsubsection*{タイミング（WNS）}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+	oprule
+指標 & original & 1bit & 8bit \\
+\midrule
+WNS (ns) & 3.093 & 0.241 & 0.265 \\
+最悪遅延 $D$ (ns) & 6.907 & 9.759 & 9.735 \\
+$f_{max}$目安 (MHz) & 144.8 & 102.5 & 102.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ALU単体では1bit/8bitはいずれもWNSが0.2ns台で、100MHz制約は満たすが余裕は小さい。originalはWNSが約3nsあり、最大周波数の目安も高い。
+
+\subsection{プロセッサの性能比較}
+本節では、プロセッサ全体に組み込んだ場合の回路規模とタイミング余裕（WNS）を比較する。プロセッサ全体ではRAM系や大規模なMUXが支配的であり、ALU差分は相対的に小さいが、LUTやCARRY4の差分として観測できる。
+
+\subsubsection*{回路規模（Utilization）}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+	oprule
+指標 & original & 1bit & 8bit \\
+\midrule
+CARRY4 & 25 & 16 & 28 \\
+LUT1 & 4 & 3 & 3 \\
+LUT2 & 303 & 348 & 306 \\
+LUT3 & 66 & 56 & 65 \\
+LUT4 & 212 & 181 & 209 \\
+LUT5 & 245 & 268 & 249 \\
+LUT6 & 1929 & 1959 & 1929 \\
+LUT合計（LUT1--6） & 2759 & 2815 & 2761 \\
+FF（FDCE） & 528 & 530 & 529 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+プロセッサ全体では、1bitがLUT合計で最も大きく（約2\%増）、ALU単体のときとは逆の傾向になった。
+
+\subsubsection*{タイミング（WNS）}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+	oprule
+指標 & original & 1bit & 8bit \\
+\midrule
+WNS (ns) & 3.753 & 0.931 & 0.561 \\
+最悪遅延 $D$ (ns) & 6.247 & 9.069 & 9.439 \\
+$f_{max}$目安 (MHz) & 160.1 & 110.2 & 105.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+プロセッサ全体では、1bitの方が8bitよりWNSが大きく、タイミング余裕がある。一方でoriginalはさらに余裕が大きい。
+
+\subsubsection*{考察}
+ALU単体とプロセッサ全体で傾向が逆転するのは、合成/配置配線の最適化が周辺回路込みで決まるためである。\texttt{link\_en} による条件付きcarry接続は加算器の推論（キャリー・チェイン利用）を崩しやすく、結果としてLUT増や遅延増につながりやすい。一方、プロセッサ全体ではALU内部だけでなく、前段MUXやフォワーディング、レジスタ境界を含むパスが支配的になり、配置配線の都合で1bitの方が有利になる場合がある。
+
+\section{まとめ}
+\textbf{[追記]}
+
+\section{感想}
+セミナーを通して、プロセッサの設計と性能評価について包括的で深い学びを得ることができた。セミナー前に実施された工学実験では、2段のパイプラインさえも作ることができずプロセッサの仕組みを全く理解していないと自覚していた。ふわっとした興味を抱えて参加したセミナーの初日から、勉強、パイプライン図の作成、実装に没頭する日々が続いて、低レイヤーに向ける興味が根を張り出しているのを感じながら進めた。
+
+コーディングしているときに魅力的な部分が二つあった。一つ目は外部モジュールに頼らない点である。高水準言語での開発ではインストラクションメモリやデータメモリ、アライナー、レジスタなどは隠蔽されがちであるのに対し、HDLで書くプロセッサは、メモリのベースアドレスの指定から書き込み、読み出しまで定義する必要があった。メモリも配列の様な構造体であり、5段パイプラインプロセッサを手元の知識のみで積み上げていく満足感を感じていた。
+
+\end{document}
