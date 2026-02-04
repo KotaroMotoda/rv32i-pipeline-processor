@@ -2,10 +2,35 @@
 情報電気工学科3年 232t3253 元田浩太郎
 
 ## 本セミナーの目的
-単一サイクルパイプラインプロセッサから,5段パイプラインプロセッサへの改良を通じてプロセッサへの理解を深める.
+本セミナーの目的は,単一サイクル(実質的に非パイプライン)のRISC-Vプロセッサを出発点として,5段パイプライン(IF/ID/EX/MEM/WB)へ段階的に改良する過程を通じて,「命令がどのようにハードウェア上で流れ,どこが律速になり,どんな工夫で正しく/速くできるのか」を自分の手で理解することである.
+
+具体的には次の4点を到達目標とする.
+
+1. パイプライン化の意義を,性能(動作周波数,スループット)と実装(回路規模,制御の複雑さ)の両面から説明できるようになる.
+2. 命令タイプごとのデータパスと制御信号を設計し,ハードウェア記述言語上で矛盾なく実装できるようになる.
+3. データハザード/制御ハザードを具体例で説明し,フォワーディング/ストール/フラッシュ等の対策を適用できるようになる.
+4. FPGA上で合成・配置配線を行い,リソース(Utilization)とタイミング(WNS等)を用いて設計を評価し,次に何を改善すべきかを判断できるようになる.
+
 
 ## レポート概要
-本セミナーで取り扱った内容の理解と,実装を示す. また,主観も織り交ぜてオリジナリティに溢れるものにしたい.
+本レポートは,セミナーで実施した「5段パイプラインプロセッサの設計・実装・動作確認・評価」を,読者が追体験できる形でまとめたものである.単なる手順書ではなく,各章で
+
+- 何を達成したいのか(目的)
+- どのような回路/制御で実現したのか(実装)
+- 何をもって正しいと確認したのか(動作確認)
+- どの指標で良し悪しを判断したのか(評価)
+- 次に何を改善すべきか(考察)
+
+を明確にする.
+
+また,本レポートが示す「成果物」は次の通りである.
+
+- P命令拡張なしの5段パイプラインプロセッサ(基本命令セットの動作を前提にした設計)
+- P命令(パック演算)拡張を導入した5段パイプラインプロセッサ
+- FPGA上での動作確認(LED出力を用いたI/O含む確認)
+- Vivadoの結果に基づく回路規模・タイミング評価(特にALU実装差分の比較)
+
+主観については,「どこが難しかったか/なぜその設計にしたか/次に何を試すべきか」という形で,設計上の学びとして示していく.これにより,同じように情報工学を学ぶ生徒がプロセッサを作成できる粒度のレポートとなることを目指す.
 
 ## レポートの流れ
 セミナーでの進行におよそ合わせて以下の様に章立てした.
@@ -69,7 +94,7 @@
 * 各制御信号の説明
 
 ハザード,フォワーディングユニット,最後に各制御信号について述べたい.
-まず,ハザードについてのべる. ハザードとは,次のクロックで命令を実行できない状況を指す.これには,構造ハザード,データハザード,制御ハザードのみ三つがある.構造ハザードとは,一緒に実行される命令の組み合わせにハードウェアが対応できないために発生するハザードであり,例えば,IDステージでレジスタ読み出しw,WBステージでレジスタ書き込みを行う場合,レジスタへの操作が時間的に重複してしまうため工夫なしにはハザードが発生してしまう.私のプロセッサでは,レジスタ読み出し(ID)をクロック立ち上がり時に,レジスタ書き込み(WB)をクロック立ち下がり時に行うことで,構造ハザードの回避を図った.データハザードとは,命令の実行に必要なデータがまだ利用可能になっていないために発生してしまうハザードである.これを解決するのが後述するフォワーディングである.制御ハザードとは,パイプライン処理中の分岐のために発生するハザードである.私のプロセッサの場合,分岐の判定はEXステージであるため,分岐予測(本プロセッサでは静的分岐予測を採用)が外れてしまった場合には,すでに命令が発行された後続の2命令がストールされる.これに関しては単純な静的分岐予測器ではなく,動的分岐予測器などを用いて分岐予測ヒット率を上げることで,クロックの無駄削減できるだろう.
+まず,ハザードについてのべる. ハザードとは,次のクロックで命令を実行できない状況を指す.これには,構造ハザード,データハザード,制御ハザードのみ三つがある.構造ハザードとは,一緒に実行される命令の組み合わせにハードウェアが対応できないために発生するハザードであり,例えば,IDステージでレジスタ読み出しを,WBステージでレジスタ書き込みを行う場合,レジスタへの操作が時間的に重複してしまうため工夫なしにはハザードが発生してしまう.私のプロセッサでは,レジスタ読み出し(ID)をクロック立ち上がり時に,レジスタ書き込み(WB)をクロック立ち下がり時に行うことで,構造ハザードの回避を図った.データハザードとは,命令の実行に必要なデータがまだ利用可能になっていないために発生してしまうハザードである.これを解決するのが後述するフォワーディングである.制御ハザードとは,パイプライン処理中の分岐のために発生するハザードである.私のプロセッサの場合,分岐の判定はEXステージであるため,分岐予測(本プロセッサでは静的分岐予測を採用)が外れてしまった場合には,すでに命令が発行された後続の2命令がストールされる.これに関しては単純な静的分岐予測器ではなく,動的分岐予測器などを用いて分岐予測ヒット率を上げることで,クロックの無駄削減できるだろう.
 
 次に,フォワーディングユニットについて.これの設計次第で,通常ならばデータハザードが発生するところを全力で駆け抜けることができるようになる.私は,以下のようにフォワーディングユニットを設計した.
 
@@ -142,15 +167,15 @@ IDATA_FD <= IDATA_IF;
 
 | 信号名 | 役割 | 
 | - | - | 
-| MemtoReg | 00: レジスタへ書き込みむ値がALUから得られる. 01: DMEMから得られる. 10: PC+4(jalrなどの戻りポインタ)  |
+| MemtoReg | 00: レジスタへ書き込む値がALUから得られる. 01: DMEMから得られる. 10: PC+4(jalrなどの戻りポインタ)  |
 | RegWrite | 0: レジスタかきこみなし, 1: レジスタ書き込み |
 | Branch | 0 : 分岐しない, 1: 分岐 |
 | MemWrite | 0: メモリ書き込みなし, 1: メモリ書き込み|
 | MemRead | 0: メモリ読み出しなし, 1: メモリ読み出し | 
-| ALUArc | 0: ALUの第二引数がRF_DATA2, 1: ALUの第二引数がIMM_VAL_EXT |
-| ALUOp |  |
+| ALUSrc | 0: ALUの第二引数がRF_DATA2, 1: ALUの第二引数がIMM_VAL_EXT |
+| ALUOp | ALU/SHIFTに渡す演算種別(5bit)を表す.IDステージで作成. |
 | ALUorSHIFT | ALUとSHIFTのどちらの結果を用いるのか |
-| DMSE |  |
+| DMSE | Load時の符号拡張制御.|
 | FT | 命令タイプを識別する.(IDステージで重宝). |
 | RS1_PC | Uタイプ命令(auipc命令)を識別 |
 | RS1_Z | Uタイプ命令(lui命令)を識別 |
@@ -168,7 +193,7 @@ IDATA_FD <= IDATA_IF;
 
 大まかなレイヤーは上記に示す通りである. 外部とのI/Oがはっきりしたことと,前章まで用いていたプロセッサモジュールが,riscvと,riscv_coreに分割されていることがわかる.
 上記の図で登場しているriscvとは,プロセッサのトップモジュールとして扱い,プロセッサ外のモジュールとのI/Oを管理している.一方でriscv_coreでは,完全にプロセッサの本体が定められており,前章までで扱っていたプロセッサに該当する.
-ボード上からプロセッサのトップモジュール(riscv)へのimputはCLKとRSTNの二つのみである.私が作成したプロセッサ(riscv_core)は,100MHzに間に合わなかったが,75MHzでは動作確認できたので,ボードから入ってきたCLKは,clk_wiz_0というモジュール(vivadoで事前に生成した)を通して75Mhzに周波数を落としている. これを,riscv_coreに入力する.
+ボード上からプロセッサのトップモジュール(riscv)へのinputはCLKとRSTNの二つのみである.私が作成したプロセッサ(riscv_core)は,100MHzに間に合わなかったが,75MHzでは動作確認できたので,ボードから入ってきたCLKは,clk_wiz_0というモジュール(vivadoで事前に生成した)を通して75MHzに周波数を落としている. これを,riscv_coreに入力する.
 また,dmemがプロセッサから分離している点にも注目したい.
 
 #### 1-2-2 トップモジュールの作成
@@ -200,77 +225,27 @@ module riscv #(
 ```
 最初に,parameterの指定がされている.
 利用したメモリは,アドレスに応じてinstruction memoryとdata memoryの二つに分割されている. 
-具体的には,アドレス32’h0000_0000 ~ 32’h000F_FFFFがinstruction memoryであり,32’h0010_0000 ~ 32’h0011_FFFFがdata memoryである.LEDのために,新しくメモリを確保する必要があるが,instaruction memoryとdata memoryを侵害しないように気をつけなければならない. コード中で,LED_BASEを32’h0012_0000としているのは,そのためである.
+具体的には,アドレス32’h0000_0000 ~ 32’h000F_FFFFがinstruction memoryであり,32’h0010_0000 ~ 32’h0011_FFFFがdata memoryである.LEDのために,新しくメモリを確保する必要があるが,instruction memoryとdata memoryを侵害しないように気をつけなければならない. コード中で,LED_BASEを32’h0012_0000としているのは,そのためである.
 LOCKEDとは,クロックが正常に流れていきている時に立つ制御信号である.
 
 #### 1-2-3 制約条件ファイル(.xdcの作成)
 
-以下に,fpgaボードの仕様書から得た,ピンと制御信号の対応を以下に示す.
-
-| riscv | board |
-| ---- | ---- |
-| E3 | clk | 
-| C12 | rst |
-| H17 | LD0 | 
-| K15 | LD1 |
-| J13 | LD2 | 
-| N14 | LD3 | 
-| R18 | LD4 | 
-| V17 | LD5 | 
-| U17 | LD6 | 
-| U16 | LD7 | 
-| V16 | LD8 | 
-| T15 | LD9 | 
-| U14 | LD10 | 
-| T16 | LD11 | 
-| V15 | LD12 | 
-| V14 | LD13 | 
-| V12 | LD14 | 
-| V 11 | LD15 | 
-
-上記の仕様を元に,制約条件ファイルを作成した.
-```xdc
-## Configuration options
-set_property CFGBVS VCCO [current_design]
-set_property CONFIG_VOLTAGE 3.3 [current_design]
-
-## Clock signal
-# 100 MHz clock
-set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { CLK }];
-create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK}];
-
-## Reset
-set_property -dict { PACKAGE_PIN C12   IOSTANDARD LVCMOS33 } [get_ports { RSTN }];
-
-## LEDs
-# Mapping WB_RD_VAL[0:15] to LD0-LD15
-set_property -dict { PACKAGE_PIN H17   IOSTANDARD LVCMOS33 } [get_ports { LED[0] }];  # LD0
-set_property -dict { PACKAGE_PIN K15   IOSTANDARD LVCMOS33 } [get_ports { LED[1] }];  # LD1
-set_property -dict { PACKAGE_PIN J13   IOSTANDARD LVCMOS33 } [get_ports { LED[2] }];  # LD2
-set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { LED[3] }];  # LD3
-set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { LED[4] }];  # LD4
-set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { LED[5] }];  # LD5
-set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports { LED[6] }];  # LD6
-set_property -dict { PACKAGE_PIN U16   IOSTANDARD LVCMOS33 } [get_ports { LED[7] }];  # LD7
-set_property -dict { PACKAGE_PIN V16   IOSTANDARD LVCMOS33 } [get_ports { LED[8] }];  # LD8
-set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { LED[9] }];  # LD9
-set_property -dict { PACKAGE_PIN U14   IOSTANDARD LVCMOS33 } [get_ports { LED[10] }]; # LD10
-set_property -dict { PACKAGE_PIN T16   IOSTANDARD LVCMOS33 } [get_ports { LED[11] }]; # LD11
-set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports { LED[12] }]; # LD12
-set_property -dict { PACKAGE_PIN V14   IOSTANDARD LVCMOS33 } [get_ports { LED[13] }]; # LD13
-set_property -dict { PACKAGE_PIN V12   IOSTANDARD LVCMOS33 } [get_ports { LED[14] }]; # LD14
-set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { LED[15] }]; # LD15
-```
-制約条件ファイルには,大きく分けて二つの役割があると感じている.
-一つ目は,クロック制約を設けることである. 外部から,プロセッサに入ってくるクロックの周波数を,ボード側で定義している. riscvは100MHzでクロックを受けて,75MHzに落としてriscv_coreに落とす構成なので,以下のように定義して,所望の動作を得られるようにしている,
-```VHDL
-create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK}];
-```
+ピンの割り当て(ボードのピンと信号の対応)と,制約条件ファイル(.xdc)の中身は付録にまとめた(「5. 付録」参照).
 
 ### 1-3 評価
 
 #### 1-3-1 周波数の結果
-FPGA上での動作確認では,本プロセッサは75MHzで動作した.一方,100MHzではタイミングを満たさず,同じ構成のままでは安定動作しなかった.
+FPGA上での動作確認では,本プロセッサは75MHzで安定動作した.一方,100MHzではタイミングを満たさず(Setup Slackが負),同じ構成のままでは安定動作しなかった.
+次に,VivadoのTiming Summaryを用い,以下に結果を示す.
+
+| 項目 | 値 |
+| - | -: |
+| 制約周波数 | 75MHz |
+| WNS (ns) | 1.32 |
+| 最悪遅延 $D$ (ns) | 12.013 |
+| $f_{max}$目安 (MHz) | 83.2 |
+
+上表より,75MHz制約ではWNSが正でありタイミングは満たされている.また,$f_{max}$の目安(約83MHz)に対して,実機で確認した上限(76.8MHz)は十分に下回っており,実験結果として整合している.
 
 ### 1-4 考察
 
@@ -482,7 +457,81 @@ ALU単体のときと逆転している点が重要である.
 
 ## 3. まとめ
 
+本レポートでは,P命令拡張なし/ありの2種類の5段パイプラインプロセッサについて,実装・動作確認・評価・考察を行った.
+まずP命令拡張なしのプロセッサでは,命令タイプごとにデータパスと制御信号を整理し,フォワーディング/ストール/フラッシュによってハザードを処理する構成を実装した.動作確認としては,FPGA上でLED出力を用いたI/Oを含む確認を行い,75MHzで安定して動作することを確認した.一方で,100MHz制約ではタイミングを満たさず,特にEX周辺のMUX選択や分岐処理がクリティカルパスになりやすいことを意識する必要があると分かった.
+次にP命令拡張ありのプロセッサでは,独自opcode `OP_PACK` によりパックサイズと加減算種別を指定し,`PACK_SIZE` をパイプラインでEXまで運んでALUに入力することで,パック演算を既存のパイプライン構造に組み込んだ.評価として,レーン間キャリーの接続/切断を指定する `link_en` の記述差分(original/1bit/8bit)を用意し,VivadoのUtilizationとWNSで比較した.その結果,ALU単体とプロセッサ全体で「面積とタイミングの関係」が必ずしも同じ傾向にならず,条件付きcarry接続のような記述がツールの最適化に影響しやすいことが確認できた.
+以上より,命令拡張は「機能が増える」だけでなく,合成・配置配線の最適化のされ方にも影響し,評価はモジュール単体だけでなくシステム全体の文脈で見直す必要があると分かった.今後は,クリティカルパスの見える化と,分岐やオペランド選択の前倒し/単純化などを組み合わせて,100MHz制約での動作を目標に改善していきたい.
+
 
 ## 4. 感想
-セミナーを通して,プロセッサの設計と性能評価について包括的で深い学びを得ることができた.セミナー前に実施された工学実験では,2段のパイプラインさえも作ることができずプロセッサの仕組みを全く理解していないと自覚していた.ふわっとした興味を抱えて参加したセミナーの初日から,勉強,パイプライン図の作成,実装に没頭する日々が続いて,低レイヤーに向ける興味がメキメキと根を張り出しているのを心地よく感じながら進めた.コーディングしているときに,際立って魅力的な部分が二つあったので,これ示す.一つ目は,外部モジュールに頼らない点である.高水準言語を用いた開発を行うとき,インストラクションメモリやデータメモリ,アライナー,レジスタなどは完全に隠れており,ブラックボックスであるのに対し,VHDLで書くプロセッサは,メモリのベースアドレスの指定から書き込み,読み出しまで漏らすことなく定義する必要があった.メモリというのも配列の様な構造体であるので,5段パイプラインプロセッサを,手元にある知識のみで積み上げていく満足感を感じていた.
+セミナーを通して,プロセッサの設計と性能評価について包括的で深い学びを得ることができた.セミナー前に実施された工学実験では,2段のパイプラインさえも作ることができずプロセッサの仕組みを全く理解していないと自覚していた.ふわっとした興味を抱えて参加したセミナーの初日から,勉強,パイプライン図の作成,実装に没頭する日々が続いて,低レイヤーに向ける興味がメキメキと根を張り出しているのを心地よく感じながら進めた.コーディングしているときに,際立って魅力的な部分が二つあったので,これ示す.一つ目は,ブラックボックスを持たない点である.高水準言語を用いた開発を行うとき,インストラクションメモリやデータメモリ,アライナー,レジスタなどは完全に隠れており,ブラックボックスであるのに対し,VHDLで書くプロセッサは,メモリのベースアドレスの指定から書き込み,読み出しまで漏らすことなく定義する必要があった.メモリというのも配列の様な構造体であるので,5段パイプラインプロセッサを,理解を余すことなく構築していけたと思う.二つ目は,
+「書いた回路が,そのまま性能に跳ね返ってくる」点である.本レポートでは,VivadoのUtilizationやWNSを確認しながら,どの部分が面積を使い,どの部分がクリティカルパスになっているのかを推測し,改善案を立てるというサイクルを回した.例えば,P命令の実装では,レーン間キャリーの接続/切断を `link_en` で制御するという仕様自体は単純である一方,その記述の仕方がツールの最適化(特にキャリー・チェイン推論)に影響し,ALU単体とプロセッサ全体で結果が変わり得ることが分かった.このように,「正しく動く」だけで終わらず,合成・配置配線の結果まで含めて設計を評価し,次の一手を考えることが,低レイヤー開発の面白さだと感じた.
+今回のセミナーを通じて,プロセッサは抽象的な概念ではなく,具体的な配線と制御信号の積み重ねで成り立っていることを実感できた.今後の展望としては,アーキテクチャを変えてデータフロー型のプロセッサの設計に挑戦してみたい. AI関連にも興味があるので,画像処理や行列計算などの演算を,自身が作成したノイマン型とデータフロー型のプロセッサの二つで評価してみたい.
 
+
+## 5. 付録
+
+### 5-1 ピンの割り当てと制約条件ファイル(.xdc)
+
+以下に,fpgaボードの仕様書から得た,ピンと制御信号の対応を以下に示す.
+
+| riscv | board |
+| ---- | ---- |
+| E3 | clk | 
+| C12 | rst |
+| H17 | LD0 | 
+| K15 | LD1 |
+| J13 | LD2 | 
+| N14 | LD3 | 
+| R18 | LD4 | 
+| V17 | LD5 | 
+| U17 | LD6 | 
+| U16 | LD7 | 
+| V16 | LD8 | 
+| T15 | LD9 | 
+| U14 | LD10 | 
+| T16 | LD11 | 
+| V15 | LD12 | 
+| V14 | LD13 | 
+| V12 | LD14 | 
+| V11 | LD15 | 
+
+上記の仕様を元に,制約条件ファイルを作成した.
+```xdc
+## Configuration options
+set_property CFGBVS VCCO [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
+
+## Clock signal
+# 100 MHz clock
+set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { CLK }];
+create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK}];
+
+## Reset
+set_property -dict { PACKAGE_PIN C12   IOSTANDARD LVCMOS33 } [get_ports { RSTN }];
+
+## LEDs
+# Mapping WB_RD_VAL[0:15] to LD0-LD15
+set_property -dict { PACKAGE_PIN H17   IOSTANDARD LVCMOS33 } [get_ports { LED[0] }];  # LD0
+set_property -dict { PACKAGE_PIN K15   IOSTANDARD LVCMOS33 } [get_ports { LED[1] }];  # LD1
+set_property -dict { PACKAGE_PIN J13   IOSTANDARD LVCMOS33 } [get_ports { LED[2] }];  # LD2
+set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { LED[3] }];  # LD3
+set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { LED[4] }];  # LD4
+set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { LED[5] }];  # LD5
+set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports { LED[6] }];  # LD6
+set_property -dict { PACKAGE_PIN U16   IOSTANDARD LVCMOS33 } [get_ports { LED[7] }];  # LD7
+set_property -dict { PACKAGE_PIN V16   IOSTANDARD LVCMOS33 } [get_ports { LED[8] }];  # LD8
+set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { LED[9] }];  # LD9
+set_property -dict { PACKAGE_PIN U14   IOSTANDARD LVCMOS33 } [get_ports { LED[10] }]; # LD10
+set_property -dict { PACKAGE_PIN T16   IOSTANDARD LVCMOS33 } [get_ports { LED[11] }]; # LD11
+set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports { LED[12] }]; # LD12
+set_property -dict { PACKAGE_PIN V14   IOSTANDARD LVCMOS33 } [get_ports { LED[13] }]; # LD13
+set_property -dict { PACKAGE_PIN V12   IOSTANDARD LVCMOS33 } [get_ports { LED[14] }]; # LD14
+set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { LED[15] }]; # LD15
+```
+
+制約条件ファイルには,大きく分けて二つの役割があると感じている.
+一つ目は,クロック制約を設けることである. 外部から,プロセッサに入ってくるクロックの周波数を,ボード側で定義している. riscvは100MHzでクロックを受けて,75MHzに落としてriscv_coreに落とす構成なので,以下のように定義して,所望の動作を得られるようにしている,
+```VHDL
+create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK}];
+```
