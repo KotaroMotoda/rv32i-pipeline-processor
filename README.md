@@ -1,93 +1,74 @@
-# RV32I Pipeline Processor — Seminar Directory
+# RV32I 5段パイプライン・プロセッサ（セミナー成果）
 
-A curated workspace for developing and presenting an educational RV32I processor design. This directory currently hosts a single-cycle implementation as a baseline, with a clear roadmap toward a 5-stage pipelined core targeting 120 MHz.
-
-- Status: Single-cycle baseline ✅
-- Goal: 5-stage pipeline (IF/ID/EX/MEM/WB) at 120 MHz 🎯
-- ISA: RISC‑V RV32I
+本リポジトリは,「単一サイクルRISC-V」から出発して,**5段パイプライン(IF/ID/EX/MEM/WB)の実装・検証・評価まで完遂した成果物**をまとめた最終版である.実機FPGAでの動作確認とVivado評価を行い,レポートとして体系化した.
 
 ---
 
-## Highlights
+## 成果サマリ
 
-- Clean, education-friendly structure with focused modules
-- Clear progression from single-cycle to pipelined microarchitecture
-- FPGA-oriented folder for synthesis and board bring-up
-- Sample programs for quick testing and demos
-
----
-
-## Directory Layout
-
-- [alu](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/alu)
-  - ALU-related logic and test collateral for arithmetic/logic operations.
-- [riscv-np](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np)
-  - [fpga](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np/fpga): Board/project files, constraints, and synthesis scripts.
-  - [np](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np/np): Core logic for the processor (baseline and subsequent iterations).
-  - [sample](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np/sample): Example programs for quick functional validation.
+- RV32I 5段パイプラインの完成（データ/制御ハザード処理込み）
+- P命令（パック演算）拡張の導入とALU実装の評価
+- FPGA上での実機動作確認（LED I/O）
+- Vivadoでの回路規模・タイミング評価（WNS等）
 
 ---
 
-## Roadmap
+## 実装内容（主な到達点）
 
-- [x] Single-cycle RV32I baseline
-- [x] 5-stage pipeline: IF, ID, EX, MEM, WB
-- [x] Hazard detection and data forwarding
-- [x] Control hazard handling (flush, basic prediction strategy optional)
-- [x] Memory interface refinement and alignment rules
-- [ ] Timing closure at 120 MHz (post-route on target FPGA)
-- [ ] Documentation: microarchitecture diagrams and timing reports
+- IF/ID/EX/MEM/WBの5段パイプライン化
+- フォワーディング/ストール/フラッシュによるハザード処理
+- Load/Storeのアライン処理(`daligner`)と符号拡張制御
+- 分岐判定のEX確定＋IFへのフィードバック
+- P命令拡張：`OP_PACK` と `PACK_SIZE` によるパック演算
 
 ---
 
-## Technologies
+## 評価結果（抜粋）
 
-- Hardware description: Verilog HDL (project-oriented toward FPGA synthesis)
-- FPGA flow: Vendor toolchain (constraints/project under `riscv-np/fpga`)
-- Test programs: RISC‑V assembly/C samples (under `riscv-np/sample`)
-- Scripting/constraints: Typical use of XDC/Tcl or vendor equivalents in `fpga`
+- **75MHzで安定動作**
+- **76.8MHzまで動作**（上限確認）
+- **100MHzではタイミングを満たさず**（Setup Slackが負）
+- 75MHz制約時のWNSを用いて,最悪遅延 $D$ と $f_{max}$ を概算
 
-Note: Exact tool and file formats may vary by chosen FPGA vendor and board.
-
----
-
-## Getting Started
-
-1. Explore the baseline
-   - Review the [alu](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/alu) and [riscv-np/np](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np/np) modules to understand the single-cycle core.
-2. Simulate
-   - Use a Verilog‑2001–compliant simulator to validate ALU and core behavior.
-3. Synthesize for FPGA
-   - Open the project under [`riscv-np/fpga`](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np/fpga), apply board constraints, and build.
-4. Run sample programs
-   - Load binaries from [`riscv-np/sample`](https://github.com/KotaroMotoda/rv32i-pipeline-processor/tree/5c0d5218ed7736fc60042563b5a2a89e741a9ebd/seminor-dir/riscv-np/sample) to verify instruction execution and basic I/O.
+詳細は `report.md` に記載している.
 
 ---
 
-## Design Principles
+## ディレクトリ構成
 
-- Clarity first: prioritize readable RTL and modular structure
-- Measurable progress: validate each stage (functionally and with timing)
-- Hardware realism: close timing on real FPGA targets, not just simulation
-- Reproducibility: keep constraints and project scripts version-controlled
+- `seminor-dir/alu/`
+   - ALU関連モジュールとテスト
+- `seminor-dir/riscv-np/np/`
+   - プロセッサ本体（パイプライン,ハザード処理,ALU等）
+- `seminor-dir/riscv-np/fpga/`
+   - Vivadoプロジェクト,制約,合成/配置配線
+- `seminor-dir/riscv-np/sample/`
+   - 動作確認用サンプルプログラム
 
 ---
 
-## Contributing
+## 主要ドキュメント
 
-Contributions that improve clarity, correctness, timing, or documentation are welcome.
-- Add focused tests for ALU and pipeline hazards
-- Share timing reports and optimization notes toward the 120 MHz goal
-- Expand sample programs for coverage and demos
+- `report.md` : セミナーレポート（設計・評価・考察の本体）
+- `report.tex` : レポートのTeX版
 
-Please follow the repository’s style and submit concise, well‑scoped changes.
+---
+
+## 再現の流れ（概要）
+
+1. Vivadoで `seminor-dir/riscv-np/fpga/` のプロジェクトを開く
+2. 制約ファイルを適用し合成・配置配線を実行
+3. 生成ビットストリームをFPGAへ書き込み
+4. サンプルプログラムでLED動作を確認
+
+---
+
+## 補足
+
+本リポジトリは**セミナー成果物として完結**している.追加開発は想定しておらず,設計の全体像と評価結果を後から参照できる形に整理してある.
 
 ---
 
 ## License
 
-This directory follows the license of the repository. See the LICENSE file at the repository root.
-
----
-
-Crafted with care to be both instructional and practical—aimed at a clean path from a single-cycle baseline to a robust, 5-stage pipelined RV32I core running at 120 MHz.
+リポジトリルートの `LICENSE` に従う.
